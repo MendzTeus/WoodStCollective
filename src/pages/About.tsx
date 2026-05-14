@@ -4,8 +4,12 @@ import {
   Target, 
   PenTool
 } from "lucide-react";
+import { useSiteData } from "../context/SiteContext";
 
 export default function About() {
+  const { data } = useSiteData();
+  const pageData = data.pages['About'];
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -31,9 +35,9 @@ export default function About() {
              initial={{ scale: 1.1 }}
              animate={{ scale: 1 }}
              transition={{ duration: 1.5, ease: "easeOut" }}
-             alt="Manchester Skyline" 
+             alt="About Cover" 
              className="w-full h-full object-cover brightness-[0.4]" 
-             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0tRKGJ76qkiUGHXCLhtOnzmG6pkFc-Xf7Pe24pJKlu5Z1ZMVfYTMJXimrwSkQkZ1UoGlc4EC93vwg9_L-XQQVzdvDGSdQyBhEuYT9Rn6FFfw5800gCuH6xWbKbupuPn41B_6TIlqjE1j5l4JyLevX4im7W9Jis0eijNX5cf79YxLMwHRWikczg3vUoNyXbsYPQOqJg6Se5VkreKUmf7HRxQZnt8yhhjHHr73YwPtArTPLxPydlWxCwXDP2xpenK28re12r3WS60"
+             src={pageData.coverImage}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent" />
         </div>
@@ -43,9 +47,9 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="font-display text-[clamp(48px,8vw,100px)] font-black italic leading-tight text-primary mb-8"
+            className="font-display text-[clamp(48px,8vw,100px)] font-black italic leading-tight text-primary mb-8 whitespace-pre-line"
           >
-            Elevating the<br />Manchester Experience.
+            {pageData.title}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -53,7 +57,7 @@ export default function About() {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-xl text-text-secondary max-w-2xl mx-auto font-light italic"
           >
-            A sanctuary for professionals and creatives in the heart of the city.
+            {pageData.description}
           </motion.p>
         </div>
       </section>

@@ -6,8 +6,12 @@ import {
   Wifi, 
   ChevronDown
 } from "lucide-react";
+import { useSiteData } from "../context/SiteContext";
 
 export default function Coworking() {
+  const { data } = useSiteData();
+  const pageData = data.pages['Coworking'];
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -35,7 +39,7 @@ export default function Coworking() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             alt="Workspace Hero" 
             className="w-full h-full object-cover brightness-[0.4]" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
+            src={pageData.coverImage} 
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>
@@ -46,9 +50,9 @@ export default function Coworking() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display text-[clamp(64px,12vw,140px)] font-black leading-[0.9] text-primary mb-10 italic"
+              className="font-display text-[clamp(64px,12vw,140px)] font-black leading-[0.9] text-primary mb-10 italic whitespace-pre-line"
             >
-              Elevate<br />Your Work.
+              {pageData.title}
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -56,7 +60,7 @@ export default function Coworking() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-xl text-text-secondary max-w-xl leading-relaxed font-light italic"
             >
-              The top-floor workspace at Wood Street Collective. A sanctuary for deep work and creative collaboration, designed for professionals who demand excellence.
+              {pageData.description}
             </motion.p>
           </div>
         </div>

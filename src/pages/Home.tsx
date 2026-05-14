@@ -7,9 +7,13 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { rooms } from "../data/rooms";
+import { useSiteData, Room } from "../context/SiteContext";
 
 export default function Home() {
+  const { data } = useSiteData();
+  const pageData = data.pages['Home'];
+  const rooms: Room[] = Object.values(data.rooms);
+  
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -36,11 +40,11 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="font-display text-[clamp(80px,12vw,140px)] font-black leading-[0.85] italic mb-10 text-primary">
-              The<br />Collective<br />Spirit.
+            <h1 className="font-display text-[clamp(80px,12vw,140px)] font-black leading-[0.85] italic mb-10 text-primary whitespace-pre-line">
+              {pageData.title}
             </h1>
             <p className="font-sans text-xl text-text-secondary max-w-lg leading-relaxed font-light mb-12">
-              A curated sanctuary for deep work and creative expansion. Designed for those who seek architectural clarity and professional excellence in the heart of the city.
+              {pageData.description}
             </p>
             <Link to="/coliving">
             <button className="bg-primary text-on-primary px-10 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
@@ -57,7 +61,7 @@ export default function Home() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             alt="Workspace Hero" 
             className="w-full h-full object-cover brightness-75" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
+            src={pageData.coverImage} 
           />
           <div className="absolute bottom-12 -left-12 rotate-[-90deg] origin-bottom-left">
             <span className="label-caps tracking-[0.5em] text-[10px] bg-background-dark px-6 py-2">Workspace / Suite 402</span>

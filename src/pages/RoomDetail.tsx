@@ -26,7 +26,7 @@ import {
   Mail,
   MessageSquare
 } from "lucide-react";
-import { rooms } from "../data/rooms";
+import { useSiteData } from "../context/SiteContext";
 
 const iconMap: any = {
   Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon
@@ -34,7 +34,8 @@ const iconMap: any = {
 
 export default function RoomDetail() {
   const { id } = useParams();
-  const room = rooms.find(r => r.id === id);
+  const { data } = useSiteData();
+  const room = id ? data.rooms[id] : undefined;
 
   if (!room) {
     return (
@@ -153,7 +154,7 @@ export default function RoomDetail() {
               </div>
             </div>
             <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {room.features.slice(0, 4).map((item, i) => {
+              {room.features.slice(0, 4).map((item: any, i) => {
                 const Icon = iconMap[item.icon] || Shield;
                 return (
                   <motion.div key={i} {...fadeIn} className="bg-surface-container p-10 border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">

@@ -1,9 +1,15 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import { rooms } from "../data/rooms";
+import { ArrowRight, Star } from "lucide-react";
+import { useSiteData, Room, Review } from "../context/SiteContext";
 
 export default function Spaces() {
+  const { data } = useSiteData();
+  const pageData = data.pages['Spaces'];
+  const rooms: Room[] = Object.values(data.rooms);
+  const allReviews: Review[] = Object.values(data.reviews);
+  const reviews = allReviews.filter(r => r.approved);
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -22,11 +28,11 @@ export default function Spaces() {
           className="max-w-4xl"
         >
           <div className="label-caps mb-8">The Residences</div>
-          <h1 className="font-display text-[clamp(64px,10vw,140px)] font-black italic leading-[0.85] text-primary mb-12">
-            Rooms &<br />Suites.
+          <h1 className="font-display text-[clamp(64px,10vw,140px)] font-black italic leading-[0.85] text-primary mb-12 whitespace-pre-line">
+            {pageData.title}
           </h1>
           <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
-            Discover our curated selection of private living environments. From minimalist en-suites to expansive signature penthouses, each space is a sanctuary of architectural clarity.
+            {pageData.description}
           </p>
         </motion.div>
       </section>
@@ -83,7 +89,7 @@ export default function Spaces() {
 
       {/* Philosophy Break */}
       <section className="py-48 px-12 border-t border-divider-subtle bg-surface-container/30 rounded-t-[80px]">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center mb-32">
           <div className="label-caps mb-12">The Wood Street Ethos</div>
           <h2 className="text-5xl md:text-8xl font-black italic mb-12 leading-[0.9]">
             A higher standard of residency.
@@ -92,6 +98,36 @@ export default function Spaces() {
             We don't just provide rooms; we provide the foundation for your most productive and peaceful self. Architectural integrity is at the heart of everything we do.
           </p>
         </div>
+        
+        {/* REVIEWS BLOCK */}
+        {reviews.length > 0 && (
+          <div className="max-w-[1440px] mx-auto mt-24">
+            <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {reviews.map((review, i) => (
+                <motion.div 
+                  key={review.id}
+                  {...fadeIn}
+                  transition={{ duration: 0.8, delay: i * 0.1 }}
+                  className="bg-background-dark p-10 border border-divider-subtle rounded-3xl"
+                >
+                  <div className="flex gap-1 text-primary mb-8">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={16} fill={i < review.rating ? "currentColor" : "none"} className={i < review.rating ? "text-primary" : "text-divider-subtle"} />
+                    ))}
+                  </div>
+                  <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
+                    "{review.comment}"
+                  </p>
+                  <div>
+                    <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
+                    <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );

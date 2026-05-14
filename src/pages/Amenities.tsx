@@ -14,8 +14,12 @@ import {
   Coffee,
   ArrowRight
 } from "lucide-react";
+import { useSiteData } from "../context/SiteContext";
 
 export default function Amenities() {
+  const { data } = useSiteData();
+  const pageData = data.pages['Amenities'];
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -58,7 +62,7 @@ export default function Amenities() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             alt="Luxury interior" 
             className="w-full h-full object-cover brightness-[0.4]" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU"
+            src={pageData.coverImage}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent" />
         </div>
@@ -68,9 +72,9 @@ export default function Amenities() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="font-display text-[clamp(48px,8vw,100px)] font-black italic leading-tight text-primary mb-8"
+            className="font-display text-[clamp(48px,8vw,100px)] font-black italic leading-tight text-primary mb-8 whitespace-pre-line"
           >
-            Everything You Need.<br />Nothing You Don't.
+            {pageData.title}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -78,7 +82,7 @@ export default function Amenities() {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-xl text-text-secondary max-w-2xl mx-auto font-light italic"
           >
-            Every detail at Wood Street Collective has been considered for professionals who value their time and comfort.
+             {pageData.description}
           </motion.p>
         </div>
       </section>

@@ -23,6 +23,10 @@ export default function Layout({ children }: LayoutProps) {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  if (location.pathname.startsWith('/admin')) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-background-dark">
       {/* Navigation */}
