@@ -1,27 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 
+:root {
+  --primary: #e6c4a4;
+  --on-primary: #151311;
+  --primary-container: #c9a98a;
+  --on-primary-container: #543e25;
+  
+  --surface: #151311;
+  --surface-container: #221f1d;
+  --surface-container-high: #2d2927;
+  
+  --background-dark: #151311;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  
+  --divider-subtle: rgba(255, 255, 255, 0.12);
+  --brand-hero: #c9a98a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary: #8a6d4e;
+    --on-primary: #ffffff;
+    --primary-container: #f5f0e1;
+    --on-primary-container: #3a2a1b;
+
+    --surface: #fdfbf7;
+    --surface-container: #f3ede2;
+    --surface-container-high: #e9e0d1;
+
+    --background-dark: #fdfbf7;
+    --text-primary: #151311;
+    --text-secondary: rgba(21, 19, 17, 0.75);
+    --text-muted: rgba(21, 19, 17, 0.5);
+
+    --divider-subtle: rgba(21, 19, 17, 0.1);
+    --brand-hero: #8a6d4e;
+  }
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", serif;
 
   /* Custom Colors from Design Tokens */
-  --color-primary: #e6c4a4;
-  --color-on-primary: #151311;
-  --color-primary-container: #c9a98a;
-  --color-on-primary-container: #543e25;
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
   
-  --color-surface: #151311;
-  --color-surface-container: #221f1d;
-  --color-surface-container-high: #2d2927;
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
   
-  --color-background-dark: #151311;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --color-background-dark: var(--background-dark);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
   
-  --color-divider-subtle: rgba(255, 255, 255, 0.12);
-  --color-brand-hero: #c9a98a;
+  --color-divider-subtle: var(--divider-subtle);
+  --color-brand-hero: var(--brand-hero);
 
   /* Custom Spacing & Sizing */
   --spacing-section-gap: 80px;

@@ -63,7 +63,7 @@ export default function Coworking() {
       </section>
 
       {/* Features Bento Grid */}
-      <section className="py-32 px-12 max-w-[1440px] mx-auto">
+      <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
         <motion.h2 
           {...fadeIn}
           className="text-6xl font-black italic mb-24 max-w-xl text-primary"
@@ -143,6 +143,88 @@ export default function Coworking() {
             <div className="label-caps text-on-primary/60">View Availability</div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Office Gallery */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto">
+        <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
+          <h2 className="text-6xl font-black italic text-primary">Office</h2>
+          <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
+            Industrial precision meets executive comfort. A space meticulously designed for sustained focus.
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Office 1" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
+            />
+          </div>
+          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Office 2" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaZahCAvZuREoXCJbduuU0ZzTtLusQLVy1Sw-sd7lot7zIRMZV_C_Fc1G5-ioaadPQkA0kIUPknRdyXOnb9TnHpvWSrSZ7KslDZXiddh0gkvGeI55GVxl2l3ll10_PL1elTG_3v2L5Ye043Mhp2_423f9ZvJOl2r_WQoOxDfBuFCmP88bu0MqVFbiHsgmvg0QjQpWiVv57G8zOdXEmD7Z75D_guKIklsGO3kb6gd2yjLS2Fe0m2HzdIQWUyA7o4kS7YPw7_oKMv-U" 
+            />
+          </div>
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Office 3" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
+            />
+          </div>
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Office 4" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Balcony Gallery */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
+        <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
+          <h2 className="text-6xl font-black italic text-primary">Balcony</h2>
+          <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
+            Creative expansion under the sky. Our panorama terrace provides the ultimate backdrop for inspiration and city-view networking.
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Balcony 1" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
+            />
+          </div>
+          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Balcony 2" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
+              />
+          </div>
+          <div className="col-span-12 lg:col-span-8 aspect-[16/10] overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Balcony 3" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0tRKGJ76qkiUGHXCLhtOnzmG6pkFc-Xf7Pe24pJKlu5Z1ZMVfYTMJXimrwSkQkZ1UoGlc4EC93vwg9_L-XQQVzdvDGSdQyBhEuYT9Rn6FFfw5800gCuH6xWbKbupuPn41B_6TIlqjE1j5l4JyLevX4im7W9Jis0eijNX5cf79YxLMwHRWikczg3vUoNyXbsYPQOqJg6Se5VkreKUmf7HRxQZnt8yhhjHHr73YwPtArTPLxPydlWxCwXDP2xpenK28re12r3WS60" 
+            />
+          </div>
+          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle">
+            <img 
+              alt="Balcony 4" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
+            />
+          </div>
+        </div>
       </section>
 
       {/* Booking Section */}
