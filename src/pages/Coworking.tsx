@@ -1,0 +1,222 @@
+import { motion } from "motion/react";
+import { 
+  Clock, 
+  Monitor, 
+  Coffee, 
+  Wifi, 
+  ChevronDown
+} from "lucide-react";
+
+export default function Coworking() {
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  return (
+    <main className="bg-background-dark">
+      {/* Hero Section */}
+      <section className="relative h-screen w-full flex items-end pb-24 px-12 overflow-hidden border-b border-divider-subtle">
+        <div className="absolute inset-0 z-0">
+          <motion.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            alt="Workspace Hero" 
+            className="w-full h-full object-cover brightness-[0.4]" 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
+          />
+          <div className="absolute inset-0 hero-gradient" />
+        </div>
+        
+        <div className="relative z-10 max-w-[1440px] mx-auto w-full">
+          <div className="max-w-3xl">
+            <motion.h1 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-display text-[clamp(64px,12vw,140px)] font-black leading-[0.9] text-primary mb-10 italic"
+            >
+              Elevate<br />Your Work.
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-xl text-text-secondary max-w-xl leading-relaxed font-light italic"
+            >
+              The top-floor workspace at Wood Street Collective. A sanctuary for deep work and creative collaboration, designed for professionals who demand excellence.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Bento Grid */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto">
+        <motion.h2 
+          {...fadeIn}
+          className="text-6xl font-black italic mb-24 max-w-xl text-primary"
+        >
+          Workspace Features
+        </motion.h2>
+        
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {/* Feature 1 */}
+          <motion.div 
+            variants={fadeIn}
+            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+          >
+            <Clock className="text-primary" size={48} />
+            <div>
+              <h3 className="text-3xl font-bold italic mb-4">24/7 Access</h3>
+              <p className="text-text-secondary leading-relaxed font-light">Work on your own terms. Secure, round-the-clock access for our members.</p>
+            </div>
+          </motion.div>
+
+          {/* Feature 2 */}
+          <motion.div 
+            variants={fadeIn}
+            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+          >
+            <Monitor className="text-primary" size={48} />
+            <div>
+              <h3 className="text-3xl font-bold italic mb-4">Ergonomic Setup</h3>
+              <p className="text-text-secondary leading-relaxed font-light">Premium standing desks and ergonomic seating designed for long-term comfort.</p>
+            </div>
+          </motion.div>
+
+          {/* Feature 3 */}
+          <motion.div 
+            variants={fadeIn}
+            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+          >
+            <Coffee className="text-primary" size={48} />
+            <div>
+              <h3 className="text-3xl font-bold italic mb-4">Artisan Refreshments</h3>
+              <p className="text-text-secondary leading-relaxed font-light">Complimentary locally roasted coffee and a selection of premium teas.</p>
+            </div>
+          </motion.div>
+
+          {/* Feature 4 (Large) */}
+          <motion.div 
+            variants={fadeIn}
+            className="glass-card p-12 md:col-span-2 flex flex-col md:flex-row items-center gap-12 group"
+          >
+            <div className="flex-1">
+              <Wifi className="text-primary mb-8" size={48} />
+              <h3 className="text-3xl font-bold italic mb-4">Enterprise Wi-Fi</h3>
+              <p className="text-text-secondary leading-relaxed font-light">
+                Blazing fast, secure, and redundant internet infrastructure to keep you connected without interruption. Dedicated bandwidth for demanding tasks.
+              </p>
+            </div>
+            <div className="flex-1 w-full h-full min-h-[250px] overflow-hidden relative">
+              <img 
+                alt="Collaboration" 
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
+              />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            variants={fadeIn}
+            className="bg-primary p-12 flex flex-col justify-center items-center text-center group cursor-pointer"
+          >
+            <h3 className="text-4xl font-black italic text-on-primary mb-4 leading-none uppercase">Join the Collective</h3>
+            <div className="label-caps text-on-primary/60">View Availability</div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Booking Section */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle editorial-grid gap-24">
+        {/* Enquiry Form */}
+        <div className="col-span-12 lg:col-span-6">
+          <h2 className="text-6xl font-black italic mb-8 text-primary">Enquire About a Desk</h2>
+          <p className="text-text-secondary text-lg leading-relaxed mb-16 italic">Join our community of professionals. Enquire about daily, weekly, or monthly passes.</p>
+          
+          <form className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-3">
+                <label className="label-caps text-[10px]">First Name</label>
+                <input type="text" placeholder="Jane" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+              </div>
+              <div className="space-y-3">
+                <label className="label-caps text-[10px]">Last Name</label>
+                <input type="text" placeholder="Doe" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <label className="label-caps text-[10px]">Email Address</label>
+              <input type="email" placeholder="jane@example.com" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+            </div>
+
+            <div className="space-y-3">
+              <label className="label-caps text-[10px]">Desired Duration</label>
+              <div className="relative group">
+                <select className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none appearance-none cursor-pointer">
+                  <option className="bg-background-dark">Daily Pass</option>
+                  <option className="bg-background-dark">Weekly Pass</option>
+                  <option className="bg-background-dark">Monthly Dedicated Desk</option>
+                </select>
+                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 text-text-muted group-hover:text-primary transition-colors" size={16} />
+              </div>
+            </div>
+
+            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500">
+              Submit Enquiry
+            </button>
+          </form>
+        </div>
+
+        {/* Meeting Rooms */}
+        <div className="col-span-12 lg:col-span-6 lg:border-l lg:border-divider-subtle lg:pl-24 flex flex-col justify-between">
+          <div>
+            <h2 className="text-5xl font-black italic mb-8 text-primary">Meeting Spaces</h2>
+            <p className="text-text-secondary text-lg leading-relaxed mb-16 italic font-light">Impress clients and collaborate seamlessly in our fully equipped boardrooms.</p>
+            
+            <div className="space-y-12">
+              {[
+                { name: "The Boardroom", details: "Seats up to 10 • Video Conferencing" },
+                { name: "Huddle Room A", details: "Seats up to 4 • Whiteboard" },
+                { name: "Podcast Studio", details: "Soundproofed • Pro Equipment" }
+              ].map((item, i) => (
+                <div key={i} className="flex justify-between items-end border-b border-divider-subtle pb-6 group cursor-pointer">
+                  <div>
+                    <h4 className="text-2xl font-bold group-hover:text-primary transition-colors italic">{item.name}</h4>
+                    <p className="text-sm text-text-muted italic">{item.details}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="label-caps text-[10px] text-primary group-hover:translate-x-2 transition-transform block italic">Learn More</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="mt-24 pt-12 border-t border-divider-subtle italic text-text-muted/60 text-sm">
+            * All members receive priority booking for meeting spaces.
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
