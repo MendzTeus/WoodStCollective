@@ -14,14 +14,13 @@ export const rooms: Room[] = [
   {
     id: "classic-en-suite",
     name: "Classic En-Suite",
-    type: "Premium Room",
+    type: "Room 1",
     description: "A sanctuary of sophisticated design in the heart of Manchester.",
     longDescription: "Designed for discerning professionals, the Classic En-Suite offers an impeccable blend of privacy and luxury. Every detail has been curated to provide a premium living experience, from the custom-designed workstation to the spa-inspired bathroom.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7OczJILloz1EEHLDDHLHBQVGs-gL3MxVIDkUEq4jxWn3_eguqhKmpBPM06DSWa9YLQFWV8KpqdMei7Bn-Gh78simyIpH1UoxrePBEnAqUlP2FVj0jSyhsJZ3DS5ZP38hd9biUe-ak7W8OeBT90IsBQZai4z3QrVJmvK2taYfg5tTq81WjBxDa64Zp3_ivGCOaqCq7RSiPhKLB8oUl1H-gAFiqMDOw_U8ErUtpqOmgwMXP9ctNy1ZW1aT-Dj5RNXk2a5JdOj2D8nA",
-    details: "18m² • King Bed",
+    details: "King Bed",
     features: [
       { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Monitor", title: "Workspace", desc: "Ergonomic seating and ample desk space." },
       { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
@@ -33,15 +32,14 @@ export const rooms: Room[] = [
   {
     id: "city-view-studio",
     name: "City View Studio",
-    type: "Executive Suite",
+    type: "Room 2",
     description: "Panoramic vistas meeting architectural precision.",
     longDescription: "Our City View Studio is designed for the high-altitude professional. Floor-to-ceiling windows bathe the room in natural light and offer inspiring views of the skyline morning and night.",
     image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=2070",
-    details: "24m² • King Bed • Skyline",
+    details: "King Bed • Skyline",
     features: [
-      { icon: "Maximize", title: "Sky View", desc: "Panoramic windows with electronic blackout shades." },
-      { icon: "Coffee", title: "Kitchenette", desc: "Personal Nespresso bar and wine cooler." },
-      { icon: "Wifi", title: "Gigabit Wifi", desc: "Dedicated router for uninterrupted streaming." }
+      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
+      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000",
@@ -52,15 +50,14 @@ export const rooms: Room[] = [
   {
     id: "penthouse-suite",
     name: "The Penthouse",
-    type: "Signature Residency",
+    type: "Room 3",
     description: "The pinnacle of Wood Street luxury living.",
     longDescription: "Spanning the entire corner of the top floor, The Penthouse features a separate lounge area, a library, and a private terrace overlooking the city's architectural landmarks.",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070",
-    details: "52m² • Master Suite • Private Terrace",
+    details: "Master Suite • Private Terrace",
     features: [
-      { icon: "Zap", title: "Smart Home", desc: "Full voice-controlled lighting and climate systems." },
-      { icon: "Music", title: "Sonos Audio", desc: "Immersive sound throughout every room." },
-      { icon: "Sunset", title: "Terrace", desc: "Private outdoor lounge with heated seating." }
+      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
+      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
       "https://images.unsplash.com/photo-1616486341351-79b524021182?auto=format&fit=crop&q=80&w=2000",
@@ -71,15 +68,14 @@ export const rooms: Room[] = [
   {
     id: "loft-residency",
     name: "Loft Residency",
-    type: "Artisan Loft",
+    type: "Room 4",
     description: "Industrial heritage meets contemporary minimalism.",
     longDescription: "High ceilings, exposed brickwork, and polished concrete floors provide an authentic industrial aesthetic, softened by premium wool textures and warm architectural lighting.",
     image: "https://images.unsplash.com/photo-1536376074432-bf121817b62a?auto=format&fit=crop&q=80&w=2070",
-    details: "30m² • High Ceilings • Bi-level",
+    details: "High Ceilings • Bi-level",
     features: [
-      { icon: "Layers", title: "Bi-level", desc: "Separate mezzanine level for rest and relaxation." },
-      { icon: "Wind", title: "Air Quality", desc: "Medical grade air purification and humidity control." },
-      { icon: "Camera", title: "Photo Ready", desc: "Curated lighting designed for content creators." }
+      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
+      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
       "https://images.unsplash.com/photo-1617806118233-f8e187f4289b?auto=format&fit=crop&q=80&w=2000",
@@ -90,15 +86,14 @@ export const rooms: Room[] = [
   {
     id: "master-suite",
     name: "Master Suite",
-    type: "Elite Residency",
+    type: "Room 5",
     description: "Unparalleled space and comfort for extended stays.",
     longDescription: "The Master Suite is our most popular choice for long-term residencies, offering a complete walk-in wardrobe, a master bathroom with a deep soaking tub, and a private foyer.",
     image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=2070",
-    details: "40m² • Walk-in Wardrobe • Soaking Tub",
+    details: "Walk-in Wardrobe • Soaking Tub",
     features: [
-      { icon: "Shield", title: "Security", desc: "Private en-suite safe and secondary secure entrance." },
-      { icon: "Box", title: "Space", desc: "Extensive storage for long-term stays." },
-      { icon: "Cloud", title: "Pillow Menu", desc: "Selection of 8 unique materials for perfect sleep." }
+      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
+      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
       "https://images.unsplash.com/photo-1616594111350-bf9260cad495?auto=format&fit=crop&q=80&w=2000",
@@ -109,15 +104,14 @@ export const rooms: Room[] = [
   {
     id: "executive-studio",
     name: "Executive Studio",
-    type: "Business Suite",
+    type: "Room 6",
     description: "Optimized for productivity and seamless transitions.",
     longDescription: "The Executive Studio features a professional-grade audio setup for calls and a modular layout that quickly transitions from a high-stakes office to a peaceful retreat.",
     image: "https://images.unsplash.com/photo-1598928636439-d9fe27af5809?auto=format&fit=crop&q=80&w=2070",
-    details: "22m² • Smart Office • Soundproofed",
+    details: "Smart Office • Soundproofed",
     features: [
-      { icon: "Mic", title: "Audio Kit", desc: "Pro-grade USB microphone and acoustic treatment." },
-      { icon: "Truck", title: "Fast Checkout", desc: "Automated logistics and concierge mail service." },
-      { icon: "Moon", title: "Bio-Clock", desc: "Circadian lighting to optimize sleep and focus." }
+      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
+      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
     ],
     gallery: [
       "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=2000",

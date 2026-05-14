@@ -43,7 +43,7 @@ export default function Home() {
               A curated sanctuary for deep work and creative expansion. Designed for those who seek architectural clarity and professional excellence in the heart of the city.
             </p>
             <Link to="/coliving">
-              <button className="bg-primary text-on-primary px-10 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500">
+            <button className="bg-primary text-on-primary px-10 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
                 Take a look
               </button>
             </Link>
@@ -117,13 +117,13 @@ export default function Home() {
               className="group cursor-pointer"
             >
               <Link to={`/coliving/${room.id}`}>
-                <div className="relative aspect-[4/5] overflow-hidden mb-8 border border-divider-subtle">
+            <div className="relative aspect-[4/5] overflow-hidden mb-8 border border-divider-subtle rounded-2xl">
                   <img 
                     src={room.image} 
                     alt={room.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                   />
-                  <div className="absolute top-6 left-6 label-caps text-[10px] bg-background-dark/80 backdrop-blur-md px-4 py-2 border border-divider-subtle">
+                  <div className="absolute top-6 left-6 label-caps text-[10px] bg-background-dark/80 backdrop-blur-md px-4 py-2 border border-divider-subtle rounded-lg">
                     {room.type}
                   </div>
                 </div>
@@ -190,8 +190,8 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="text-center px-6"
           >
-            <div className="label-caps text-white mb-6">Designed for Expansion</div>
-            <h2 className="text-5xl md:text-8xl font-black italic text-white drop-shadow-2xl">Excellence in every detail.</h2>
+            <div className="label-caps mb-6">Designed for Expansion</div>
+            <h2 className="text-5xl md:text-8xl font-black italic drop-shadow-2xl text-primary">Excellence in every detail.</h2>
           </motion.div>
         </div>
       </section>
@@ -217,7 +217,7 @@ export default function Home() {
               <label className="label-caps text-[10px]">Email Address</label>
               <input type="email" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
             </div>
-            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500">
+            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Submit Enquiry
             </button>
           </form>

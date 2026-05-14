@@ -43,14 +43,14 @@ export default function Spaces() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className="group"
             >
-              <div className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative">
+              <div className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative rounded-2xl">
                 <img 
                   src={room.image} 
                   alt={room.name} 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute top-6 left-6">
-                  <span className="label-caps bg-background-dark/80 backdrop-blur-md px-4 py-2 text-[10px]">
+                  <span className="label-caps bg-background-dark/80 backdrop-blur-md px-4 py-2 text-[10px] rounded-lg">
                     {room.type}
                   </span>
                 </div>
@@ -82,7 +82,7 @@ export default function Spaces() {
       </section>
 
       {/* Philosophy Break */}
-      <section className="py-48 px-12 border-t border-divider-subtle bg-surface-container/30">
+      <section className="py-48 px-12 border-t border-divider-subtle bg-surface-container/30 rounded-t-[80px]">
         <div className="max-w-4xl mx-auto text-center">
           <div className="label-caps mb-12">The Wood Street Ethos</div>
           <h2 className="text-5xl md:text-8xl font-black italic mb-12 leading-[0.9]">

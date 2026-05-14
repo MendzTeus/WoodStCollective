@@ -39,10 +39,10 @@ export default function Layout({ children }: LayoutProps) {
           </Link>
           
           <div className="hidden md:flex gap-12">
-            <Link to="/coliving" className={`nav-link ${location.pathname === "/coliving" ? "!text-primary" : ""}`}>Co-living</Link>
-            <Link to="/coworking" className={`nav-link ${location.pathname === "/coworking" ? "!text-primary" : ""}`}>Co-working</Link>
-            <Link to="/amenities" className={`nav-link ${location.pathname === "/amenities" ? "!text-primary" : ""}`}>Amenities</Link>
-            <Link to="/about" className={`nav-link ${location.pathname === "/about" ? "!text-primary" : ""}`}>About</Link>
+            <Link to="/coliving" className={`nav-link ${location.pathname.startsWith("/coliving") ? "!text-primary" : ""}`}>Co-living</Link>
+            <Link to="/coworking" className={`nav-link ${location.pathname.startsWith("/coworking") ? "!text-primary" : ""}`}>Co-working</Link>
+            <Link to="/amenities" className={`nav-link ${location.pathname.startsWith("/amenities") ? "!text-primary" : ""}`}>Amenities</Link>
+            <Link to="/about" className={`nav-link ${location.pathname.startsWith("/about") ? "!text-primary" : ""}`}>About</Link>
           </div>
 
           <div className="flex items-center gap-6">

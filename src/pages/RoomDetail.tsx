@@ -81,7 +81,7 @@ export default function RoomDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold">{room.type}</span>
+            <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold rounded-lg">{room.type}</span>
             <h1 className="font-display text-[clamp(64px,10vw,120px)] font-black italic leading-[0.85] text-primary mb-6">
               {room.name.split(' ').map((word, i) => (
                 <span key={i} className="block">{word}</span>
@@ -100,28 +100,28 @@ export default function RoomDetail() {
         <div className="space-y-12">
           <h2 className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12 md:col-span-8 aspect-[4/3] overflow-hidden border border-divider-subtle group">
+            <div className="col-span-12 md:col-span-8 aspect-[4/3] overflow-hidden border border-divider-subtle group rounded-2xl">
               <img 
                 alt="Gallery 1" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[0]} 
               />
             </div>
-            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group">
+            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
               <img 
                 alt="Gallery 2" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[1]} 
               />
             </div>
-            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group">
+            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
               <img 
                 alt="Gallery 3" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[2]} 
               />
             </div>
-            <div className="col-span-12 md:col-span-8 aspect-[2/1] overflow-hidden border border-divider-subtle group">
+            <div className="col-span-12 md:col-span-8 aspect-[2/1] overflow-hidden border border-divider-subtle group rounded-2xl">
               <img 
                 alt="Main Display" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
@@ -156,7 +156,7 @@ export default function RoomDetail() {
               {room.features.slice(0, 4).map((item, i) => {
                 const Icon = iconMap[item.icon] || Shield;
                 return (
-                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-10 border border-divider-subtle group hover:border-primary/30 transition-colors">
+                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-10 border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500 text-primary">
                       <Icon size={28} />
                     </div>
@@ -186,20 +186,20 @@ export default function RoomDetail() {
             </motion.h2>
             <motion.div 
               {...fadeIn}
-              className="bg-surface-container p-12 border border-divider-subtle flex flex-col gap-10"
+              className="bg-surface-container p-12 border border-divider-subtle flex flex-col gap-10 rounded-2xl"
             >
               <div>
                 <p className="text-text-secondary text-sm italic leading-relaxed">Connect with our concierge team to explore availability and bespoke terms for the {room.name}.</p>
               </div>
               
               <div className="flex flex-col gap-4">
-                <button className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3">
+                <button className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <Mail size={16} /> Email Enquiry
                 </button>
-                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3">
+                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <MessageSquare size={16} /> WhatsApp
                 </button>
-                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3">
+                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
                   Airbnb
                 </button>
               </div>

@@ -100,7 +100,7 @@ export default function Amenities() {
             <motion.div 
               key={i}
               variants={fadeIn}
-              className="bg-surface-container p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500"
+              className="bg-surface-container p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 rounded-2xl"
             >
               <div className="text-primary mb-8 transform group-hover:scale-110 transition-transform duration-500">
                 {item.icon}
@@ -112,25 +112,43 @@ export default function Amenities() {
         </motion.div>
       </section>
 
-      {/* Split Section */}
-      <section className="max-w-[1440px] mx-auto px-12 pb-32">
-        <div className="flex flex-col lg:flex-row bg-surface-container border border-divider-subtle overflow-hidden">
-          <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] relative overflow-hidden group">
+      {/* Shared Kitchen Gallery */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto">
+        <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
+          <h2 className="text-6xl font-black italic text-primary">Shared Kitchen</h2>
+          <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
+            Fully equipped with modern appliances, ample storage, and artisanal coffee to connect with the community.
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
-              alt="Top-floor co-working space" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaZahCAvZuREoXCJbduuU0ZzTtLusQLVy1Sw-sd7lot7zIRMZV_C_Fc1G5-ioaadPQkA0kIUPknRdyXOnb9TnHpvWSrSZ7KslDZXiddh0gkvGeI55GVxl2l3ll10_PL1elTG_3v2L5Ye043Mhp2_423f9ZvJOl2r_WQoOxDfBuFCmP88bu0MqVFbiHsgmvg0QjQpWiVv57G8zOdXEmD7Z75D_guKIklsGO3kb6gd2yjLS2Fe0m2HzdIQWUyA7o4kS7YPw7_oKMv-U"
+              alt="Shared Kitchen 1" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2070" 
             />
           </div>
-          <div className="w-full lg:w-1/2 p-12 lg:p-24 flex flex-col justify-center items-start">
-            <h2 className="text-5xl font-black italic mb-8 leading-[0.9] text-primary">Built for Deep Work.</h2>
-            <p className="text-xl text-text-secondary leading-relaxed mb-12 font-light italic">
-              The top-floor workspace at Wood Street Collective features hot desks, dedicated desks, standing options and fully equipped meeting rooms. 500 Mbps enterprise Wi-Fi throughout. Coffee and refreshments included.
-            </p>
-            <button className="inline-flex items-center gap-4 py-4 border-b border-primary/30 hover:border-primary transition-colors label-caps text-xs hover:gap-6 duration-300">
-              Enquire About a Desk
-              <ArrowRight size={16} className="text-primary" />
-            </button>
+          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
+            <img 
+              alt="Shared Kitchen 2" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2070" 
+            />
+          </div>
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
+            <img 
+              alt="Shared Kitchen 3" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=2070" 
+            />
+          </div>
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
+            <img 
+              alt="Shared Kitchen 4" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2070" 
+            />
           </div>
         </div>
       </section>
@@ -143,10 +161,10 @@ export default function Amenities() {
             Check live availability and get in touch — we'll take it from there.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500">
+            <button className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Check Availability
             </button>
-            <button className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500">
+            <button className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500 rounded-lg">
               View on Airbnb
             </button>
           </div>

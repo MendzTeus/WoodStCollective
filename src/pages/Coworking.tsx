@@ -81,7 +81,7 @@ export default function Coworking() {
           {/* Feature 1 */}
           <motion.div 
             variants={fadeIn}
-            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+            className="glass-card p-12 flex flex-col justify-between group h-[400px] rounded-2xl"
           >
             <Clock className="text-primary" size={48} />
             <div>
@@ -93,7 +93,7 @@ export default function Coworking() {
           {/* Feature 2 */}
           <motion.div 
             variants={fadeIn}
-            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+            className="glass-card p-12 flex flex-col justify-between group h-[400px] rounded-2xl"
           >
             <Monitor className="text-primary" size={48} />
             <div>
@@ -105,7 +105,7 @@ export default function Coworking() {
           {/* Feature 3 */}
           <motion.div 
             variants={fadeIn}
-            className="glass-card p-12 flex flex-col justify-between group h-[400px]"
+            className="glass-card p-12 flex flex-col justify-between group h-[400px] rounded-2xl"
           >
             <Coffee className="text-primary" size={48} />
             <div>
@@ -117,7 +117,7 @@ export default function Coworking() {
           {/* Feature 4 (Large) */}
           <motion.div 
             variants={fadeIn}
-            className="glass-card p-12 md:col-span-2 flex flex-col md:flex-row items-center gap-12 group"
+            className="glass-card p-12 md:col-span-2 flex flex-col md:flex-row items-center gap-12 group rounded-2xl"
           >
             <div className="flex-1">
               <Wifi className="text-primary mb-8" size={48} />
@@ -135,13 +135,6 @@ export default function Coworking() {
             </div>
           </motion.div>
           
-          <motion.div 
-            variants={fadeIn}
-            className="bg-primary p-12 flex flex-col justify-center items-center text-center group cursor-pointer"
-          >
-            <h3 className="text-4xl font-black italic text-on-primary mb-4 leading-none uppercase">Join the Collective</h3>
-            <div className="label-caps text-on-primary/60">View Availability</div>
-          </motion.div>
         </motion.div>
       </section>
 
@@ -155,28 +148,28 @@ export default function Coworking() {
         </motion.div>
         
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle">
+          <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Office 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
             />
           </div>
-          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle">
+          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Office 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaZahCAvZuREoXCJbduuU0ZzTtLusQLVy1Sw-sd7lot7zIRMZV_C_Fc1G5-ioaadPQkA0kIUPknRdyXOnb9TnHpvWSrSZ7KslDZXiddh0gkvGeI55GVxl2l3ll10_PL1elTG_3v2L5Ye043Mhp2_423f9ZvJOl2r_WQoOxDfBuFCmP88bu0MqVFbiHsgmvg0QjQpWiVv57G8zOdXEmD7Z75D_guKIklsGO3kb6gd2yjLS2Fe0m2HzdIQWUyA7o4kS7YPw7_oKMv-U" 
             />
           </div>
-          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle">
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Office 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
             />
           </div>
-          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle">
+          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Office 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
@@ -196,28 +189,28 @@ export default function Coworking() {
         </motion.div>
         
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle">
+          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Balcony 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
             />
           </div>
-          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle">
+          <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Balcony 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
               />
           </div>
-          <div className="col-span-12 lg:col-span-8 aspect-[16/10] overflow-hidden border border-divider-subtle">
+          <div className="col-span-12 lg:col-span-8 aspect-[16/10] overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Balcony 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0tRKGJ76qkiUGHXCLhtOnzmG6pkFc-Xf7Pe24pJKlu5Z1ZMVfYTMJXimrwSkQkZ1UoGlc4EC93vwg9_L-XQQVzdvDGSdQyBhEuYT9Rn6FFfw5800gCuH6xWbKbupuPn41B_6TIlqjE1j5l4JyLevX4im7W9Jis0eijNX5cf79YxLMwHRWikczg3vUoNyXbsYPQOqJg6Se5VkreKUmf7HRxQZnt8yhhjHHr73YwPtArTPLxPydlWxCwXDP2xpenK28re12r3WS60" 
             />
           </div>
-          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle">
+          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
             <img 
               alt="Balcony 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
@@ -263,7 +256,7 @@ export default function Coworking() {
               </div>
             </div>
 
-            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500">
+            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Submit Enquiry
             </button>
           </form>

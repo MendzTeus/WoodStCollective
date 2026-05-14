@@ -74,7 +74,7 @@ export default function About() {
           </motion.div>
         </div>
         
-        <div className="col-span-12 lg:col-span-6 relative h-[600px] overflow-hidden border border-divider-subtle group">
+        <div className="col-span-12 lg:col-span-6 relative h-[600px] overflow-hidden border border-divider-subtle group rounded-2xl">
           <motion.img 
             initial={{ scale: 1.2, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -102,7 +102,7 @@ export default function About() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {/* Value 1 */}
-            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500">
+            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 rounded-2xl">
               <Users className="text-primary mb-8" size={40} />
               <h3 className="text-3xl font-bold italic mb-4">Community</h3>
               <p className="text-text-secondary leading-relaxed font-light italic">
@@ -111,7 +111,7 @@ export default function About() {
             </motion.div>
 
             {/* Value 2 */}
-            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 md:scale-105 bg-background-dark/40">
+            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 md:scale-105 bg-background-dark/40 rounded-2xl">
               <Target className="text-primary mb-8" size={40} />
               <h3 className="text-3xl font-bold italic mb-4">Focus</h3>
               <p className="text-text-secondary leading-relaxed font-light italic">
@@ -120,7 +120,7 @@ export default function About() {
             </motion.div>
 
             {/* Value 3 */}
-            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500">
+            <motion.div variants={fadeIn} className="glass-card p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 rounded-2xl">
               <PenTool className="text-primary mb-8" size={40} />
               <h3 className="text-3xl font-bold italic mb-4">Craft</h3>
               <p className="text-text-secondary leading-relaxed font-light italic">
@@ -131,11 +131,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team (Placeholder) */}
-      <section className="py-48 px-12 text-center max-w-[1440px] mx-auto">
-        <motion.h2 {...fadeIn} className="text-4xl font-bold italic text-primary mb-8">The Team</motion.h2>
-        <motion.p {...fadeIn} className="text-xl text-text-muted italic max-w-xl mx-auto">Meet the visionaries behind Wood Street Collective — coming soon.</motion.p>
-      </section>
+
     </main>
   );
 }

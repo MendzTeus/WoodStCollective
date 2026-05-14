@@ -45,13 +45,13 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomName })
         <div className="flex gap-4">
           <button 
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-            className="p-2 border border-divider-subtle hover:border-primary transition-colors hover:bg-primary/5"
+            className="p-2 border border-divider-subtle hover:border-primary transition-colors hover:bg-primary/5 rounded-lg"
           >
             <ChevronLeft size={14} />
           </button>
           <button 
             onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-            className="p-2 border border-divider-subtle hover:border-primary transition-colors hover:bg-primary/5"
+            className="p-2 border border-divider-subtle hover:border-primary transition-colors hover:bg-primary/5 rounded-lg"
           >
             <ChevronRight size={14} />
           </button>
@@ -93,9 +93,9 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomName })
         days.push(
           <div
             key={day.toString()}
-            className={`relative h-16 flex items-center justify-center text-sm font-mono border-t border-l border-divider-subtle last:border-r 
-              ${!isSameMonth(day, monthStart) ? "text-text-muted/20" : available ? "text-primary cursor-pointer hover:bg-primary/5" : "text-text-muted cursor-not-allowed"}
-              ${isSameDay(day, selectedDate) && available ? "bg-primary !text-on-primary font-bold" : ""}`}
+            className={`relative h-16 flex items-center justify-center text-sm font-mono border-t border-l border-divider-subtle last:border-r transition-colors duration-200
+              ${!isSameMonth(day, monthStart) ? "text-text-muted/20" : available ? "bg-primary/20 text-primary hover:bg-primary/30 cursor-pointer" : "text-text-muted cursor-not-allowed"}
+              ${isSameDay(day, selectedDate) && available ? "!bg-primary !text-on-primary font-bold" : ""}`}
             onClick={() => available && setSelectedDate(cloneDay)}
           >
             <span className="z-10">{formattedDate}</span>
@@ -122,18 +122,18 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomName })
   };
 
   return (
-    <div className="bg-surface-container/50 border border-divider-subtle p-10">
+    <div className="bg-surface-container/50 border border-divider-subtle p-10 rounded-2xl">
       {renderHeader()}
       {renderDays()}
       {renderCells()}
       
       <div className="mt-8 flex items-center gap-8 px-2">
         <div className="flex items-center gap-3">
-          <div className="w-3 h-3 rounded-none border border-primary bg-primary/10" />
+          <div className="w-3 h-3 rounded-sm border border-primary bg-primary/10" />
           <span className="label-caps text-[10px] text-text-muted">Available</span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="w-3 h-3 rounded-none border border-divider-subtle relative overflow-hidden">
+          <div className="w-3 h-3 rounded-sm border border-divider-subtle relative overflow-hidden">
              <div className="absolute inset-0 w-full h-[1px] bg-divider-subtle rotate-45 opacity-50 translate-y-1" />
           </div>
           <span className="label-caps text-[10px] text-text-muted">Booked</span>
