@@ -200,9 +200,20 @@ export default function RoomDetail() {
                 <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <MessageSquare size={16} /> WhatsApp
                 </button>
-                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
-                  Airbnb
-                </button>
+                {room.airbnbUrl ? (
+                  <a 
+                    href={room.airbnbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg"
+                  >
+                    Airbnb
+                  </a>
+                ) : (
+                  <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
+                    Airbnb
+                  </button>
+                )}
               </div>
               <p className="text-center text-[10px] label-caps opacity-40 italic">Direct concierge response guaranteed.</p>
             </motion.div>

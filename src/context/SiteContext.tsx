@@ -18,6 +18,7 @@ export interface Room {
   features: { title: string; desc: string }[];
   gallery: string[];
   details: string;
+  airbnbUrl?: string;
 }
 
 export interface Review {

@@ -9,13 +9,21 @@ import {
   Star,
   LogOut
 } from 'lucide-react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export default function AdminLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const isActive = (path: string) => {
     return location.pathname.startsWith(path);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/admin/login');
   };
 
   return (
@@ -54,16 +62,22 @@ export default function AdminLayout() {
         
         <div className="mt-auto p-6 border-t border-divider-subtle">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+            <div className="flex items-center gap-3 overflow-hidden">
+              <div className="w-10 h-10 shrink-0 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                 <User size={18} />
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-primary">Admin User</span>
+              <div className="flex flex-col truncate">
+                <span className="text-sm font-bold text-primary truncate" title={user?.email || 'Admin User'}>
+                  {user?.email || 'Admin User'}
+                </span>
                 <span className="text-xs text-text-muted">Manager</span>
               </div>
             </div>
-            <button className="text-text-muted hover:text-primary transition-colors">
+            <button 
+              onClick={handleLogout}
+              className="text-text-muted hover:text-primary transition-colors shrink-0 ml-2" 
+              title="Logout"
+            >
               <LogOut size={18} />
             </button>
           </div>

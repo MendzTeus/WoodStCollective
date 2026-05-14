@@ -122,6 +122,17 @@ export default function AdminRoomEditor() {
                   onChange={(e) => setField('details', e.target.value)}
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">Airbnb Link</label>
+                <input 
+                  className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary" 
+                  type="url" 
+                  placeholder="https://airbnb.com/..."
+                  value={localRoom.airbnbUrl || ''}
+                  onChange={(e) => setField('airbnbUrl', e.target.value)}
+                />
+              </div>
             </div>
           </section>
 

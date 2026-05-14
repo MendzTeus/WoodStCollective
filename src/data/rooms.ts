@@ -8,6 +8,7 @@ export interface Room {
   features: { icon: string; title: string; desc: string }[];
   gallery: string[];
   details: string;
+  airbnbUrl?: string;
 }
 
 export const rooms: Room[] = [
@@ -19,6 +20,7 @@ export const rooms: Room[] = [
     longDescription: "Designed for discerning professionals, the Classic En-Suite offers an impeccable blend of privacy and luxury. Every detail has been curated to provide a premium living experience, from the custom-designed workstation to the spa-inspired bathroom.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7OczJILloz1EEHLDDHLHBQVGs-gL3MxVIDkUEq4jxWn3_eguqhKmpBPM06DSWa9YLQFWV8KpqdMei7Bn-Gh78simyIpH1UoxrePBEnAqUlP2FVj0jSyhsJZ3DS5ZP38hd9biUe-ak7W8OeBT90IsBQZai4z3QrVJmvK2taYfg5tTq81WjBxDa64Zp3_ivGCOaqCq7RSiPhKLB8oUl1H-gAFiqMDOw_U8ErUtpqOmgwMXP9ctNy1ZW1aT-Dj5RNXk2a5JdOj2D8nA",
     details: "King Bed",
+    airbnbUrl: "https://www.airbnb.com/",
     features: [
       { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
       { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
