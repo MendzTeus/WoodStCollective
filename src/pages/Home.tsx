@@ -78,51 +78,22 @@ export default function Home() {
               <p className="text-sm text-text-secondary leading-relaxed">Sophisticated residential design meeting high-performance living environments.</p>
             </div>
           </Link>
-          <div className="bottom-rail-item group cursor-pointer border-x border-divider-subtle hover:bg-primary/5 transition-colors">
+          <Link to="/coworking" className="bottom-rail-item group cursor-pointer border-x border-divider-subtle hover:bg-primary/5 transition-colors">
             <div className="font-display text-4xl italic text-primary opacity-50 group-hover:opacity-100 transition-opacity mb-4">02</div>
             <div>
               <h4 className="label-caps text-xs mb-2">Private Studios</h4>
               <p className="text-sm text-text-secondary leading-relaxed">Dedicated environments for focused concentration and high-stakes team collaboration.</p>
             </div>
-          </div>
-          <div className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
+          </Link>
+          <Link to="/amenities" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
             <div className="font-display text-4xl italic text-primary opacity-50 group-hover:opacity-100 transition-opacity mb-4">03</div>
             <div>
               <h4 className="label-caps text-xs mb-2">Cultural Lounge</h4>
               <p className="text-sm text-text-secondary leading-relaxed">Curated events and artisan refreshments in an immersive, hospitality-focused setting.</p>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
-
-      {reviews.length > 0 && (
-        <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
-          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, i) => (
-              <motion.div
-                key={review.id}
-                {...fadeIn}
-                transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl"
-              >
-                <div className="flex gap-1 text-primary mb-8">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index} className={index < review.rating ? "text-primary" : "text-divider-subtle"}>★</span>
-                  ))}
-                </div>
-                <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
-                  "{review.comment}"
-                </p>
-                <div>
-                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
-                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* Featured Residences Section */}
       <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
@@ -258,6 +229,35 @@ export default function Home() {
         </div>
 
       </section>
+
+      {reviews.length > 0 && (
+        <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
+          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reviews.map((review, i) => (
+              <motion.div
+                key={review.id}
+                {...fadeIn}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl"
+              >
+                <div className="flex gap-1 text-primary mb-8">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index} className={index < review.rating ? "text-primary" : "text-divider-subtle"}>★</span>
+                  ))}
+                </div>
+                <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
+                  "{review.comment}"
+                </p>
+                <div>
+                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
+                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }
