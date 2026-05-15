@@ -105,6 +105,16 @@
     @apply text-[10px] font-semibold uppercase tracking-[0.3em] text-primary;
   }
 
+  .page-hero-title {
+    font-size: clamp(56px, 9vw, 104px);
+  }
+
+  @media (min-width: 1024px) {
+    .page-hero-title {
+      font-size: clamp(84px, 8vw, 140px);
+    }
+  }
+
   .bottom-rail-item {
     @apply p-8 md:p-12 border-r border-divider-subtle last:border-r-0 flex flex-col justify-between;
   }
