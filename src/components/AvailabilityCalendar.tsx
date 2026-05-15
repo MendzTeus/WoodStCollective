@@ -47,6 +47,16 @@ const fetchIcalText = async (icalUrl: string) => {
   throw lastError || new Error('Calendar request failed');
 };
 
+const fetchCachedBookedDates = async (roomId: string) => {
+  const response = await fetch(`/calendar-cache/${roomId}.json?_=${Date.now()}`, { cache: 'no-store' });
+  if (!response.ok) throw new Error('Calendar cache unavailable');
+
+  const data = await response.json() as { bookedDates?: string[] };
+  if (!Array.isArray(data.bookedDates)) throw new Error('Calendar cache was invalid');
+
+  return new Set(data.bookedDates);
+};
+
 const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -55,22 +65,46 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
 
   useEffect(() => {
     const icalUrl = getRoomIcalUrl(roomId);
+    let cancelled = false;
 
     if (!icalUrl) {
       setStatus('unavailable');
       return;
     }
 
-    setStatus('loading');
-    fetchIcalText(icalUrl)
-      .then((text) => {
-        setBookedDates(parseBookedDatesFromIcal(text));
+    const syncCalendar = async (showLoading = false) => {
+      if (showLoading) setStatus('loading');
+
+      try {
+        const cachedDates = await fetchCachedBookedDates(roomId);
+        if (cancelled) return;
+
+        setBookedDates(cachedDates);
         setStatus('synced');
-      })
-      .catch(() => {
-        setBookedDates(new Set());
-        setStatus('unavailable');
-      });
+        return;
+      } catch {
+        try {
+          const text = await fetchIcalText(icalUrl);
+          if (cancelled) return;
+
+          setBookedDates(parseBookedDatesFromIcal(text));
+          setStatus('synced');
+        } catch {
+          if (cancelled) return;
+
+          setBookedDates(new Set());
+          setStatus('unavailable');
+        }
+      }
+    };
+
+    syncCalendar(true);
+    const interval = window.setInterval(() => syncCalendar(), 30000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
   }, [roomId]);
 
   const isAvailable = (date: Date) => {
