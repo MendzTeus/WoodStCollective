@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronRight, CheckCircle, Info, ImagePlus } from 'lucide-react';
+import { ChevronRight, CheckCircle, Info } from 'lucide-react';
 import { useSiteData } from '../../context/SiteContext';
+import ImageUploadField from '../../components/admin/ImageUploadField';
 
 export default function AdminPages() {
   const [activeTab, setActiveTab] = useState('Home');
@@ -87,30 +88,12 @@ export default function AdminPages() {
                 </div>
               </div>
               
-              <div className="relative group">
-                <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">Cover Image URL</label>
-                <input 
-                  className="w-full p-3 mb-4 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary text-xs" 
-                  type="text" 
-                  value={activePageData?.coverImage || ''}
-                  onChange={(e) => handleUpdate('coverImage', e.target.value)}
-                  placeholder="Paste image URL here"
-                />
-                <div className="relative aspect-video rounded-xl overflow-hidden border border-divider-subtle bg-background-dark">
-                  {activePageData?.coverImage ? (
-                    <img 
-                      className="w-full h-full object-cover" 
-                      alt="Preview"
-                      src={activePageData.coverImage}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center text-text-muted">
-                      <ImagePlus size={32} className="mb-2 opacity-50" />
-                      <span className="text-xs uppercase tracking-wider">No Image Provided</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <ImageUploadField
+                label="Cover Image"
+                value={activePageData?.coverImage || ''}
+                folder={`pages/${activePageData?.id || activeTab}`}
+                onChange={(url) => handleUpdate('coverImage', url)}
+              />
             </div>
           </section>
         </div>

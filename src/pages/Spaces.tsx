@@ -49,7 +49,11 @@ export default function Spaces() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className="group"
             >
-              <div className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative rounded-2xl">
+              <Link
+                to={`/coliving/${room.id}`}
+                className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative rounded-2xl block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label={`View ${room.name}`}
+              >
                 <img 
                   src={room.image} 
                   alt={room.name} 
@@ -60,7 +64,7 @@ export default function Spaces() {
                     {room.type}
                   </span>
                 </div>
-              </div>
+              </Link>
               
               <div className="flex justify-between items-start mb-6">
                 <div>

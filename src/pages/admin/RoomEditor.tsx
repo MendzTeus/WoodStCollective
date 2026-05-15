@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronRight, ArrowLeft, ImagePlus, Save } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Save, Trash2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { useSiteData } from '../../context/SiteContext';
+import ImageUploadField from '../../components/admin/ImageUploadField';
 
 export default function AdminRoomEditor() {
   const { id } = useParams();
@@ -28,6 +29,22 @@ export default function AdminRoomEditor() {
 
   const setField = (field: string, value: string) => {
     setLocalRoom(prev => ({ ...prev, [field]: value } as any));
+  };
+
+  const setGalleryImage = (index: number, value: string) => {
+    setLocalRoom(prev => {
+      if (!prev) return prev;
+      const gallery = [...prev.gallery];
+      gallery[index] = value;
+      return { ...prev, gallery };
+    });
+  };
+
+  const removeGalleryImage = (index: number) => {
+    setLocalRoom(prev => {
+      if (!prev) return prev;
+      return { ...prev, gallery: prev.gallery.filter((_, i) => i !== index) };
+    });
   };
   
   const setFeature = (index: number, field: string, value: string) => {
@@ -175,49 +192,44 @@ export default function AdminRoomEditor() {
         <div className="col-span-12 lg:col-span-4 space-y-8">
           <section className="bg-surface-container rounded-2xl p-8 border border-divider-subtle shadow-sm">
             <h3 className="font-display text-xl font-bold text-primary mb-4">Main Image</h3>
-            <div className="mb-4">
-              <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">Image URL</label>
-              <input 
-                className="w-full p-3 mb-4 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary text-sm" 
-                type="text" 
-                value={localRoom.image}
-                onChange={(e) => setField('image', e.target.value)}
-              />
-            </div>
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-divider-subtle group mb-4">
-              {localRoom.image ? (
-                <img 
-                  className="w-full h-full object-cover" 
-                  alt={localRoom.name}
-                  src={localRoom.image}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-background-dark text-text-muted text-sm">
-                  No Image
-                </div>
-              )}
-            </div>
+            <ImageUploadField
+              label="Room Image"
+              value={localRoom.image}
+              folder={`rooms/${localRoom.id}/main`}
+              previewAspect="aspect-[4/3]"
+              onChange={(url) => setField('image', url)}
+            />
           </section>
 
           <section className="bg-surface-container rounded-2xl p-8 border border-divider-subtle shadow-sm">
-            <h3 className="font-display text-xl font-bold text-primary mb-4">Gallery URLs</h3>
-            <div className="space-y-3 mb-6">
-               <textarea 
-                  className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary resize-y text-sm break-all font-mono" 
-                  rows={4}
-                  value={localRoom.gallery.join('\n')}
-                  onChange={(e) => setField('gallery', e.target.value.split('\n')) as any}
-                  placeholder="One URL per line"
-                />
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <h3 className="font-display text-xl font-bold text-primary">Gallery Images</h3>
+              <button
+                type="button"
+                onClick={() => setLocalRoom(prev => prev ? { ...prev, gallery: [...prev.gallery, ''] } : prev)}
+                className="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider"
+              >
+                + Add Image
+              </button>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              {localRoom.gallery.filter(Boolean).map((img, i) => (
-                <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-divider-subtle group">
-                  <img 
-                    className="w-full h-full object-cover" 
-                    alt={`Gallery ${i}`}
-                    src={img}
+            <div className="space-y-6">
+              {localRoom.gallery.map((img, i) => (
+                <div key={i} className="relative">
+                  <ImageUploadField
+                    label={`Gallery Image ${i + 1}`}
+                    value={img}
+                    folder={`rooms/${localRoom.id}/gallery`}
+                    previewAspect="aspect-square"
+                    onChange={(url) => setGalleryImage(i, url)}
                   />
+                  <button
+                    type="button"
+                    onClick={() => removeGalleryImage(i)}
+                    className="absolute top-0 right-0 p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
+                    title="Remove image"
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </div>
               ))}
             </div>

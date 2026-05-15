@@ -39,10 +39,7 @@ export default function AdminLogin() {
           {!supabase && (
              <div className="mt-8 p-4 bg-primary/10 border border-primary/20 text-primary text-sm font-medium rounded-lg text-left">
                <p className="font-bold mb-2 uppercase text-xs tracking-wider">Preview Mode Active</p>
-               <p className="opacity-80">Supabase is not configured yet. For preview bypass, use email:</p>
-               <div className="mt-2 font-mono bg-background-dark px-3 py-2 rounded text-xs select-all">
-                 admin@woodstreet.com
-               </div>
+               <p className="opacity-80">Supabase is not configured yet. Add the project credentials before signing in.</p>
              </div>
           )}
         </div>
@@ -62,7 +59,7 @@ export default function AdminLogin() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full p-4 bg-background-dark/50 focus:bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-all duration-300 text-text-primary"
-              placeholder="admin@woodstreet.com"
+              placeholder="you@example.com"
             />
           </div>
           

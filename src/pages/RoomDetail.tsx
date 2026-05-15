@@ -27,6 +27,7 @@ import {
   MessageSquare
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { toExternalUrl } from "../lib/url";
 
 const iconMap: any = {
   Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon
@@ -36,6 +37,7 @@ export default function RoomDetail() {
   const { id } = useParams();
   const { data } = useSiteData();
   const room = id ? data.rooms[id] : undefined;
+  const airbnbUrl = toExternalUrl(room?.airbnbUrl);
 
   if (!room) {
     return (
@@ -177,7 +179,7 @@ export default function RoomDetail() {
               Availability
             </motion.h2>
             <div className="w-full">
-              <AvailabilityCalendar roomName={room.name} />
+              <AvailabilityCalendar roomId={room.id} />
             </div>
           </div>
           
@@ -200,9 +202,9 @@ export default function RoomDetail() {
                 <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <MessageSquare size={16} /> WhatsApp
                 </button>
-                {room.airbnbUrl ? (
+                {airbnbUrl ? (
                   <a 
-                    href={room.airbnbUrl}
+                    href={airbnbUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg"

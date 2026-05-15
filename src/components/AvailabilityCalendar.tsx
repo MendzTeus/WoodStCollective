@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   format, 
   addMonths, 
@@ -14,26 +14,58 @@ import {
   startOfDay
 } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getRoomIcalUrl, parseBookedDatesFromIcal, toDateKey } from '../lib/ical';
 
 interface AvailabilityCalendarProps {
-  roomName: string;
+  roomId: string;
 }
 
-const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomName }) => {
+const fetchIcalText = async (icalUrl: string) => {
+  try {
+    const response = await fetch(icalUrl);
+    if (!response.ok) throw new Error('Calendar request failed');
+    return response.text();
+  } catch {
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(icalUrl)}`;
+    const response = await fetch(proxyUrl);
+    if (!response.ok) throw new Error('Calendar proxy request failed');
+    return response.text();
+  }
+};
+
+const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [bookedDates, setBookedDates] = useState<Set<string>>(new Set());
+  const [status, setStatus] = useState<'loading' | 'synced' | 'unavailable'>('loading');
 
-  // Mock unavailable dates (e.g. some dates in the current month)
+  useEffect(() => {
+    const icalUrl = getRoomIcalUrl(roomId);
+
+    if (!icalUrl) {
+      setStatus('unavailable');
+      return;
+    }
+
+    setStatus('loading');
+    fetchIcalText(icalUrl)
+      .then((text) => {
+        setBookedDates(parseBookedDatesFromIcal(text));
+        setStatus('synced');
+      })
+      .catch(() => {
+        setBookedDates(new Set());
+        setStatus('unavailable');
+      });
+  }, [roomId]);
+
   const isAvailable = (date: Date) => {
-    const day = date.getDate();
     const today = startOfDay(new Date());
     
     // Past dates are unavailable
     if (isBefore(date, today)) return false;
-    
-    // Some random busy periods for the mock
-    const busyDays = [3, 4, 12, 13, 14, 20, 21, 22, 28, 29];
-    return !busyDays.includes(day % 31);
+
+    return !bookedDates.has(toDateKey(date));
   };
 
   const renderHeader = () => {
@@ -147,7 +179,9 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomName })
         </div>
         <div className="hidden md:block text-right">
            <p className="text-[10px] text-text-muted italic mb-1 uppercase tracking-[0.2em]">Status</p>
-           <span className="text-sm font-bold text-primary italic">Live Selection</span>
+           <span className="text-sm font-bold text-primary italic">
+             {status === 'synced' ? 'Airbnb Calendar Synced' : status === 'loading' ? 'Syncing Calendar' : 'Calendar Unavailable'}
+           </span>
         </div>
       </div>
     </div>

@@ -35,15 +35,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       return () => subscription.unsubscribe();
     } else {
-      // Dummy check for development if Supabase isn't configured
-      const savedUser = localStorage.getItem('dummy_admin_user');
-      if (savedUser) {
-        try {
-          setUser(JSON.parse(savedUser));
-        } catch (e) {
-          // Ignore
-        }
-      }
       setIsLoading(false);
     }
   }, []);
@@ -57,14 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (error) return { error: error.message };
       return { error: null };
     } else {
-      // Dummy login for development without Supabase keys
-      if (email === 'admin@woodstreet.com') {
-        const dummyUser = { id: 'dummy-1', email };
-        localStorage.setItem('dummy_admin_user', JSON.stringify(dummyUser));
-        setUser(dummyUser);
-        return { error: null };
-      }
-      return { error: 'Invalid credentials. (Hint: use admin@woodstreet.com in preview mode)' };
+      return { error: 'Supabase is not configured. Add the project credentials before signing in.' };
     }
   };
 
@@ -72,7 +56,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (supabase) {
       await supabase.auth.signOut();
     } else {
-      localStorage.removeItem('dummy_admin_user');
       setUser(null);
     }
   };
