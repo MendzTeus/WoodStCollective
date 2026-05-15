@@ -17,6 +17,7 @@ import {
 import { useSiteData } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { toExternalUrl } from "../lib/url";
+import { trackEvent } from "../lib/analytics";
 
 export default function Amenities() {
   const { data } = useSiteData();
@@ -168,10 +169,10 @@ export default function Amenities() {
             Check live availability and get in touch — we'll take it from there.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/coliving" className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
+            <Link to="/coliving" onClick={() => trackEvent("click_check_availability")} className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Check Availability
             </Link>
-            <a href={airbnbUrl || "/coliving"} target={airbnbUrl ? "_blank" : undefined} rel="noopener noreferrer" className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500 rounded-lg">
+            <a href={airbnbUrl || "/coliving"} target={airbnbUrl ? "_blank" : undefined} rel="noopener noreferrer" onClick={() => trackEvent("click_airbnb_amenities", { link_url: airbnbUrl || "/coliving" })} className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500 rounded-lg">
               View on Airbnb
             </a>
           </div>

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { SiteProvider } from "./context/SiteContext";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/Layout";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Spaces from "./pages/Spaces";
@@ -22,12 +23,14 @@ import AdminPages from "./pages/admin/Pages";
 import AdminRooms from "./pages/admin/Rooms";
 import AdminRoomEditor from "./pages/admin/RoomEditor";
 import AdminReviews from "./pages/admin/Reviews";
+import AdminAnalytics from "./pages/admin/Analytics";
 
 export default function App() {
   return (
     <AuthProvider>
       <SiteProvider>
         <Router>
+          <AnalyticsTracker />
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -49,6 +52,7 @@ export default function App() {
                 <Route path="rooms" element={<AdminRooms />} />
                 <Route path="rooms/:id" element={<AdminRoomEditor />} />
                 <Route path="reviews" element={<AdminReviews />} />
+                <Route path="analytics" element={<AdminAnalytics />} />
               </Route>
             </Routes>
           </Layout>

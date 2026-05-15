@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
 import { toExternalUrl, toMailto, toWhatsAppUrl } from "../lib/url";
+import { trackEvent } from "../lib/analytics";
 
 const iconMap: any = {
   Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon
@@ -198,10 +199,20 @@ export default function RoomDetail() {
               </div>
               
               <div className="flex flex-col gap-4">
-                <a href={emailUrl || "#"} className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3 rounded-lg">
+                <a
+                  href={emailUrl || "#"}
+                  onClick={() => trackEvent("click_email_room", { room_id: room.id, room_name: room.name })}
+                  className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3 rounded-lg"
+                >
                   <Mail size={16} /> Email Enquiry
                 </a>
-                <a href={whatsappUrl || "#"} target={whatsappUrl ? "_blank" : undefined} rel="noopener noreferrer" className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
+                <a
+                  href={whatsappUrl || "#"}
+                  target={whatsappUrl ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("click_whatsapp_room", { room_id: room.id, room_name: room.name })}
+                  className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg"
+                >
                   <MessageSquare size={16} /> WhatsApp
                 </a>
                 {airbnbUrl ? (
@@ -209,6 +220,7 @@ export default function RoomDetail() {
                     href={airbnbUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("click_airbnb_room", { room_id: room.id, room_name: room.name, link_url: airbnbUrl })}
                     className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg"
                   >
                     Airbnb

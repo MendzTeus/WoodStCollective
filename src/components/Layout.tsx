@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
 import { toExternalUrl, toMailto } from "../lib/url";
+import { trackEvent } from "../lib/analytics";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -60,6 +61,7 @@ export default function Layout({ children }: LayoutProps) {
               href={airbnbUrl || "/coliving"}
               target={airbnbUrl ? "_blank" : undefined}
               rel={airbnbUrl ? "noopener noreferrer" : undefined}
+              onClick={() => trackEvent("click_airbnb_top", { link_url: airbnbUrl || "/coliving" })}
               className="hidden lg:block border border-primary text-primary label-caps px-8 py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-500"
             >
               Airbnb
@@ -98,8 +100,8 @@ export default function Layout({ children }: LayoutProps) {
             <div className="md:col-span-3">
               <h4 className="label-caps mb-10">Connect</h4>
               <ul className="space-y-6">
-                <li><a href={instagramUrl || "#"} target={instagramUrl ? "_blank" : undefined} rel="noopener noreferrer" className="nav-link">Instagram</a></li>
-                <li><a href={emailUrl || "#"} className="nav-link">Email Us</a></li>
+                <li><a href={instagramUrl || "#"} target={instagramUrl ? "_blank" : undefined} rel="noopener noreferrer" onClick={() => trackEvent("click_instagram_footer", { link_url: instagramUrl || "#" })} className="nav-link">Instagram</a></li>
+                <li><a href={emailUrl || "#"} onClick={() => trackEvent("click_email_footer")} className="nav-link">Email Us</a></li>
               </ul>
             </div>
           </div>

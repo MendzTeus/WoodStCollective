@@ -1,10 +1,7 @@
 import React from 'react';
 import { 
-  LayoutDashboard, 
-  FileEdit, 
-  Image as ImageIcon, 
-  Calendar, 
-  Settings, 
+  LayoutDashboard,
+  FileEdit,
   User,
   Star,
   LogOut
@@ -56,6 +53,14 @@ export default function AdminLayout() {
             >
               <Star size={20} />
               <span className="text-xs font-semibold uppercase tracking-wider">Reviews</span>
+            </Link>
+
+            <Link
+              to="/admin/analytics"
+              className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all ${isActive('/admin/analytics') ? 'bg-primary/10 text-primary border-l-2 border-primary' : 'text-text-secondary hover:bg-white/5 hover:text-primary'}`}
+            >
+              <LayoutDashboard size={20} />
+              <span className="text-xs font-semibold uppercase tracking-wider">Analytics</span>
             </Link>
           </nav>
         </div>

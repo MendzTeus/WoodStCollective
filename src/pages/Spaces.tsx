@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star } from "lucide-react";
 import { useSiteData, Room, Review } from "../context/SiteContext";
+import { trackEvent } from "../lib/analytics";
 
 export default function Spaces() {
   const { data } = useSiteData();
@@ -51,6 +52,7 @@ export default function Spaces() {
             >
               <Link
                 to={`/coliving/${room.id}`}
+                onClick={() => trackEvent("select_room", { room_id: room.id, room_name: room.name, source: "image" })}
                 className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative rounded-2xl block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label={`View ${room.name}`}
               >
@@ -81,6 +83,7 @@ export default function Spaces() {
 
               <Link 
                 to={`/coliving/${room.id}`}
+                onClick={() => trackEvent("select_room", { room_id: room.id, room_name: room.name, source: "text_link" })}
                 className="inline-flex items-center gap-4 py-4 border-b border-primary/30 group-hover:border-primary transition-colors label-caps text-xs group-hover:gap-6 duration-300"
               >
                 View Residence
