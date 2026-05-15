@@ -72,6 +72,13 @@
     @apply bg-background-dark text-text-primary font-sans antialiased;
   }
 
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   h1, h2, h3, h4 {
     @apply font-display tracking-tight text-primary;
   }
@@ -99,6 +106,6 @@
   }
 
   .bottom-rail-item {
-    @apply p-12 border-r border-divider-subtle last:border-r-0 flex flex-col justify-between;
+    @apply p-8 md:p-12 border-r border-divider-subtle last:border-r-0 flex flex-col justify-between;
   }
 }

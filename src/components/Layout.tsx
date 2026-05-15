@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
 import { toExternalUrl, toMailto } from "../lib/url";
 import { trackEvent } from "../lib/analytics";
@@ -11,6 +11,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { data } = useSiteData();
   const instagramUrl = toExternalUrl(data.settings.instagramUrl);
@@ -28,6 +29,7 @@ export default function Layout({ children }: LayoutProps) {
   // Always scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
   if (location.pathname.startsWith('/admin')) {
@@ -35,7 +37,7 @@ export default function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background-dark">
+    <div className="min-h-screen bg-background-dark overflow-x-hidden">
       {/* Navigation */}
       <nav 
         className={`fixed top-0 w-full z-50 transition-all duration-700 border-b ${
@@ -44,8 +46,8 @@ export default function Layout({ children }: LayoutProps) {
             : "h-24 bg-transparent border-transparent"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-12 h-full flex items-center justify-between">
-          <Link to="/" className="font-display text-2xl font-black text-primary tracking-tighter uppercase italic">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-full flex items-center justify-between">
+          <Link to="/" className="font-display text-[clamp(28px,9vw,32px)] font-black text-primary tracking-tighter uppercase italic">
             Wood Street
           </Link>
           
@@ -66,12 +68,49 @@ export default function Layout({ children }: LayoutProps) {
             >
               Airbnb
             </a>
-            <button className="md:hidden text-text-primary">
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden text-text-primary p-2"
+              aria-label="Open navigation menu"
+            >
               <Menu size={24} />
             </button>
           </div>
         </div>
       </nav>
+
+      <div className={`fixed inset-0 z-[60] md:hidden transition ${isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
+        <button
+          type="button"
+          aria-label="Close navigation menu"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className={`absolute inset-0 bg-background-dark/70 backdrop-blur-sm transition-opacity ${isMobileMenuOpen ? "opacity-100" : "opacity-0"}`}
+        />
+        <aside className={`absolute right-0 top-0 h-full w-[82vw] max-w-sm bg-surface-container border-l border-divider-subtle p-8 transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+          <div className="flex items-center justify-between mb-14">
+            <span className="font-display text-2xl font-black text-primary tracking-tighter uppercase italic">Wood Street</span>
+            <button type="button" onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-text-primary" aria-label="Close navigation menu">
+              <X size={24} />
+            </button>
+          </div>
+          <nav className="flex flex-col gap-7">
+            <Link to="/coliving" className="nav-link text-base">Co-living</Link>
+            <Link to="/coworking" className="nav-link text-base">Co-working</Link>
+            <Link to="/amenities" className="nav-link text-base">Amenities</Link>
+            <Link to="/about" className="nav-link text-base">About</Link>
+            <a
+              href={airbnbUrl || "/coliving"}
+              target={airbnbUrl ? "_blank" : undefined}
+              rel={airbnbUrl ? "noopener noreferrer" : undefined}
+              onClick={() => trackEvent("click_airbnb_top", { link_url: airbnbUrl || "/coliving" })}
+              className="mt-6 border border-primary text-primary label-caps px-6 py-4 rounded-lg text-center"
+            >
+              Airbnb
+            </a>
+          </nav>
+        </aside>
+      </div>
 
       {children}
 

@@ -32,19 +32,19 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       {/* Hero Section - Split Editorial Layout */}
       <section className="relative min-h-screen w-full editorial-grid border-b border-divider-subtle">
-        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center px-12 pt-32 pb-24">
+        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center px-6 md:px-12 pt-32 pb-24">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="font-display text-[clamp(80px,12vw,140px)] font-black leading-[0.85] italic mb-10 text-primary whitespace-pre-line">
+            <h1 className="font-display text-[clamp(58px,17vw,140px)] lg:text-[clamp(80px,12vw,140px)] font-black leading-[0.88] lg:leading-[0.85] italic mb-10 text-primary whitespace-pre-line break-words max-w-full">
               {pageData.title}
             </h1>
-            <p className="font-sans text-xl text-text-secondary max-w-lg leading-relaxed font-light mb-12">
+            <p className="font-sans text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed font-light mb-12">
               {pageData.description}
             </p>
             <Link to="/coliving">
@@ -96,9 +96,9 @@ export default function Home() {
       </section>
 
       {/* Featured Residences Section */}
-      <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
+      <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-          <motion.h2 {...fadeIn} className="text-6xl font-black italic leading-none text-primary">
+          <motion.h2 {...fadeIn} className="text-5xl md:text-6xl font-black italic leading-none text-primary">
             Curated<br />Residences.
           </motion.h2>
           <Link to="/coliving">
@@ -150,9 +150,9 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 px-12 max-w-7xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-          <motion.h2 {...fadeIn} className="text-6xl md:text-7xl font-black italic max-w-xl leading-none text-primary">
+          <motion.h2 {...fadeIn} className="text-5xl md:text-7xl font-black italic max-w-xl leading-none text-primary">
             The Architecture of Focus.
           </motion.h2>
           <motion.div {...fadeIn} className="label-caps border-b border-primary pb-2 max-w-fit">
@@ -184,7 +184,7 @@ export default function Home() {
       {/* Immersive Image Break */}
       <section className="h-[60vh] relative overflow-hidden border-y border-divider-subtle">
          <img 
-          className="w-full h-full object-cover fixed opacity-40 top-0 left-0 -z-10 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
           alt="Atmospheric" 
         />
@@ -202,13 +202,13 @@ export default function Home() {
       </section>
 
       {/* Enquiry Form */}
-      <section className="py-32 px-12 max-w-4xl mx-auto gap-y-24">
+      <section className="py-24 md:py-32 px-6 md:px-12 max-w-4xl mx-auto gap-y-24">
         <div>
-          <h2 className="text-6xl font-black italic mb-8 leading-[0.9] text-primary">Start Your Residency.</h2>
+          <h2 className="text-5xl md:text-6xl font-black italic mb-8 leading-[0.9] text-primary">Start Your Residency.</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Enquire about our curated membership tiers and join the Wood Street community.</p>
           
           <form className="space-y-10">
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="space-y-3">
                 <label className="label-caps text-[10px]">Given Name</label>
                 <input type="text" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
@@ -231,7 +231,7 @@ export default function Home() {
       </section>
 
       {reviews.length > 0 && (
-        <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
+        <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
           <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review, i) => (

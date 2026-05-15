@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 import { rooms as initialRooms } from '../data/rooms';
+import { loadSiteContent, saveSiteContent } from '../lib/siteContent';
 
 export type PageData = {
   id: string;
@@ -32,7 +33,7 @@ export interface Review {
   approved: boolean;
 }
 
-type SiteData = {
+export type SiteData = {
   pages: Record<string, PageData>;
   rooms: Record<string, Room>;
   reviews: Record<string, Review>;
@@ -130,42 +131,91 @@ type SiteContextType = {
 
 const SiteContext = createContext<SiteContextType | undefined>(undefined);
 
+const mergeSiteData = (source?: Partial<SiteData> | null): SiteData => ({
+  pages: {
+    ...defaultPages,
+    ...(source?.pages || {})
+  },
+  rooms: {
+    ...defaultRooms,
+    ...(source?.rooms || {})
+  },
+  reviews: {
+    ...defaultReviews,
+    ...(source?.reviews || {})
+  },
+  settings: {
+    ...defaultSettings,
+    ...(source?.settings || {})
+  }
+});
+
+const hasRemoteContent = (source?: Partial<SiteData> | null) => {
+  if (!source) return false;
+  return Boolean(source.pages || source.rooms || source.reviews || source.settings);
+};
+
+const loadLocalSiteData = () => {
+  const saved = localStorage.getItem('siteData');
+  if (!saved) return null;
+
+  try {
+    return mergeSiteData(JSON.parse(saved));
+  } catch (e) {
+    console.error('Failed to parse site data from local storage');
+    return null;
+  }
+};
+
 export function SiteProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<SiteData>(() => {
-    const saved = localStorage.getItem('siteData');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        return {
-          pages: {
-            ...defaultPages,
-            ...(parsed.pages || {})
-          },
-          rooms: {
-            ...defaultRooms,
-            ...(parsed.rooms || {})
-          },
-          reviews: {
-            ...defaultReviews,
-            ...(parsed.reviews || {})
-          },
-          settings: {
-            ...defaultSettings,
-            ...(parsed.settings || {})
-          }
-        };
-      } catch (e) {
-        console.error('Failed to parse site data from local storage');
-      }
-    }
-    return { pages: defaultPages, rooms: defaultRooms, reviews: defaultReviews, settings: defaultSettings };
-  });
+  const localDataRef = useRef<SiteData | null>(loadLocalSiteData());
+  const [data, setData] = useState<SiteData>(() => localDataRef.current || mergeSiteData());
+  const [isRemoteLoaded, setIsRemoteLoaded] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    loadSiteContent()
+      .then((remoteData) => {
+        if (cancelled) return;
+
+        if (hasRemoteContent(remoteData)) {
+          const merged = mergeSiteData(remoteData);
+          setData(merged);
+          localStorage.setItem('siteData', JSON.stringify(merged));
+        } else if (localDataRef.current) {
+          setIsDirty(true);
+        }
+
+        setIsRemoteLoaded(true);
+      })
+      .catch((error) => {
+        console.error('Failed to load site content from Supabase', error);
+        setIsRemoteLoaded(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('siteData', JSON.stringify(data));
-  }, [data]);
+
+    if (!isRemoteLoaded || !isDirty) return;
+
+    const timeout = window.setTimeout(() => {
+      saveSiteContent(data).catch((error) => {
+        console.error('Failed to save site content to Supabase', error);
+      }).finally(() => setIsDirty(false));
+    }, 500);
+
+    return () => window.clearTimeout(timeout);
+  }, [data, isRemoteLoaded, isDirty]);
 
   const updatePage = (pageName: string, updates: Partial<PageData>) => {
+    setIsDirty(true);
     setData(prev => ({
       ...prev,
       pages: {
@@ -179,6 +229,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   const updateRoom = (roomId: string, updates: Partial<Room>) => {
+    setIsDirty(true);
     setData(prev => ({
       ...prev,
       rooms: {
@@ -192,6 +243,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   const updateReview = (reviewId: string, updates: Partial<Review>) => {
+    setIsDirty(true);
     setData(prev => ({
       ...prev,
       reviews: {
@@ -205,6 +257,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   const updateSettings = (updates: Partial<SiteSettings>) => {
+    setIsDirty(true);
     setData(prev => ({
       ...prev,
       settings: {
@@ -215,6 +268,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   const addReview = (review: Review) => {
+    setIsDirty(true);
     setData(prev => ({
       ...prev,
       reviews: {
@@ -225,6 +279,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   const deleteReview = (reviewId: string) => {
+    setIsDirty(true);
     setData(prev => {
       const newReviews = { ...prev.reviews };
       delete newReviews[reviewId];
