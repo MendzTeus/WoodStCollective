@@ -93,35 +93,6 @@ export default function Amenities() {
         </div>
       </section>
 
-      {/* Amenities Grid */}
-      <section className="py-32 px-12 max-w-[1440px] mx-auto">
-        <div className="text-center mb-24">
-          <motion.h2 {...fadeIn} className="text-5xl font-black italic text-primary">Your Space, Fully Equipped.</motion.h2>
-        </div>
-        
-        <motion.div 
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {amenitiesList.map((item, i) => (
-            <motion.div 
-              key={i}
-              variants={fadeIn}
-              className="bg-surface-container p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 rounded-2xl"
-            >
-              <div className="text-primary mb-8 transform group-hover:scale-110 transition-transform duration-500">
-                {item.icon}
-              </div>
-              <h3 className="text-2xl font-bold italic mb-4">{item.title}</h3>
-              <p className="text-text-secondary leading-relaxed font-light italic">{item.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
       {/* Shared Kitchen Gallery */}
       <section className="py-32 px-12 max-w-[1440px] mx-auto">
         <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
@@ -161,6 +132,35 @@ export default function Amenities() {
             />
           </div>
         </div>
+      </section>
+
+      {/* Amenities Grid */}
+      <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
+        <div className="text-center mb-24">
+          <motion.h2 {...fadeIn} className="text-5xl font-black italic text-primary">Your Space, Fully Equipped.</motion.h2>
+        </div>
+        
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {amenitiesList.map((item, i) => (
+            <motion.div 
+              key={i}
+              variants={fadeIn}
+              className="bg-surface-container p-12 border border-divider-subtle group hover:border-primary/30 transition-all duration-500 rounded-2xl"
+            >
+              <div className="text-primary mb-8 transform group-hover:scale-110 transition-transform duration-500">
+                {item.icon}
+              </div>
+              <h3 className="text-2xl font-bold italic mb-4">{item.title}</h3>
+              <p className="text-text-secondary leading-relaxed font-light italic">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* CTA Section */}

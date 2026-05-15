@@ -72,21 +72,18 @@ export default function Home() {
         {/* Bottom Rail - Editorial Stats/Categories */}
         <div className="col-span-12 grid grid-cols-1 md:grid-cols-3 border-t border-divider-subtle">
           <Link to="/coliving" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
-            <div className="font-display text-4xl italic text-primary opacity-50 group-hover:opacity-100 transition-opacity mb-4">01</div>
             <div>
               <h4 className="label-caps text-xs mb-2">Co-Living Suites</h4>
               <p className="text-sm text-text-secondary leading-relaxed">Sophisticated residential design meeting high-performance living environments.</p>
             </div>
           </Link>
           <Link to="/coworking" className="bottom-rail-item group cursor-pointer border-x border-divider-subtle hover:bg-primary/5 transition-colors">
-            <div className="font-display text-4xl italic text-primary opacity-50 group-hover:opacity-100 transition-opacity mb-4">02</div>
             <div>
               <h4 className="label-caps text-xs mb-2">Private Studios</h4>
               <p className="text-sm text-text-secondary leading-relaxed">Dedicated environments for focused concentration and high-stakes team collaboration.</p>
             </div>
           </Link>
           <Link to="/amenities" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
-            <div className="font-display text-4xl italic text-primary opacity-50 group-hover:opacity-100 transition-opacity mb-4">03</div>
             <div>
               <h4 className="label-caps text-xs mb-2">Cultural Lounge</h4>
               <p className="text-sm text-text-secondary leading-relaxed">Curated events and artisan refreshments in an immersive, hospitality-focused setting.</p>

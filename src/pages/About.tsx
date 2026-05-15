@@ -29,7 +29,7 @@ export default function About() {
   return (
     <main className="bg-background-dark">
       {/* Hero Section */}
-      <section className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden border-b border-divider-subtle">
+      <section className="relative h-screen w-full flex items-end pb-24 px-6 md:px-12 overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
           <motion.img 
              initial={{ scale: 1.1 }}
@@ -39,26 +39,28 @@ export default function About() {
              className="w-full h-full object-cover brightness-[0.4]" 
              src={pageData.coverImage}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent" />
+          <div className="absolute inset-0 hero-gradient" />
         </div>
         
-        <div className="relative z-10 text-center px-12 max-w-4xl mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="font-display text-[clamp(48px,8vw,100px)] font-black italic leading-tight text-primary mb-8 whitespace-pre-line"
-          >
-            {pageData.title}
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl text-text-secondary max-w-2xl mx-auto font-light italic"
-          >
-            {pageData.description}
-          </motion.p>
+        <div className="relative z-10 max-w-[1440px] mx-auto w-full">
+          <div className="max-w-3xl">
+            <motion.h1 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-display text-[clamp(64px,12vw,140px)] font-black leading-[0.9] text-primary mb-10 italic whitespace-pre-line"
+            >
+              {pageData.title}
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-xl text-text-secondary max-w-xl leading-relaxed font-light italic"
+            >
+              {pageData.description}
+            </motion.p>
+          </div>
         </div>
       </section>
 
