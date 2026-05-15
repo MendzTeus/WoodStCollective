@@ -21,16 +21,30 @@ interface AvailabilityCalendarProps {
 }
 
 const fetchIcalText = async (icalUrl: string) => {
-  try {
-    const response = await fetch(icalUrl);
-    if (!response.ok) throw new Error('Calendar request failed');
-    return response.text();
-  } catch {
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(icalUrl)}`;
-    const response = await fetch(proxyUrl);
-    if (!response.ok) throw new Error('Calendar proxy request failed');
-    return response.text();
+  const cacheBustedUrl = `${icalUrl}${icalUrl.includes('?') ? '&' : '?'}_=${Date.now()}`;
+  const urls = [
+    cacheBustedUrl,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(cacheBustedUrl)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(cacheBustedUrl)}`,
+  ];
+
+  let lastError: Error | null = null;
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Calendar request failed: ${response.status}`);
+
+      const text = await response.text();
+      if (!text.includes('BEGIN:VCALENDAR')) throw new Error('Calendar response was not iCal');
+
+      return text;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error('Calendar request failed');
+    }
   }
+
+  throw lastError || new Error('Calendar request failed');
 };
 
 const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) => {
