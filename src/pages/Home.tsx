@@ -41,7 +41,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="font-display text-[clamp(58px,17vw,140px)] lg:text-[clamp(80px,12vw,140px)] font-black leading-[0.88] lg:leading-[0.85] italic mb-10 text-primary whitespace-pre-line break-words max-w-full">
+            <h1 className="font-display home-hero-title font-black leading-[0.9] italic mb-10 text-primary whitespace-pre-line max-w-full">
               {pageData.title}
             </h1>
             <p className="font-sans text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed font-light mb-12">

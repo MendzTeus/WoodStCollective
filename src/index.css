@@ -106,12 +106,22 @@
   }
 
   .page-hero-title {
-    font-size: clamp(56px, 9vw, 104px);
+    font-size: clamp(52px, 8vw, 86px);
+  }
+
+  .home-hero-title {
+    font-size: clamp(56px, 14vw, 92px);
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
   @media (min-width: 1024px) {
     .page-hero-title {
-      font-size: clamp(84px, 8vw, 140px);
+      font-size: clamp(76px, 6.4vw, 112px);
+    }
+
+    .home-hero-title {
+      font-size: clamp(84px, 5.8vw, 118px);
     }
   }
 

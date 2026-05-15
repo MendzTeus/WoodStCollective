@@ -50,7 +50,7 @@ export default function Coworking() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display page-hero-title font-black leading-[0.9] text-primary mb-10 italic whitespace-pre-line"
+              className="font-display page-hero-title font-black leading-[0.95] text-primary mb-10 italic whitespace-pre-line max-w-4xl"
             >
               {pageData.title}
             </motion.h1>
