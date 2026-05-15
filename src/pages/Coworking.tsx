@@ -121,21 +121,14 @@ export default function Coworking() {
           {/* Feature 4 (Large) */}
           <motion.div 
             variants={fadeIn}
-            className="glass-card p-12 md:col-span-2 flex flex-col md:flex-row items-center gap-12 group rounded-2xl"
+            className="glass-card p-12 md:col-span-3 flex flex-col justify-between group rounded-2xl min-h-[320px]"
           >
-            <div className="flex-1">
+            <div className="max-w-3xl">
               <Wifi className="text-primary mb-8" size={48} />
               <h3 className="text-3xl font-bold italic mb-4">Enterprise Wi-Fi</h3>
               <p className="text-text-secondary leading-relaxed font-light">
                 Blazing fast, secure, and redundant internet infrastructure to keep you connected without interruption. Dedicated bandwidth for demanding tasks.
               </p>
-            </div>
-            <div className="flex-1 w-full h-full min-h-[250px] overflow-hidden relative">
-              <img 
-                alt="Collaboration" 
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
-              />
             </div>
           </motion.div>
           

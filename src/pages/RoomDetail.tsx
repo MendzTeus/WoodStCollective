@@ -27,7 +27,7 @@ import {
   MessageSquare
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
-import { toExternalUrl } from "../lib/url";
+import { toExternalUrl, toMailto, toWhatsAppUrl } from "../lib/url";
 
 const iconMap: any = {
   Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon
@@ -38,6 +38,8 @@ export default function RoomDetail() {
   const { data } = useSiteData();
   const room = id ? data.rooms[id] : undefined;
   const airbnbUrl = toExternalUrl(room?.airbnbUrl);
+  const emailUrl = toMailto(room?.enquiryEmail || data.settings.email);
+  const whatsappUrl = toWhatsAppUrl(room?.whatsappUrl || data.settings.whatsappUrl);
 
   if (!room) {
     return (
@@ -196,12 +198,12 @@ export default function RoomDetail() {
               </div>
               
               <div className="flex flex-col gap-4">
-                <button className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3 rounded-lg">
+                <a href={emailUrl || "#"} className="w-full bg-primary text-on-primary py-6 label-caps text-[10px] font-bold hover:bg-white transition-colors duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <Mail size={16} /> Email Enquiry
-                </button>
-                <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
+                </a>
+                <a href={whatsappUrl || "#"} target={whatsappUrl ? "_blank" : undefined} rel="noopener noreferrer" className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-primary hover:text-on-primary transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
                   <MessageSquare size={16} /> WhatsApp
-                </button>
+                </a>
                 {airbnbUrl ? (
                   <a 
                     href={airbnbUrl}

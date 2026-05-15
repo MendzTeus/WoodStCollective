@@ -150,6 +150,29 @@ export default function AdminRoomEditor() {
                   onChange={(e) => setField('airbnbUrl', e.target.value)}
                 />
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">Enquiry Email</label>
+                  <input
+                    className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary"
+                    type="text"
+                    placeholder="hello@woodstreet..."
+                    value={localRoom.enquiryEmail || ''}
+                    onChange={(e) => setField('enquiryEmail', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">WhatsApp Link or Number</label>
+                  <input
+                    className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary"
+                    type="text"
+                    placeholder="https://wa.me/..."
+                    value={localRoom.whatsappUrl || ''}
+                    onChange={(e) => setField('whatsappUrl', e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
           </section>
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
+import { useSiteData } from "../context/SiteContext";
+import { toExternalUrl, toMailto } from "../lib/url";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +11,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { data } = useSiteData();
+  const instagramUrl = toExternalUrl(data.settings.instagramUrl);
+  const emailUrl = toMailto(data.settings.email);
+  const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,9 +56,14 @@ export default function Layout({ children }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="hidden lg:block border border-primary text-primary label-caps px-8 py-3 rounded-none hover:bg-primary hover:text-on-primary transition-all duration-500">
+            <a
+              href={airbnbUrl || "/coliving"}
+              target={airbnbUrl ? "_blank" : undefined}
+              rel={airbnbUrl ? "noopener noreferrer" : undefined}
+              className="hidden lg:block border border-primary text-primary label-caps px-8 py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-500"
+            >
               Airbnb
-            </button>
+            </a>
             <button className="md:hidden text-text-primary">
               <Menu size={24} />
             </button>
@@ -87,10 +98,8 @@ export default function Layout({ children }: LayoutProps) {
             <div className="md:col-span-3">
               <h4 className="label-caps mb-10">Connect</h4>
               <ul className="space-y-6">
-                <li><a href="#" className="nav-link">Instagram</a></li>
-                <li><a href="#" className="nav-link">LinkedIn</a></li>
-                <li><a href="#" className="nav-link">Twitter / X</a></li>
-                <li><a href="#" className="nav-link">Email Us</a></li>
+                <li><a href={instagramUrl || "#"} target={instagramUrl ? "_blank" : undefined} rel="noopener noreferrer" className="nav-link">Instagram</a></li>
+                <li><a href={emailUrl || "#"} className="nav-link">Email Us</a></li>
               </ul>
             </div>
           </div>

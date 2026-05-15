@@ -7,12 +7,13 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useSiteData, Room } from "../context/SiteContext";
+import { useSiteData, Room, Review } from "../context/SiteContext";
 
 export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
   const rooms: Room[] = Object.values(data.rooms);
+  const reviews: Review[] = (Object.values(data.reviews) as Review[]).filter((review) => review.approved);
   
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -93,6 +94,35 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {reviews.length > 0 && (
+        <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
+          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reviews.map((review, i) => (
+              <motion.div
+                key={review.id}
+                {...fadeIn}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl"
+              >
+                <div className="flex gap-1 text-primary mb-8">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index} className={index < review.rating ? "text-primary" : "text-divider-subtle"}>★</span>
+                  ))}
+                </div>
+                <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
+                  "{review.comment}"
+                </p>
+                <div>
+                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
+                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Featured Residences Section */}
       <section className="py-32 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
@@ -201,8 +231,8 @@ export default function Home() {
       </section>
 
       {/* Enquiry Form */}
-      <section className="py-32 px-12 max-w-7xl mx-auto editorial-grid gap-y-24">
-        <div className="col-span-12 lg:col-span-6 pr-0 lg:pr-12">
+      <section className="py-32 px-12 max-w-4xl mx-auto gap-y-24">
+        <div>
           <h2 className="text-6xl font-black italic mb-8 leading-[0.9] text-primary">Start Your Residency.</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Enquire about our curated membership tiers and join the Wood Street community.</p>
           
@@ -227,34 +257,6 @@ export default function Home() {
           </form>
         </div>
 
-        <div className="col-span-12 lg:col-span-6 lg:border-l lg:border-divider-subtle lg:pl-12 flex flex-col justify-between">
-          <div>
-            <h3 className="text-4xl font-bold mb-12 italic text-primary">Meeting Spaces</h3>
-            <div className="space-y-12">
-              {[
-                { name: "The Boardroom", details: "10 Seats • Full VC Suite" },
-                { name: "Podcast Studio", details: "Studio Grade • Soundproofed" },
-                { name: "Huddle Alpha", details: "4 Seats • Smart Board" }
-              ].map((room, i) => (
-                <div key={i} className="flex justify-between items-end border-b border-divider-subtle pb-6 group cursor-pointer">
-                  <div>
-                    <h4 className="text-2xl font-bold group-hover:text-primary transition-colors text-primary font-display">{room.name}</h4>
-                    <p className="text-sm text-text-muted mt-1">{room.details}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="w-10 h-10 border border-divider-subtle flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
-                      <ArrowRight size={16} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-24 pt-12 border-t border-divider-subtle">
-            <p className="text-xl italic text-text-secondary leading-relaxed">"A truly unparalleled work environment that inspires intellectual and professional growth."</p>
-            <div className="label-caps mt-4">— Architectural Digest</div>
-          </div>
-        </div>
       </section>
     </main>
   );

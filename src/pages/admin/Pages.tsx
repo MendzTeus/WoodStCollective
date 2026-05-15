@@ -5,9 +5,9 @@ import ImageUploadField from '../../components/admin/ImageUploadField';
 
 export default function AdminPages() {
   const [activeTab, setActiveTab] = useState('Home');
-  const { data, updatePage } = useSiteData();
+  const { data, updatePage, updateSettings } = useSiteData();
 
-  const tabs = ['Home', 'Spaces', 'Coworking', 'About', 'Amenities'];
+  const tabs = ['Home', 'Spaces', 'Coworking', 'About', 'Amenities', 'Settings'];
   
   const activePageData = data.pages[activeTab];
 
@@ -23,7 +23,7 @@ export default function AdminPages() {
           <div className="flex items-center gap-2 text-text-secondary text-sm mt-2">
             <span>Admin</span>
             <ChevronRight size={14} />
-            <span className="text-primary font-semibold">{activeTab} Page Editing</span>
+            <span className="text-primary font-semibold">{activeTab === 'Settings' ? 'Site Settings' : `${activeTab} Page Editing`}</span>
           </div>
         </div>
         <div className="flex gap-4">
@@ -59,6 +59,34 @@ export default function AdminPages() {
         </aside>
 
         <div className="col-span-12 lg:col-span-9 space-y-12">
+          {activeTab === 'Settings' ? (
+          <section className="bg-surface-container rounded-2xl p-12 border border-divider-subtle shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 left-0 h-1 w-full bg-primary"></div>
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="font-display text-2xl font-bold text-primary">Site Settings</h3>
+              <span className="bg-[#2D5B4A]/20 text-[#8eced3] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-[#2D5B4A]/50">Auto Save Ready</span>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {[
+                ['Instagram Link', 'instagramUrl', 'https://instagram.com/...'],
+                ['Email Address', 'email', 'hello@woodstreet...'],
+                ['WhatsApp Link or Number', 'whatsappUrl', 'https://wa.me/...'],
+                ['Airbnb Link', 'airbnbUrl', 'https://airbnb.com/...'],
+              ].map(([label, field, placeholder]) => (
+                <div key={field}>
+                  <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">{label}</label>
+                  <input
+                    className="w-full p-4 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary"
+                    type="text"
+                    value={(data.settings as any)[field] || ''}
+                    placeholder={placeholder}
+                    onChange={(e) => updateSettings({ [field]: e.target.value } as any)}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+          ) : (
           <section className="bg-surface-container rounded-2xl p-12 border border-divider-subtle shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 h-1 w-full bg-primary"></div>
             <div className="flex justify-between items-center mb-8">
@@ -96,6 +124,7 @@ export default function AdminPages() {
               />
             </div>
           </section>
+          )}
         </div>
       </div>
     </div>

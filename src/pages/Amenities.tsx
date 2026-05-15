@@ -15,10 +15,13 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { Link } from "react-router-dom";
+import { toExternalUrl } from "../lib/url";
 
 export default function Amenities() {
   const { data } = useSiteData();
   const pageData = data.pages['Amenities'];
+  const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -165,12 +168,12 @@ export default function Amenities() {
             Check live availability and get in touch — we'll take it from there.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
+            <Link to="/coliving" className="bg-primary text-on-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Check Availability
-            </button>
-            <button className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500 rounded-lg">
+            </Link>
+            <a href={airbnbUrl || "/coliving"} target={airbnbUrl ? "_blank" : undefined} rel="noopener noreferrer" className="border border-divider-subtle text-text-primary px-12 py-5 label-caps text-xs font-bold hover:bg-white hover:text-background-dark transition-colors duration-500 rounded-lg">
               View on Airbnb
-            </button>
+            </a>
           </div>
         </div>
       </section>

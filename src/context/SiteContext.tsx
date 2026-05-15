@@ -19,6 +19,8 @@ export interface Room {
   gallery: string[];
   details: string;
   airbnbUrl?: string;
+  enquiryEmail?: string;
+  whatsappUrl?: string;
 }
 
 export interface Review {
@@ -34,6 +36,14 @@ type SiteData = {
   pages: Record<string, PageData>;
   rooms: Record<string, Room>;
   reviews: Record<string, Review>;
+  settings: SiteSettings;
+}
+
+export type SiteSettings = {
+  instagramUrl: string;
+  email: string;
+  whatsappUrl: string;
+  airbnbUrl: string;
 }
 
 const defaultPages: Record<string, PageData> = {
@@ -101,11 +111,19 @@ const defaultReviews: Record<string, Review> = {
   }
 };
 
+const defaultSettings: SiteSettings = {
+  instagramUrl: '',
+  email: '',
+  whatsappUrl: '',
+  airbnbUrl: ''
+};
+
 type SiteContextType = {
   data: SiteData;
   updatePage: (pageName: string, updates: Partial<PageData>) => void;
   updateRoom: (roomId: string, updates: Partial<Room>) => void;
   updateReview: (reviewId: string, updates: Partial<Review>) => void;
+  updateSettings: (updates: Partial<SiteSettings>) => void;
   addReview: (review: Review) => void;
   deleteReview: (reviewId: string) => void;
 }
@@ -130,13 +148,17 @@ export function SiteProvider({ children }: { children: ReactNode }) {
           reviews: {
             ...defaultReviews,
             ...(parsed.reviews || {})
+          },
+          settings: {
+            ...defaultSettings,
+            ...(parsed.settings || {})
           }
         };
       } catch (e) {
         console.error('Failed to parse site data from local storage');
       }
     }
-    return { pages: defaultPages, rooms: defaultRooms, reviews: defaultReviews };
+    return { pages: defaultPages, rooms: defaultRooms, reviews: defaultReviews, settings: defaultSettings };
   });
 
   useEffect(() => {
@@ -182,6 +204,16 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     }));
   };
 
+  const updateSettings = (updates: Partial<SiteSettings>) => {
+    setData(prev => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        ...updates
+      }
+    }));
+  };
+
   const addReview = (review: Review) => {
     setData(prev => ({
       ...prev,
@@ -204,7 +236,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SiteContext.Provider value={{ data, updatePage, updateRoom, updateReview, addReview, deleteReview }}>
+    <SiteContext.Provider value={{ data, updatePage, updateRoom, updateReview, updateSettings, addReview, deleteReview }}>
       {children}
     </SiteContext.Provider>
   );
@@ -217,4 +249,3 @@ export function useSiteData() {
   }
   return context;
 }
-

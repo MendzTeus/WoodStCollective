@@ -9,6 +9,8 @@ export interface Room {
   gallery: string[];
   details: string;
   airbnbUrl?: string;
+  enquiryEmail?: string;
+  whatsappUrl?: string;
 }
 
 export const rooms: Room[] = [
