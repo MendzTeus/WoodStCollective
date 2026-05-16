@@ -33,6 +33,8 @@ export interface Review {
   id: string;
   roomId?: string;
   reviewerName: string;
+  reviewerAvatar?: string;
+  reviewerProfileUrl?: string;
   reviewerRole: string;
   rating: number;
   comment: string;
@@ -83,16 +85,26 @@ const mergePages = (sourcePages?: Partial<SiteData>['pages']) => {
   return pages;
 };
 
+const mergeReviews = (sourceReviews?: Partial<SiteData>['reviews']) => {
+  const reviews = { ...defaultReviews };
+
+  Object.entries(sourceReviews || {}).forEach(([key, review]) => {
+    reviews[key] = {
+      ...(defaultReviews[key] || {}),
+      ...review
+    } as Review;
+  });
+
+  return reviews;
+};
+
 const mergeSiteData = (source?: Partial<SiteData> | null): SiteData => ({
   pages: mergePages(source?.pages),
   rooms: {
     ...defaultRooms,
     ...(source?.rooms || {})
   },
-  reviews: {
-    ...defaultReviews,
-    ...(source?.reviews || {})
-  },
+  reviews: mergeReviews(source?.reviews),
   settings: {
     ...defaultSettings,
     ...(source?.settings || {})

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, Star, CheckCircle, XCircle, PlusCircle, Trash2, X, Edit2 } from 'lucide-react';
 import { useSiteData, Review } from '../../context/SiteContext';
+import ReviewByline, { getReviewDisplayName } from '../../components/ReviewByline';
 
 export default function AdminReviews() {
   const { data, updateReview, addReview, deleteReview } = useSiteData();
@@ -12,6 +13,8 @@ export default function AdminReviews() {
   const [activeScope, setActiveScope] = useState('all');
   const [newReview, setNewReview] = useState<Partial<Review>>({
     reviewerName: '',
+    reviewerAvatar: '',
+    reviewerProfileUrl: '',
     reviewerRole: '',
     rating: 5,
     comment: '',
@@ -48,6 +51,8 @@ export default function AdminReviews() {
     setEditingId(null);
     setNewReview({
       reviewerName: '',
+      reviewerAvatar: '',
+      reviewerProfileUrl: '',
       reviewerRole: '',
       rating: 5,
       comment: '',
@@ -71,6 +76,8 @@ export default function AdminReviews() {
     const reviewPayload: Partial<Review> = {
       ...newReview,
       roomId: newReview.roomId || undefined,
+      reviewerAvatar: newReview.reviewerAvatar?.trim() || undefined,
+      reviewerProfileUrl: newReview.reviewerProfileUrl?.trim() || undefined,
       showOnHome: newReview.showOnHome ?? false,
       reviewerRole: newReview.reviewerRole || 'Guest',
       rating: newReview.rating || 5,
@@ -83,6 +90,8 @@ export default function AdminReviews() {
       const review: Review = {
         id: crypto.randomUUID(),
         reviewerName: newReview.reviewerName,
+        reviewerAvatar: reviewPayload.reviewerAvatar,
+        reviewerProfileUrl: reviewPayload.reviewerProfileUrl,
         reviewerRole: reviewPayload.reviewerRole || 'Guest',
         rating: reviewPayload.rating || 5,
         comment: newReview.comment,
@@ -153,8 +162,7 @@ export default function AdminReviews() {
             {filteredReviews.map(review => (
               <tr key={review.id} className="hover:bg-white/5 transition-colors">
                 <td className="px-6 py-4">
-                  <div className="font-semibold text-text-primary">{review.reviewerName}</div>
-                  <div className="text-xs text-text-muted">{review.reviewerRole}</div>
+                  <ReviewByline review={review} />
                 </td>
                 <td className="px-6 py-4">
                   <div className="text-sm font-semibold text-text-primary">{getRoomName(review.roomId)}</div>
@@ -202,7 +210,7 @@ export default function AdminReviews() {
                       onClick={() => openEditModal(review)}
                       className="p-1.5 text-primary/70 hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
                       title="Edit Review"
-                      aria-label={`Edit review from ${review.reviewerName}`}
+                      aria-label={`Edit review from ${getReviewDisplayName(review)}`}
                     >
                       <Edit2 size={16} />
                     </button>
@@ -210,7 +218,7 @@ export default function AdminReviews() {
                       onClick={() => deleteReview(review.id)}
                       className="p-1.5 text-red-400/70 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors"
                       title="Delete Review"
-                      aria-label={`Delete review from ${review.reviewerName}`}
+                      aria-label={`Delete review from ${getReviewDisplayName(review)}`}
                     >
                       <Trash2 size={16} />
                     </button>
@@ -224,7 +232,7 @@ export default function AdminReviews() {
 
       {showModal && (
         <div className="fixed inset-0 bg-background-dark/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-surface-container border border-divider-subtle rounded-2xl p-8 w-full max-w-md shadow-2xl">
+          <div className="bg-surface-container border border-divider-subtle rounded-2xl p-8 w-full max-w-md max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-display text-2xl font-bold text-primary">{editingId ? 'Edit Review' : 'Add Review'}</h3>
               <button onClick={() => setShowModal(false)} className="text-text-muted hover:text-primary transition-colors" aria-label="Close review modal">
@@ -252,6 +260,28 @@ export default function AdminReviews() {
                   onChange={(e) => setNewReview(prev => ({ ...prev, reviewerRole: e.target.value }))}
                   className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary text-sm"
                   placeholder="e.g. January 2026"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-text-muted mb-2 uppercase tracking-wider">Reviewer Avatar URL</label>
+                <input
+                  type="url"
+                  value={newReview.reviewerAvatar || ''}
+                  onChange={(e) => setNewReview(prev => ({ ...prev, reviewerAvatar: e.target.value }))}
+                  className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary text-sm"
+                  placeholder="https://..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-text-muted mb-2 uppercase tracking-wider">Reviewer Profile URL</label>
+                <input
+                  type="url"
+                  value={newReview.reviewerProfileUrl || ''}
+                  onChange={(e) => setNewReview(prev => ({ ...prev, reviewerProfileUrl: e.target.value }))}
+                  className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary text-sm"
+                  placeholder="https://..."
                 />
               </div>
 

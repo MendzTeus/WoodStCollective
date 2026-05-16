@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import AvailabilityCalendar from "../components/AvailabilityCalendar";
+import ReviewByline from "../components/ReviewByline";
 import { 
   ArrowLeft,
   MapPin,
@@ -223,10 +224,7 @@ export default function RoomDetail() {
                   <p className="text-text-primary leading-relaxed italic mb-6 line-clamp-6">
                     "{review.comment}"
                   </p>
-                  <div>
-                    <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
-                    <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
-                  </div>
+                  <ReviewByline review={review} />
                 </motion.div>
               ))}
             </div>

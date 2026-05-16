@@ -6,11 +6,14 @@ import {
   Monitor, 
   Coffee, 
   Wifi, 
-  ArrowRight
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteData, Room } from "../context/SiteContext";
 import { openMailEnquiry } from "../lib/enquiry";
+import ReviewByline from "../components/ReviewByline";
 
 const normalizeReviewComment = (comment: string) => (
   comment
@@ -42,6 +45,7 @@ export default function Home() {
       .slice(0, 18);
   }, [data.reviews]);
   const [reviewSlideIndex, setReviewSlideIndex] = useState(0);
+  const [reviewTimerReset, setReviewTimerReset] = useState(0);
   const visibleReviews = useMemo(() => {
     if (featuredReviews.length <= 3) return featuredReviews;
 
@@ -62,7 +66,14 @@ export default function Home() {
     }, 15000);
 
     return () => window.clearInterval(interval);
-  }, [featuredReviews.length]);
+  }, [featuredReviews.length, reviewTimerReset]);
+
+  const shiftReviewSlide = (direction: number) => {
+    if (featuredReviews.length <= 3) return;
+
+    setReviewSlideIndex((current) => (current + direction + featuredReviews.length) % featuredReviews.length);
+    setReviewTimerReset((current) => current + 1);
+  };
 
   const handleResidencyEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -275,7 +286,29 @@ export default function Home() {
 
       {featuredReviews.length > 0 && (
         <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
-          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
+          <div className="mb-12 flex flex-col items-center justify-center gap-6 md:flex-row md:justify-between">
+            <div className="label-caps text-center text-primary">Resident Testimonials</div>
+            {featuredReviews.length > 3 && (
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => shiftReviewSlide(-1)}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-divider-subtle text-primary transition-colors hover:border-primary hover:bg-primary hover:text-on-primary"
+                  aria-label="Previous reviews"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => shiftReviewSlide(1)}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-divider-subtle text-primary transition-colors hover:border-primary hover:bg-primary hover:text-on-primary"
+                  aria-label="Next reviews"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+            )}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {visibleReviews.map((review, i) => (
               <motion.div
@@ -292,10 +325,7 @@ export default function Home() {
                 <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
                   "{review.comment}"
                 </p>
-                <div>
-                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
-                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
-                </div>
+                <ReviewByline review={review} />
               </motion.div>
             ))}
           </div>
