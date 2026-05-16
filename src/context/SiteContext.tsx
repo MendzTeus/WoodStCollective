@@ -7,6 +7,7 @@ export type PageData = {
   title: string;
   description: string;
   coverImage: string;
+  featureImage?: string;
 }
 
 export interface Room {
@@ -69,11 +70,21 @@ type SiteContextType = {
 
 const SiteContext = createContext<SiteContextType | undefined>(undefined);
 
+const mergePages = (sourcePages?: Partial<SiteData>['pages']) => {
+  const pages = { ...defaultPages };
+
+  Object.entries(sourcePages || {}).forEach(([key, page]) => {
+    pages[key] = {
+      ...(defaultPages[key] || {}),
+      ...page
+    } as PageData;
+  });
+
+  return pages;
+};
+
 const mergeSiteData = (source?: Partial<SiteData> | null): SiteData => ({
-  pages: {
-    ...defaultPages,
-    ...(source?.pages || {})
-  },
+  pages: mergePages(source?.pages),
   rooms: {
     ...defaultRooms,
     ...(source?.rooms || {})

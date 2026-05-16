@@ -96,27 +96,32 @@ export default function RoomDetail() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent" />
         
-        <div className="absolute top-32 left-12 z-20">
-          <Link to="/coliving" className="inline-flex items-center gap-3 text-white/60 hover:text-primary transition-colors group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" />
-            <span className="label-caps text-[10px]">Back to Residences</span>
-          </Link>
+        <div className="absolute top-32 inset-x-0 px-6 md:px-12 z-20">
+          <div className="max-w-[1440px] mx-auto">
+            <Link to="/coliving" className="inline-flex items-center gap-3 text-white/60 hover:text-primary transition-colors group">
+              <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" />
+              <span className="label-caps text-[10px]">Back to Residences</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full px-12 pb-24 max-w-[1440px] mx-auto z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold rounded-lg">{room.type}</span>
-            <h1 className="font-display text-[clamp(48px,8vw,108px)] font-black italic leading-[0.88] text-primary mb-6 whitespace-nowrap max-w-full">
-              {room.name}
-            </h1>
-            <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
-              {room.description}
-            </p>
-          </motion.div>
+        <div className="absolute bottom-0 inset-x-0 px-6 md:px-12 pb-24 z-10">
+          <div className="max-w-[1440px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="max-w-5xl"
+            >
+              <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold rounded-lg">{room.type}</span>
+              <h1 className="font-display text-[clamp(48px,8vw,108px)] font-black italic leading-[0.88] text-primary mb-6 whitespace-nowrap max-w-full">
+                {room.name}
+              </h1>
+              <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
+                {room.description}
+              </p>
+            </motion.div>
+          </div>
         </div>
       </header>
 

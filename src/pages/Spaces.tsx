@@ -12,21 +12,35 @@ export default function Spaces() {
   return (
     <main className="bg-background-dark">
       {/* Page Header */}
-      <section className="pt-48 pb-24 px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="max-w-4xl"
-        >
-          <div className="label-caps mb-8">The Residences</div>
-          <h1 className="font-display text-[clamp(64px,10vw,140px)] font-black italic leading-[0.85] text-primary mb-12 whitespace-pre-line">
-            {pageData.title}
-          </h1>
-          <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
-            {pageData.description}
-          </p>
-        </motion.div>
+      <section className="relative min-h-screen w-full flex items-end pb-24 px-6 md:px-12 overflow-hidden border-b border-divider-subtle">
+        <div className="absolute inset-0 z-0">
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
+            alt="Co-living rooms"
+            className="w-full h-full object-cover brightness-[0.4]"
+            src={pageData.coverImage}
+          />
+          <div className="absolute inset-0 hero-gradient" />
+        </div>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="max-w-4xl"
+          >
+            <div className="label-caps mb-8">The Residences</div>
+            <h1 className="font-display page-hero-title font-black leading-[0.95] text-primary mb-10 italic whitespace-pre-line max-w-4xl">
+              {pageData.title}
+            </h1>
+            <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
+              {pageData.description}
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Rooms Editorial Grid */}

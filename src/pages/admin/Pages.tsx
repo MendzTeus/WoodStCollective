@@ -8,8 +8,13 @@ export default function AdminPages() {
   const { data, updatePage, updateSettings } = useSiteData();
 
   const tabs = ['Home', 'Spaces', 'Coworking', 'About', 'Amenities', 'Settings'];
+  const tabLabels: Record<string, string> = {
+    Spaces: 'Co-living',
+    Coworking: 'Co-working',
+  };
   
   const activePageData = data.pages[activeTab];
+  const activeTabLabel = tabLabels[activeTab] || activeTab;
 
   const handleUpdate = (field: string, value: string) => {
     updatePage(activeTab, { [field]: value });
@@ -23,7 +28,7 @@ export default function AdminPages() {
           <div className="flex items-center gap-2 text-text-secondary text-sm mt-2">
             <span>Admin</span>
             <ChevronRight size={14} />
-            <span className="text-primary font-semibold">{activeTab === 'Settings' ? 'Site Settings' : `${activeTab} Page Editing`}</span>
+            <span className="text-primary font-semibold">{activeTab === 'Settings' ? 'Site Settings' : `${activeTabLabel} Page Editing`}</span>
           </div>
         </div>
         <span className="bg-[#2D5B4A]/20 text-[#8eced3] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-[#2D5B4A]/50">
@@ -41,7 +46,7 @@ export default function AdminPages() {
                 onClick={() => setActiveTab(tab)}
                 className={`w-full text-left flex items-center justify-between p-4 rounded-lg transition-all ${activeTab === tab ? 'bg-white/5 border border-primary text-primary font-bold' : 'hover:bg-white/5 text-text-secondary font-medium'}`}
               >
-                <span className="text-sm uppercase tracking-wider">{tab}</span>
+                <span className="text-sm uppercase tracking-wider">{tabLabels[tab] || tab}</span>
                 {activeTab === tab && <CheckCircle size={18} />}
               </button>
             ))}
@@ -88,7 +93,7 @@ export default function AdminPages() {
           <section className="bg-surface-container rounded-2xl p-12 border border-divider-subtle shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 h-1 w-full bg-primary"></div>
             <div className="flex justify-between items-center mb-8">
-              <h3 className="font-display text-2xl font-bold text-primary">{activeTab} Details</h3>
+              <h3 className="font-display text-2xl font-bold text-primary">{activeTabLabel} Details</h3>
               <span className="bg-[#2D5B4A]/20 text-[#8eced3] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-[#2D5B4A]/50">Live Preview Ready</span>
             </div>
             
@@ -120,6 +125,14 @@ export default function AdminPages() {
                 folder={`pages/${activePageData?.id || activeTab}`}
                 onChange={(url) => handleUpdate('coverImage', url)}
               />
+              {activeTab === 'Home' && (
+                <ImageUploadField
+                  label="Mid-Page Feature Image"
+                  value={activePageData?.featureImage || ''}
+                  folder="pages/home-feature"
+                  onChange={(url) => handleUpdate('featureImage', url)}
+                />
+              )}
             </div>
           </section>
           )}

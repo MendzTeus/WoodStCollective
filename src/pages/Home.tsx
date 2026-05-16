@@ -257,7 +257,7 @@ export default function Home() {
                 width={1200}
                 height={900}
                 className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
+          src={pageData.featureImage || pageData.coverImage}
           alt="Atmospheric" 
         />
         <div className="absolute inset-0 flex items-center justify-center bg-background-dark/20 backdrop-blur-[2px]">
