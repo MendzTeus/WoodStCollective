@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import type React from "react";
 import { motion } from "motion/react";
 import { 
@@ -15,7 +16,44 @@ export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
   const rooms: Room[] = Object.values(data.rooms);
-  const reviews = Object.values(data.reviews).filter((review) => review.approved && review.showOnHome);
+  const featuredReviews = useMemo(() => {
+    const seenComments = new Set<string>();
+
+    return Object.values(data.reviews)
+      .map((review, index) => ({ review, index }))
+      .filter(({ review }) => review.approved && review.rating >= 4)
+      .filter(({ review }) => {
+        const key = review.comment.trim().toLowerCase();
+        if (!key || seenComments.has(key)) return false;
+        seenComments.add(key);
+        return true;
+      })
+      .sort((a, b) => Number(b.review.showOnHome) - Number(a.review.showOnHome) || a.index - b.index)
+      .map(({ review }) => review)
+      .slice(0, 18);
+  }, [data.reviews]);
+  const [reviewSlideIndex, setReviewSlideIndex] = useState(0);
+  const visibleReviews = useMemo(() => {
+    if (featuredReviews.length <= 3) return featuredReviews;
+
+    return Array.from({ length: 3 }, (_, index) => (
+      featuredReviews[(reviewSlideIndex + index) % featuredReviews.length]
+    ));
+  }, [featuredReviews, reviewSlideIndex]);
+
+  useEffect(() => {
+    setReviewSlideIndex(0);
+  }, [featuredReviews.length]);
+
+  useEffect(() => {
+    if (featuredReviews.length <= 3) return;
+
+    const interval = window.setInterval(() => {
+      setReviewSlideIndex((current) => (current + 1) % featuredReviews.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [featuredReviews.length]);
 
   const handleResidencyEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -131,7 +169,7 @@ export default function Home() {
           initial="initial"
           whileInView="whileInView"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-6 gap-y-16"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16"
         >
           {rooms.map((room) => (
             <motion.div 
@@ -154,16 +192,14 @@ export default function Home() {
                     {room.type}
                   </div>
                 </div>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-[clamp(1.35rem,1.45vw,1.75rem)] font-bold italic mb-2 text-primary font-display whitespace-nowrap">{room.name}</h3>
-                    <p className="text-text-muted text-sm italic">{room.details}</p>
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+                  <div className="min-w-0">
+                    <h3 className="text-3xl font-bold italic mb-2 text-primary font-display whitespace-nowrap overflow-hidden text-ellipsis">{room.name}</h3>
+                    <p className="text-text-muted text-sm italic leading-relaxed">{room.details}</p>
                     <p className="text-primary text-xs mt-3 font-bold">★ {room.rating} ({room.reviewsCount} reviews)</p>
                   </div>
-                  <div className="text-right">
-                    <div className="w-10 h-10 border border-divider-subtle flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+                  <div className="w-10 h-10 border border-divider-subtle flex shrink-0 items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
                       <ArrowRight size={16} />
-                    </div>
                   </div>
                 </div>
               </Link>
@@ -228,16 +264,16 @@ export default function Home() {
         </div>
       </section>
 
-      {reviews.length > 0 && (
+      {featuredReviews.length > 0 && (
         <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
           <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
-          <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
-            {reviews.map((review, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {visibleReviews.map((review, i) => (
               <motion.div
-                key={review.id}
+                key={`${review.id}-${reviewSlideIndex}`}
                 {...fadeIn}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl min-w-[min(88vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
+                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl min-h-[420px]"
               >
                 <div className="flex gap-1 text-primary mb-8">
                   {Array.from({ length: 5 }).map((_, index) => (
@@ -254,6 +290,16 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          {featuredReviews.length > 3 && (
+            <div className="mt-10 flex justify-center gap-2" aria-hidden="true">
+              {featuredReviews.slice(0, 6).map((review, index) => (
+                <span
+                  key={review.id}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${index === reviewSlideIndex % 6 ? 'w-8 bg-primary' : 'w-1.5 bg-divider-subtle'}`}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 

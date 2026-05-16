@@ -56,6 +56,9 @@ export default function RoomDetail() {
   }
 
   const roomReviews = Object.values(data.reviews).filter((review) => review.approved && review.roomId === room.id);
+  const galleryImages = Array.from(
+    new Set([...(room.gallery || []), room.image].filter((image): image is string => Boolean(image)))
+  ).slice(0, 6);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -107,51 +110,20 @@ export default function RoomDetail() {
         {/* Gallery Section */}
         <div className="space-y-12">
           <h2 className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
-          <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12 md:col-span-8 aspect-[4/3] overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Gallery 1" 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
-                src={room.gallery[0]} 
-              />
-            </div>
-            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Gallery 2" 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
-                src={room.gallery[1]} 
-              />
-            </div>
-            <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Gallery 3" 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
-                src={room.gallery[2]} 
-              />
-            </div>
-            <div className="col-span-12 md:col-span-8 aspect-[2/1] overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Main Display" 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
-                src={room.image} 
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {galleryImages.map((image, index) => (
+              <div key={`${image}-${index}`} className="aspect-[4/3] overflow-hidden border border-divider-subtle group rounded-2xl">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={900}
+                  alt={`${room.name} gallery ${index + 1}`}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  src={image}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -160,7 +132,7 @@ export default function RoomDetail() {
           <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
             The Space
           </motion.h2>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
             <div className="lg:col-span-5">
               <p className="text-xl text-text-secondary leading-relaxed font-light italic whitespace-pre-line">
                 {room.longDescription}
@@ -188,11 +160,11 @@ export default function RoomDetail() {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 content-start auto-rows-min">
               {room.features.slice(0, 4).map((item: any, i) => {
                 const Icon = iconMap[item.icon] || Shield;
                 return (
-                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-10 border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">
+                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-8 min-h-[220px] self-start border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500 text-primary">
                       <Icon size={28} />
                     </div>

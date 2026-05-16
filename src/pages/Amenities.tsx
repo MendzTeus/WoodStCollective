@@ -18,16 +18,31 @@ import { useSiteData } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { toExternalUrl } from "../lib/url";
 import { trackEvent } from "../lib/analytics";
-import { getCommonAreaImages } from "../data/commonAreas";
+import { commonAreaGroups } from "../data/commonAreas";
+
+const uniqueUrls = (urls: string[]) => Array.from(new Set(urls.filter(Boolean)));
+
+const interleaveImageGroups = (groups: string[][]) => {
+  if (groups.length === 0) return [];
+
+  const maxLength = Math.max(...groups.map((group) => group.length));
+  const ordered = Array.from({ length: maxLength }).flatMap((_, index) => (
+    groups.flatMap((group) => group[index] ? [group[index]] : [])
+  ));
+
+  return uniqueUrls(ordered);
+};
 
 export default function Amenities() {
   const { data } = useSiteData();
   const pageData = data.pages['Amenities'];
   const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
-  const kitchenAndDiningImages = [
-    ...getCommonAreaImages('sharedFullKitchen'),
-    ...getCommonAreaImages('sharedDiningArea'),
-  ];
+  const kitchenAndDiningImages = interleaveImageGroups(
+    commonAreaGroups.map((group) => [
+      ...group.areas.sharedFullKitchen.images.map((image) => image.url),
+      ...group.areas.sharedDiningArea.images.map((image) => image.url),
+    ])
+  );
   const commonImage = (index: number) => (
     kitchenAndDiningImages.length > 0 ? kitchenAndDiningImages[index % kitchenAndDiningImages.length] : pageData.coverImage
   );
@@ -110,51 +125,20 @@ export default function Amenities() {
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle rounded-2xl">
-            <img
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="aspect-[4/3] overflow-hidden border border-divider-subtle rounded-2xl">
+              <img
                 loading="lazy"
                 decoding="async"
                 width={1200}
                 height={900}
-                alt="Shared Kitchen 1" 
-              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src={commonImage(0)}
-            />
-          </div>
-          <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
-            <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Shared Kitchen 2" 
-              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src={commonImage(1)}
-            />
-          </div>
-          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Shared Kitchen 3" 
-              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src={commonImage(2)}
-            />
-          </div>
-          <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                alt="Shared Kitchen 4" 
-              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src={commonImage(3)}
-            />
-          </div>
+                alt={`Shared kitchen and dining ${index + 1}`}
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-700"
+                src={commonImage(index)}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

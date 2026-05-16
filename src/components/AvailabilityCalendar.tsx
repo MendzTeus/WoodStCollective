@@ -21,6 +21,25 @@ interface AvailabilityCalendarProps {
   roomId: string;
 }
 
+type CalendarCachePayload = {
+  bookedDates?: string[];
+  booked_dates?: string[];
+};
+
+const datesFromPayload = (payload: CalendarCachePayload) => (
+  new Set((payload.bookedDates || payload.booked_dates || []).filter(Boolean))
+);
+
+const fetchStaticBookedDates = async (roomId: string) => {
+  const response = await fetch(`/calendar-cache/${roomId}.json`, { cache: 'no-store' });
+
+  if (!response.ok) {
+    throw new Error(`Calendar cache not found for ${roomId}`);
+  }
+
+  return datesFromPayload(await response.json());
+};
+
 const fetchCachedBookedDates = async (roomId: string) => {
   if (!supabase) throw new Error('Supabase not configured');
 
@@ -40,26 +59,40 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [bookedDates, setBookedDates] = useState<Set<string>>(new Set());
-  const [status, setStatus] = useState<'loading' | 'synced' | 'unavailable'>('loading');
+  const [status, setStatus] = useState<'loading' | 'synced' | 'cached'>('loading');
 
   useEffect(() => {
     let cancelled = false;
 
     const syncCalendar = async (showLoading = false) => {
       if (showLoading) setStatus('loading');
+      let hasStaticCache = false;
 
       try {
-        const cachedDates = await fetchCachedBookedDates(roomId);
+        const staticDates = await fetchStaticBookedDates(roomId);
         if (cancelled) return;
 
-        setBookedDates(cachedDates);
+        hasStaticCache = true;
+        setBookedDates(staticDates);
+        setStatus('cached');
+      } catch {
+        hasStaticCache = false;
+      }
+
+      try {
+        const liveDates = await fetchCachedBookedDates(roomId);
+        if (cancelled) return;
+
+        setBookedDates(liveDates);
         setStatus('synced');
         return;
       } catch {
         if (cancelled) return;
 
-        setBookedDates(new Set());
-        setStatus('unavailable');
+        if (!hasStaticCache) {
+          setBookedDates(new Set());
+          setStatus('cached');
+        }
       }
     };
 
@@ -193,7 +226,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
         <div className="hidden md:block text-right">
            <p className="text-[10px] text-text-muted italic mb-1 uppercase tracking-[0.2em]">Status</p>
            <span className="text-sm font-bold text-primary italic">
-             {status === 'synced' ? 'Airbnb Calendar Synced' : status === 'loading' ? 'Syncing Calendar' : 'Calendar Unavailable'}
+             {status === 'synced' ? 'Airbnb Calendar Synced' : status === 'loading' ? 'Syncing Calendar' : 'Calendar Cache Active'}
            </span>
         </div>
       </div>
