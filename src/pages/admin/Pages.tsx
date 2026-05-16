@@ -15,6 +15,11 @@ export default function AdminPages() {
   
   const activePageData = data.pages[activeTab];
   const activeTabLabel = tabLabels[activeTab] || activeTab;
+  const featureImageConfig = activeTab === 'Home'
+    ? { label: 'Mid-Page Feature Image', folder: 'pages/home-feature' }
+    : activeTab === 'About'
+      ? { label: 'Our Story Image', folder: 'pages/about-story' }
+      : null;
 
   const handleUpdate = (field: string, value: string) => {
     updatePage(activeTab, { [field]: value });
@@ -125,11 +130,11 @@ export default function AdminPages() {
                 folder={`pages/${activePageData?.id || activeTab}`}
                 onChange={(url) => handleUpdate('coverImage', url)}
               />
-              {activeTab === 'Home' && (
+              {featureImageConfig && (
                 <ImageUploadField
-                  label="Mid-Page Feature Image"
+                  label={featureImageConfig.label}
                   value={activePageData?.featureImage || ''}
-                  folder="pages/home-feature"
+                  folder={featureImageConfig.folder}
                   onChange={(url) => handleUpdate('featureImage', url)}
                 />
               )}

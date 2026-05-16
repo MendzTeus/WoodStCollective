@@ -3,12 +3,17 @@ import { ChevronRight, ArrowLeft, Save, Trash2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { useSiteData } from '../../context/SiteContext';
 import type { Room } from '../../context/SiteContext';
+import { defaultRooms } from '../../data/siteDefaults';
 import { saveSiteContent } from '../../lib/siteContent';
 import ImageUploadField from '../../components/admin/ImageUploadField';
 
 type StringRoomField = {
   [K in keyof Room]-?: NonNullable<Room[K]> extends string ? K : never;
 }[keyof Room];
+
+const uniqueImages = (images: Array<string | undefined>) => (
+  Array.from(new Set(images.filter((image): image is string => Boolean(image))))
+);
 
 export default function AdminRoomEditor() {
   const { id } = useParams();
@@ -27,6 +32,14 @@ export default function AdminRoomEditor() {
       </div>
     );
   }
+
+  const airbnbSourceRoom = defaultRooms[localRoom.id];
+  const airbnbImageOptions = uniqueImages(
+    airbnbSourceRoom
+      ? [airbnbSourceRoom.image, ...airbnbSourceRoom.gallery]
+      : [localRoom.image, ...localRoom.gallery]
+  );
+  const selectedGalleryImages = uniqueImages(localRoom.gallery).slice(0, 4);
 
   const handleUpdate = async () => {
     if (!id) return;
@@ -53,7 +66,7 @@ export default function AdminRoomEditor() {
   const setGalleryImage = (index: number, value: string) => {
     setLocalRoom(prev => {
       if (!prev) return prev;
-      const gallery = [...prev.gallery];
+      const gallery = uniqueImages(prev.gallery).slice(0, 4);
       gallery[index] = value;
       return { ...prev, gallery };
     });
@@ -62,8 +75,36 @@ export default function AdminRoomEditor() {
   const removeGalleryImage = (index: number) => {
     setLocalRoom(prev => {
       if (!prev) return prev;
-      return { ...prev, gallery: prev.gallery.filter((_, i) => i !== index) };
+      return { ...prev, gallery: uniqueImages(prev.gallery).slice(0, 4).filter((_, i) => i !== index) };
     });
+  };
+
+  const addGallerySlot = () => {
+    setLocalRoom(prev => {
+      if (!prev) return prev;
+      const gallery = uniqueImages(prev.gallery).slice(0, 4);
+      if (gallery.length >= 4) return prev;
+      return { ...prev, gallery: [...gallery, ''] };
+    });
+  };
+
+  const toggleAirbnbGalleryImage = (imageUrl: string) => {
+    setLocalRoom(prev => {
+      if (!prev) return prev;
+      const gallery = uniqueImages(prev.gallery).slice(0, 4);
+
+      if (gallery.includes(imageUrl)) {
+        return { ...prev, gallery: gallery.filter((image) => image !== imageUrl) };
+      }
+
+      if (gallery.length >= 4) return prev;
+
+      return { ...prev, gallery: [...gallery, imageUrl] };
+    });
+  };
+
+  const useFirstFourAirbnbImages = () => {
+    setLocalRoom(prev => prev ? { ...prev, gallery: airbnbImageOptions.slice(0, 4) } : prev);
   };
   
   const setFeature = (index: number, field: string, value: string) => {
@@ -249,19 +290,93 @@ export default function AdminRoomEditor() {
             />
           </section>
 
+          {airbnbImageOptions.length > 0 && (
+            <section className="bg-surface-container rounded-2xl p-8 border border-divider-subtle shadow-sm">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="font-display text-xl font-bold text-primary">Airbnb Photo Picker</h3>
+                  <p className="text-xs text-text-muted mt-1 leading-relaxed">
+                    Choose the 4 Airbnb photos used in the room visual tour.
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-full border border-primary/30 px-3 py-1 text-xs font-bold text-primary">
+                  {selectedGalleryImages.length}/4
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                {airbnbImageOptions.map((image, index) => {
+                  const selectionIndex = selectedGalleryImages.indexOf(image);
+                  const isSelected = selectionIndex !== -1;
+                  const isDisabled = !isSelected && selectedGalleryImages.length >= 4;
+
+                  return (
+                    <button
+                      key={image}
+                      type="button"
+                      aria-pressed={isSelected}
+                      disabled={isDisabled}
+                      onClick={() => toggleAirbnbGalleryImage(image)}
+                      className={`group relative aspect-[4/3] overflow-hidden rounded-lg border transition-all ${isSelected ? 'border-primary ring-2 ring-primary/40' : 'border-divider-subtle hover:border-primary/50'} ${isDisabled ? 'opacity-35 cursor-not-allowed' : ''}`}
+                    >
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        width={600}
+                        height={450}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        src={image}
+                        alt={`${localRoom.name} Airbnb option ${index + 1}`}
+                      />
+                      <span className="absolute bottom-2 left-2 rounded bg-background-dark/80 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                        Airbnb {index + 1}
+                      </span>
+                      {isSelected && (
+                        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-black text-on-primary">
+                          {selectionIndex + 1}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={useFirstFourAirbnbImages}
+                  className="rounded-lg border border-divider-subtle px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary hover:border-primary"
+                >
+                  Use First 4
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLocalRoom(prev => prev ? { ...prev, gallery: [] } : prev)}
+                  className="rounded-lg border border-divider-subtle px-4 py-2 text-xs font-bold uppercase tracking-wider text-text-muted hover:border-red-400 hover:text-red-400"
+                >
+                  Clear
+                </button>
+              </div>
+            </section>
+          )}
+
           <section className="bg-surface-container rounded-2xl p-8 border border-divider-subtle shadow-sm">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl font-bold text-primary">Gallery Images</h3>
+              <div>
+                <h3 className="font-display text-xl font-bold text-primary">Selected Site Gallery</h3>
+                <p className="text-xs text-text-muted mt-1 leading-relaxed">Only the first 4 images are shown on the live room page.</p>
+              </div>
               <button
                 type="button"
-                onClick={() => setLocalRoom(prev => prev ? { ...prev, gallery: [...prev.gallery, ''] } : prev)}
-                className="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider"
+                onClick={addGallerySlot}
+                disabled={localRoom.gallery.slice(0, 4).length >= 4}
+                className="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 + Add Image
               </button>
             </div>
             <div className="space-y-6">
-              {localRoom.gallery.map((img, i) => (
+              {localRoom.gallery.slice(0, 4).map((img, i) => (
                 <div key={i} className="relative">
                   <ImageUploadField
                     label={`Gallery Image ${i + 1}`}
