@@ -10,7 +10,8 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "sync:icals": "node scripts/sync-icals.mjs",
-    "extract:common-areas": "node scripts/extract-common-areas.mjs"
+    "extract:common-areas": "node scripts/extract-common-areas.mjs",
+    "extract:room-photos": "node scripts/extract-room-photo-options.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

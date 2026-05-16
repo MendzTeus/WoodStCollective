@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useSiteData } from '../../context/SiteContext';
 import type { Room } from '../../context/SiteContext';
 import { defaultRooms } from '../../data/siteDefaults';
+import { getRoomPhotoOptions } from '../../data/roomPhotoOptions';
 import { saveSiteContent } from '../../lib/siteContent';
 import ImageUploadField from '../../components/admin/ImageUploadField';
 
@@ -34,11 +35,20 @@ export default function AdminRoomEditor() {
   }
 
   const airbnbSourceRoom = defaultRooms[localRoom.id];
-  const airbnbImageOptions = uniqueImages(
+  const roomPhotoOptions = getRoomPhotoOptions(localRoom.id);
+  const fallbackAirbnbImageOptions = uniqueImages(
     airbnbSourceRoom
       ? [airbnbSourceRoom.image, ...airbnbSourceRoom.gallery]
       : [localRoom.image, ...localRoom.gallery]
-  );
+  ).map((url, index) => ({
+    id: `fallback-${index + 1}`,
+    url,
+    source: 'airbnb-gallery',
+    sectionKey: 'airbnbGallery',
+    sectionTitle: 'Airbnb gallery',
+    sectionIndex: index + 1,
+  }));
+  const airbnbImageOptions = roomPhotoOptions.length > 0 ? roomPhotoOptions : fallbackAirbnbImageOptions;
   const selectedGalleryImages = uniqueImages(localRoom.gallery).slice(0, 4);
 
   const handleUpdate = async () => {
@@ -104,7 +114,7 @@ export default function AdminRoomEditor() {
   };
 
   const useFirstFourAirbnbImages = () => {
-    setLocalRoom(prev => prev ? { ...prev, gallery: airbnbImageOptions.slice(0, 4) } : prev);
+    setLocalRoom(prev => prev ? { ...prev, gallery: airbnbImageOptions.slice(0, 4).map((option) => option.url) } : prev);
   };
   
   const setFeature = (index: number, field: string, value: string) => {
@@ -296,7 +306,7 @@ export default function AdminRoomEditor() {
                 <div>
                   <h3 className="font-display text-xl font-bold text-primary">Airbnb Photo Picker</h3>
                   <p className="text-xs text-text-muted mt-1 leading-relaxed">
-                    Choose the 4 Airbnb photos used in the room visual tour.
+                    Choose the 4 Airbnb bedroom or bathroom photos used in the room visual tour.
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full border border-primary/30 px-3 py-1 text-xs font-bold text-primary">
@@ -305,14 +315,18 @@ export default function AdminRoomEditor() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                {airbnbImageOptions.map((image, index) => {
+                {airbnbImageOptions.map((imageOption, index) => {
+                  const image = imageOption.url;
                   const selectionIndex = selectedGalleryImages.indexOf(image);
                   const isSelected = selectionIndex !== -1;
                   const isDisabled = !isSelected && selectedGalleryImages.length >= 4;
+                  const optionLabel = imageOption.sectionKey === 'airbnbRoomGallery'
+                    ? `Room/bath ${imageOption.sectionIndex}`
+                    : `${imageOption.sectionTitle} ${imageOption.sectionIndex}`;
 
                   return (
                     <button
-                      key={image}
+                      key={`${imageOption.sectionKey}-${imageOption.id}-${image}`}
                       type="button"
                       aria-pressed={isSelected}
                       disabled={isDisabled}
@@ -329,7 +343,7 @@ export default function AdminRoomEditor() {
                         alt={`${localRoom.name} Airbnb option ${index + 1}`}
                       />
                       <span className="absolute bottom-2 left-2 rounded bg-background-dark/80 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
-                        Airbnb {index + 1}
+                        {optionLabel}
                       </span>
                       {isSelected && (
                         <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-black text-on-primary">
