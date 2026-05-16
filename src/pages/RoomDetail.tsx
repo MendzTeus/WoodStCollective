@@ -92,10 +92,8 @@ export default function RoomDetail() {
             transition={{ duration: 1 }}
           >
             <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold rounded-lg">{room.type}</span>
-            <h1 className="font-display text-[clamp(64px,10vw,120px)] font-black italic leading-[0.85] text-primary mb-6">
-              {room.name.split(' ').map((word, i) => (
-                <span key={i} className="block">{word}</span>
-              ))}
+            <h1 className="font-display text-[clamp(48px,8vw,108px)] font-black italic leading-[0.88] text-primary mb-6 whitespace-nowrap max-w-full">
+              {room.name}
             </h1>
             <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
               {room.description}
@@ -212,13 +210,13 @@ export default function RoomDetail() {
             <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
               Guest Reviews
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
               {roomReviews.map((review, i) => (
                 <motion.div
                   key={review.id}
                   {...fadeIn}
                   transition={{ duration: 0.8, delay: i * 0.05 }}
-                  className="bg-surface-container p-8 border border-divider-subtle rounded-2xl"
+                  className="bg-surface-container p-8 border border-divider-subtle rounded-2xl min-w-[min(88vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
                 >
                   <div className="flex gap-1 text-primary mb-6">
                     {Array.from({ length: 5 }).map((_, starIndex) => (

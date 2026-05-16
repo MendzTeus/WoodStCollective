@@ -74,7 +74,7 @@ export default function Spaces() {
               
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <h3 className="text-3xl font-bold italic mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-[clamp(1.5rem,2.2vw,1.875rem)] font-bold italic mb-2 group-hover:text-primary transition-colors whitespace-nowrap">
                     {room.name}
                   </h3>
                   <p className="text-sm text-text-muted italic">{room.details}</p>
@@ -115,13 +115,13 @@ export default function Spaces() {
         {reviews.length > 0 && (
           <div className="max-w-[1440px] mx-auto mt-24">
             <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
               {reviews.map((review, i) => (
                 <motion.div 
                   key={review.id}
                   {...fadeIn}
                   transition={{ duration: 0.8, delay: i * 0.1 }}
-                  className="bg-background-dark p-10 border border-divider-subtle rounded-3xl"
+                  className="bg-background-dark p-10 border border-divider-subtle rounded-2xl min-w-[min(88vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
                 >
                   <div className="flex gap-1 text-primary mb-8">
                     {Array.from({ length: 5 }).map((_, i) => (

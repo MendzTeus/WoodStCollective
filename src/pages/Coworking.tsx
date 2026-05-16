@@ -265,9 +265,9 @@ export default function Coworking() {
       </section>
 
       {/* Booking Section */}
-      <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle editorial-grid gap-24">
+      <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
         {/* Enquiry Form */}
-        <div className="col-span-12 lg:col-span-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-6xl font-black italic mb-8 text-primary">Enquire About a Desk</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-16 italic">Join our community of professionals. Enquire about daily, weekly, or monthly passes.</p>
           
@@ -307,17 +307,6 @@ export default function Coworking() {
           </form>
         </div>
 
-        {/* Meeting Space */}
-        <div className="col-span-12 lg:col-span-6 lg:border-l lg:border-divider-subtle lg:pl-24 flex flex-col justify-between">
-          <div>
-            <h2 className="text-5xl font-black italic mb-8 text-primary">Need to Meet?</h2>
-            <p className="text-text-secondary text-lg leading-relaxed mb-16 italic font-light">Our dining area on the second floor comfortably seats up to 6 - perfect for team sessions or client calls. Available to all guests at no extra cost.</p>
-          </div>
-          
-          <div className="mt-24 pt-12 border-t border-divider-subtle italic text-text-muted/60 text-sm">
-            Included with every stay at Wood Street Collective.
-          </div>
-        </div>
       </section>
     </main>
   );

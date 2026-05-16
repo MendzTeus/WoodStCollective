@@ -131,7 +131,7 @@ export default function Home() {
           initial="initial"
           whileInView="whileInView"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-6 gap-y-16"
         >
           {rooms.map((room) => (
             <motion.div 
@@ -140,7 +140,7 @@ export default function Home() {
               className="group cursor-pointer"
             >
               <Link to={`/coliving/${room.id}`}>
-            <div className="relative aspect-[4/5] overflow-hidden mb-8 border border-divider-subtle rounded-2xl">
+            <div className="relative aspect-[3/4] overflow-hidden mb-6 border border-divider-subtle rounded-2xl">
                   <img
                 loading="lazy"
                 decoding="async"
@@ -156,7 +156,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-3xl font-bold italic mb-2 text-primary font-display">{room.name}</h3>
+                    <h3 className="text-[clamp(1.35rem,1.45vw,1.75rem)] font-bold italic mb-2 text-primary font-display whitespace-nowrap">{room.name}</h3>
                     <p className="text-text-muted text-sm italic">{room.details}</p>
                     <p className="text-primary text-xs mt-3 font-bold">★ {room.rating} ({room.reviewsCount} reviews)</p>
                   </div>
@@ -228,8 +228,37 @@ export default function Home() {
         </div>
       </section>
 
+      {reviews.length > 0 && (
+        <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
+          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
+          <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
+            {reviews.map((review, i) => (
+              <motion.div
+                key={review.id}
+                {...fadeIn}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl min-w-[min(88vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
+              >
+                <div className="flex gap-1 text-primary mb-8">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index} className={index < review.rating ? "text-primary" : "text-divider-subtle"}>★</span>
+                  ))}
+                </div>
+                <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
+                  "{review.comment}"
+                </p>
+                <div>
+                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
+                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Enquiry Form */}
-      <section className="py-24 md:py-32 px-6 md:px-12 max-w-4xl mx-auto gap-y-24">
+      <section className="py-24 md:py-32 px-6 md:px-12 max-w-4xl mx-auto gap-y-24 border-t border-divider-subtle">
         <div>
           <h2 className="text-5xl md:text-6xl font-black italic mb-8 leading-[0.9] text-primary">Book Your Stay.</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Get in touch to check availability - we'll get back to you directly.</p>
@@ -258,34 +287,6 @@ export default function Home() {
 
       </section>
 
-      {reviews.length > 0 && (
-        <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-divider-subtle">
-          <div className="label-caps mb-12 text-center text-primary">Resident Testimonials</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, i) => (
-              <motion.div
-                key={review.id}
-                {...fadeIn}
-                transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="bg-surface-container p-10 border border-divider-subtle rounded-2xl"
-              >
-                <div className="flex gap-1 text-primary mb-8">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index} className={index < review.rating ? "text-primary" : "text-divider-subtle"}>★</span>
-                  ))}
-                </div>
-                <p className="text-lg text-text-primary leading-relaxed italic mb-8 font-serif">
-                  "{review.comment}"
-                </p>
-                <div>
-                  <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
-                  <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-      )}
     </main>
   );
 }
