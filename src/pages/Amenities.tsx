@@ -18,11 +18,19 @@ import { useSiteData } from "../context/SiteContext";
 import { Link } from "react-router-dom";
 import { toExternalUrl } from "../lib/url";
 import { trackEvent } from "../lib/analytics";
+import { getCommonAreaImages } from "../data/commonAreas";
 
 export default function Amenities() {
   const { data } = useSiteData();
   const pageData = data.pages['Amenities'];
   const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
+  const kitchenAndDiningImages = [
+    ...getCommonAreaImages('sharedFullKitchen'),
+    ...getCommonAreaImages('sharedDiningArea'),
+  ];
+  const commonImage = (index: number) => (
+    kitchenAndDiningImages.length > 0 ? kitchenAndDiningImages[index % kitchenAndDiningImages.length] : pageData.coverImage
+  );
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -66,7 +74,7 @@ export default function Amenities() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Luxury interior" 
             className="w-full h-full object-cover brightness-[0.4]" 
-            src={pageData.coverImage}
+            src={commonImage(0)}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>
@@ -96,7 +104,7 @@ export default function Amenities() {
       {/* Shared Kitchen Gallery */}
       <section className="py-32 px-12 max-w-[1440px] mx-auto">
         <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
-          <h2 className="text-6xl font-black italic text-primary">Shared Kitchen</h2>
+          <h2 className="text-6xl font-black italic text-primary">Shared Kitchen & Dining</h2>
           <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
             Fully equipped with modern appliances, ample storage, and artisanal coffee to connect with the community.
           </p>
@@ -111,7 +119,7 @@ export default function Amenities() {
                 height={900}
                 alt="Shared Kitchen 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2070" 
+              src={commonImage(0)}
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
@@ -122,7 +130,7 @@ export default function Amenities() {
                 height={900}
                 alt="Shared Kitchen 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2070" 
+              src={commonImage(1)}
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
@@ -133,7 +141,7 @@ export default function Amenities() {
                 height={900}
                 alt="Shared Kitchen 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=2070" 
+              src={commonImage(2)}
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
@@ -144,7 +152,7 @@ export default function Amenities() {
                 height={900}
                 alt="Shared Kitchen 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2070" 
+              src={commonImage(3)}
             />
           </div>
         </div>

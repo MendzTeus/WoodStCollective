@@ -9,10 +9,16 @@ import {
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
 import { openMailEnquiry } from "../lib/enquiry";
+import { getCommonAreaImages } from "../data/commonAreas";
 
 export default function Coworking() {
   const { data } = useSiteData();
   const pageData = data.pages['Coworking'];
+  const officeImages = getCommonAreaImages('sharedOffice');
+  const balconyImages = getCommonAreaImages('sharedBalcony');
+  const commonImage = (images: readonly string[], index: number) => (
+    images.length > 0 ? images[index % images.length] : pageData.coverImage
+  );
 
   const handleDeskEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,7 +60,7 @@ export default function Coworking() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Workspace Hero" 
             className="w-full h-full object-cover brightness-[0.4]" 
-            src={pageData.coverImage} 
+            src={commonImage(officeImages, 0)} 
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>
@@ -168,7 +174,7 @@ export default function Coworking() {
                 height={900}
                 alt="Office 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
+              src={commonImage(officeImages, 0)}
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
@@ -179,7 +185,7 @@ export default function Coworking() {
                 height={900}
                 alt="Office 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaZahCAvZuREoXCJbduuU0ZzTtLusQLVy1Sw-sd7lot7zIRMZV_C_Fc1G5-ioaadPQkA0kIUPknRdyXOnb9TnHpvWSrSZ7KslDZXiddh0gkvGeI55GVxl2l3ll10_PL1elTG_3v2L5Ye043Mhp2_423f9ZvJOl2r_WQoOxDfBuFCmP88bu0MqVFbiHsgmvg0QjQpWiVv57G8zOdXEmD7Z75D_guKIklsGO3kb6gd2yjLS2Fe0m2HzdIQWUyA7o4kS7YPw7_oKMv-U" 
+              src={commonImage(officeImages, 1)}
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
@@ -190,7 +196,7 @@ export default function Coworking() {
                 height={900}
                 alt="Office 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
+              src={commonImage(officeImages, 2)}
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
@@ -201,7 +207,7 @@ export default function Coworking() {
                 height={900}
                 alt="Office 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
+              src={commonImage(officeImages, 3)}
             />
           </div>
         </div>
@@ -225,7 +231,7 @@ export default function Coworking() {
                 height={900}
                 alt="Balcony 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
+              src={commonImage(balconyImages, 0)}
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
@@ -236,7 +242,7 @@ export default function Coworking() {
                 height={900}
                 alt="Balcony 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
+              src={commonImage(balconyImages, 1)}
               />
           </div>
           <div className="col-span-12 lg:col-span-8 aspect-[16/10] overflow-hidden border border-divider-subtle rounded-2xl">
@@ -247,7 +253,7 @@ export default function Coworking() {
                 height={900}
                 alt="Balcony 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0tRKGJ76qkiUGHXCLhtOnzmG6pkFc-Xf7Pe24pJKlu5Z1ZMVfYTMJXimrwSkQkZ1UoGlc4EC93vwg9_L-XQQVzdvDGSdQyBhEuYT9Rn6FFfw5800gCuH6xWbKbupuPn41B_6TIlqjE1j5l4JyLevX4im7W9Jis0eijNX5cf79YxLMwHRWikczg3vUoNyXbsYPQOqJg6Se5VkreKUmf7HRxQZnt8yhhjHHr73YwPtArTPLxPydlWxCwXDP2xpenK28re12r3WS60" 
+              src={commonImage(balconyImages, 2)}
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
@@ -258,7 +264,7 @@ export default function Coworking() {
                 height={900}
                 alt="Balcony 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
+              src={commonImage(balconyImages, 3)}
             />
           </div>
         </div>
