@@ -57,7 +57,7 @@ export default function RoomDetail() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   return (
@@ -107,28 +107,44 @@ export default function RoomDetail() {
           <h2 className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-8 aspect-[4/3] overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img 
+              <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
                 alt="Gallery 1" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[0]} 
               />
             </div>
             <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img 
+              <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
                 alt="Gallery 2" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[1]} 
               />
             </div>
             <div className="col-span-6 md:col-span-4 aspect-square md:aspect-auto overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img 
+              <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
                 alt="Gallery 3" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.gallery[2]} 
               />
             </div>
             <div className="col-span-12 md:col-span-8 aspect-[2/1] overflow-hidden border border-divider-subtle group rounded-2xl">
-              <img 
+              <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
                 alt="Main Display" 
                 className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" 
                 src={room.image} 

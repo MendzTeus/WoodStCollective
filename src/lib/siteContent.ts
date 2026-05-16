@@ -3,6 +3,10 @@ import type { SiteData } from '../context/SiteContext';
 
 const CONTENT_ID = 'main';
 
+type SiteContentRow = {
+  data: Partial<SiteData> | null;
+};
+
 export async function loadSiteContent() {
   if (!supabase) return null;
 
@@ -10,10 +14,11 @@ export async function loadSiteContent() {
     .from('site_content')
     .select('data')
     .eq('id', CONTENT_ID)
+    .returns<SiteContentRow[]>()
     .maybeSingle();
 
   if (error) throw error;
-  return (data?.data as Partial<SiteData> | null) || null;
+  return data?.data || null;
 }
 
 export async function saveSiteContent(data: SiteData) {

@@ -65,7 +65,12 @@ export default function ImageUploadField({
       )}
       <div className={`relative ${previewAspect} rounded-xl overflow-hidden border border-divider-subtle bg-background-dark`}>
         {value ? (
-          <img className="w-full h-full object-cover" alt={label} src={value} />
+          <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                className="w-full h-full object-cover" alt={label} src={value} />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center text-text-muted">
             <ImagePlus size={32} className="mb-2 opacity-50" />

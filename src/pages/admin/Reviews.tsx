@@ -46,7 +46,7 @@ export default function AdminReviews() {
       updateReview(editingId, newReview);
     } else {
       const review: Review = {
-        id: Date.now().toString(),
+        id: crypto.randomUUID(),
         reviewerName: newReview.reviewerName,
         reviewerRole: newReview.reviewerRole || 'Guest',
         rating: newReview.rating || 5,
@@ -129,6 +129,7 @@ export default function AdminReviews() {
                       onClick={() => openEditModal(review)}
                       className="p-1.5 ml-2 text-primary/70 hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
                       title="Edit Review"
+                      aria-label={`Edit review from ${review.reviewerName}`}
                     >
                       <Edit2 size={16} />
                     </button>
@@ -136,6 +137,7 @@ export default function AdminReviews() {
                       onClick={() => deleteReview(review.id)}
                       className="p-1.5 ml-2 text-red-400/70 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors"
                       title="Delete Review"
+                      aria-label={`Delete review from ${review.reviewerName}`}
                     >
                       <Trash2 size={16} />
                     </button>

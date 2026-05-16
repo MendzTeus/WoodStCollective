@@ -1,3 +1,4 @@
+import type React from "react";
 import { motion } from "motion/react";
 import { 
   Clock, 
@@ -8,18 +9,32 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteData, Room, Review } from "../context/SiteContext";
+import { openMailEnquiry } from "../lib/enquiry";
 
 export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
   const rooms: Room[] = Object.values(data.rooms);
   const reviews: Review[] = (Object.values(data.reviews) as Review[]).filter((review) => review.approved);
+
+  const handleResidencyEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    if (formData.get('website')) return;
+
+    openMailEnquiry('Wood Street residency enquiry', {
+      'Given name': formData.get('givenName') || '',
+      'Surname': formData.get('surname') || '',
+      'Email': formData.get('email') || '',
+      'Interest': 'Co-living residency',
+    }, data.settings.email);
+  };
   
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   const staggerContainer = {
@@ -33,44 +48,50 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden">
-      {/* Hero Section - Split Editorial Layout */}
-      <section className="relative min-h-screen w-full editorial-grid border-b border-divider-subtle">
-        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center px-6 md:px-12 pt-32 pb-24">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <h1 className="font-display home-hero-title font-black leading-[0.9] italic mb-10 text-primary whitespace-pre-line max-w-full">
+      {/* Hero Section */}
+      <section className="relative min-h-screen w-full overflow-hidden border-b border-divider-subtle">
+        <div className="absolute inset-0 z-0">
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
+            alt="Workspace Hero"
+            className="w-full h-full object-cover brightness-[0.4]"
+            src={pageData.coverImage}
+          />
+          <div className="absolute inset-0 hero-gradient" />
+        </div>
+
+        <div className="relative z-10 min-h-screen max-w-[1440px] mx-auto px-12 pt-48 pb-24 flex items-center">
+          <div className="max-w-4xl">
+            <motion.h1
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-display text-[clamp(64px,10vw,140px)] font-black italic leading-[0.85] text-primary mb-12 whitespace-pre-line"
+            >
               {pageData.title}
-            </h1>
-            <p className="font-sans text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed font-light mb-12">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-xl text-text-secondary max-w-xl leading-relaxed font-light italic mb-12"
+            >
               {pageData.description}
-            </p>
+            </motion.p>
             <Link to="/coliving">
-            <button className="bg-primary text-on-primary px-10 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
+              <button className="bg-primary text-on-primary px-10 py-5 label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
                 Take a look
               </button>
             </Link>
-          </motion.div>
-        </div>
-        
-        <div className="hidden lg:block col-span-5 relative border-l border-divider-subtle overflow-hidden">
-          <motion.img 
-            initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            alt="Workspace Hero" 
-            className="w-full h-full object-cover brightness-75" 
-            src={pageData.coverImage} 
-          />
-          <div className="absolute bottom-12 -left-12 rotate-[-90deg] origin-bottom-left">
-            <span className="label-caps tracking-[0.5em] text-[10px] bg-background-dark px-6 py-2">Workspace / Suite 402</span>
           </div>
         </div>
+      </section>
 
+      <section className="border-b border-divider-subtle">
         {/* Bottom Rail - Editorial Stats/Categories */}
-        <div className="col-span-12 grid grid-cols-1 md:grid-cols-3 border-t border-divider-subtle">
+        <div className="grid grid-cols-1 md:grid-cols-3">
           <Link to="/coliving" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
             <div>
               <h4 className="label-caps text-xs mb-2">Co-Living Suites</h4>
@@ -120,8 +141,12 @@ export default function Home() {
             >
               <Link to={`/coliving/${room.id}`}>
             <div className="relative aspect-[4/5] overflow-hidden mb-8 border border-divider-subtle rounded-2xl">
-                  <img 
-                    src={room.image} 
+                  <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                src={room.image} 
                     alt={room.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                   />
@@ -180,8 +205,12 @@ export default function Home() {
 
       {/* Immersive Image Break */}
       <section className="h-[60vh] relative overflow-hidden border-y border-divider-subtle">
-         <img 
-          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+         <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
           alt="Atmospheric" 
         />
@@ -204,22 +233,23 @@ export default function Home() {
           <h2 className="text-5xl md:text-6xl font-black italic mb-8 leading-[0.9] text-primary">Start Your Residency.</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Enquire about our curated membership tiers and join the Wood Street community.</p>
           
-          <form className="space-y-10">
+          <form className="space-y-10" onSubmit={handleResidencyEnquiry}>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="space-y-3">
-                <label className="label-caps text-[10px]">Given Name</label>
-                <input type="text" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
+                <label htmlFor="home-given-name" className="label-caps text-[10px]">Given Name</label>
+                <input id="home-given-name" name="givenName" type="text" required className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
               </div>
               <div className="space-y-3">
-                <label className="label-caps text-[10px]">Surname</label>
-                <input type="text" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
+                <label htmlFor="home-surname" className="label-caps text-[10px]">Surname</label>
+                <input id="home-surname" name="surname" type="text" required className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
               </div>
             </div>
             <div className="space-y-3">
-              <label className="label-caps text-[10px]">Email Address</label>
-              <input type="email" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
+              <label htmlFor="home-email" className="label-caps text-[10px]">Email Address</label>
+              <input id="home-email" name="email" type="email" required className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none" />
             </div>
-            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
+            <button type="submit" className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Submit Enquiry
             </button>
           </form>

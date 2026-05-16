@@ -15,7 +15,7 @@ export default function Spaces() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   return (
@@ -56,8 +56,12 @@ export default function Spaces() {
                 className="aspect-[3/4] overflow-hidden border border-divider-subtle mb-10 relative rounded-2xl block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label={`View ${room.name}`}
               >
-                <img 
-                  src={room.image} 
+                <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                src={room.image} 
                   alt={room.name} 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105"
                 />

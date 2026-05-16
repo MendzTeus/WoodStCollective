@@ -1,6 +1,8 @@
 import { supabase } from './supabase';
 
 const BUCKET = 'site-images';
+const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
 
 const slugify = (value: string) =>
   value
@@ -12,6 +14,14 @@ const slugify = (value: string) =>
 export async function uploadSiteImage(file: File, folder: string) {
   if (!supabase) {
     throw new Error('Supabase is not configured.');
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+    throw new Error('Only JPEG, PNG, WebP, and GIF images are allowed.');
+  }
+
+  if (file.size > MAX_IMAGE_SIZE_BYTES) {
+    throw new Error('Image must be 5MB or smaller.');
   }
 
   const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg';

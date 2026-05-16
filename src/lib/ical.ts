@@ -1,12 +1,3 @@
-const roomIcalUrls: Record<string, string> = {
-  'classic-en-suite': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_1 || '',
-  'city-view-studio': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_2 || '',
-  'penthouse-suite': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_3 || '',
-  'loft-residency': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_4 || '',
-  'master-suite': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_5 || '',
-  'executive-studio': import.meta.env.VITE_AIRBNB_ICAL_URL_ROOM_6 || '',
-};
-
 const unfoldIcal = (value: string) => value.replace(/\r?\n[ \t]/g, '');
 
 const parseIcalDate = (value: string) => {
@@ -26,10 +17,6 @@ const toDateKey = (date: Date) => {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
-
-export function getRoomIcalUrl(roomId: string) {
-  return roomIcalUrls[roomId] || '';
-}
 
 export function parseBookedDatesFromIcal(icalText: string) {
   const bookedDates = new Set<string>();

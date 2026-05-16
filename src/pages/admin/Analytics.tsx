@@ -2,16 +2,16 @@ import { Activity, BarChart3, ExternalLink, MousePointerClick, ShieldCheck } fro
 import { getAnalyticsStatus } from "../../lib/analytics";
 
 const trackedEvents = [
-  { name: "page_view", description: "Cada página pública visitada, sem contar o admin." },
-  { name: "select_room", description: "Clique em quarto na listagem de co-living." },
-  { name: "click_airbnb_top", description: "Clique no botão Airbnb do topo." },
-  { name: "click_airbnb_room", description: "Clique no Airbnb dentro de uma página de quarto." },
-  { name: "click_email_room", description: "Clique no email de enquiry de um quarto." },
-  { name: "click_whatsapp_room", description: "Clique no WhatsApp de um quarto." },
-  { name: "click_check_availability", description: "Clique em Check Availability no CTA de amenities." },
-  { name: "click_airbnb_amenities", description: "Clique em View on Airbnb no CTA de amenities." },
-  { name: "click_instagram_footer", description: "Clique no Instagram do rodapé." },
-  { name: "click_email_footer", description: "Clique no email do rodapé." },
+  { name: "page_view", description: "Each public page visit, excluding admin traffic." },
+  { name: "select_room", description: "Room selected from the co-living listing." },
+  { name: "click_airbnb_top", description: "Airbnb button clicked in the header." },
+  { name: "click_airbnb_room", description: "Airbnb link clicked from a room page." },
+  { name: "click_email_room", description: "Room enquiry email link clicked." },
+  { name: "click_whatsapp_room", description: "Room WhatsApp link clicked." },
+  { name: "click_check_availability", description: "Check Availability CTA clicked on amenities." },
+  { name: "click_airbnb_amenities", description: "View on Airbnb CTA clicked on amenities." },
+  { name: "click_instagram_footer", description: "Instagram footer link clicked." },
+  { name: "click_email_footer", description: "Email footer link clicked." },
 ];
 
 function maskMeasurementId(value: string) {
@@ -56,8 +56,8 @@ export default function AdminAnalytics() {
           </div>
           <p className="text-sm text-text-secondary mt-4 leading-relaxed">
             {analytics.configured
-              ? "O site vai carregar o Google Analytics nas páginas públicas."
-              : "Adicione VITE_GA_MEASUREMENT_ID no .env e rode o build para ativar."}
+              ? "The site will load Google Analytics on public pages."
+              : "Add VITE_GA_MEASUREMENT_ID to .env and rebuild to activate tracking."}
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function AdminAnalytics() {
           <div className="label-caps mb-3">Measurement ID</div>
           <div className="text-2xl font-bold text-primary">{maskMeasurementId(analytics.measurementId)}</div>
           <p className="text-sm text-text-secondary mt-4 leading-relaxed">
-            Este ID fica embutido no build público, como esperado no Google Analytics.
+            This ID is embedded in the public build, as expected for Google Analytics.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function AdminAnalytics() {
           <div className="label-caps mb-3">Admin Traffic</div>
           <div className="text-2xl font-bold text-primary">Excluded</div>
           <p className="text-sm text-text-secondary mt-4 leading-relaxed">
-            A área /admin não envia page views para não misturar visitas internas com visitantes reais.
+            The /admin area does not send page views, keeping internal visits out of public reports.
           </p>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function AdminAnalytics() {
           </div>
           <div>
             <h2 className="font-display text-3xl font-black italic text-primary">Tracked Events</h2>
-            <p className="text-sm text-text-secondary">Eventos enviados para relatórios e conversões no GA.</p>
+            <p className="text-sm text-text-secondary">Events sent to GA reports and conversions.</p>
           </div>
         </div>
 

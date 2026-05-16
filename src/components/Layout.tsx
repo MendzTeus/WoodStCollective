@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { data } = useSiteData();
+  const { data, loadError } = useSiteData();
   const instagramUrl = toExternalUrl(data.settings.instagramUrl);
   const emailUrl = toMailto(data.settings.email);
   const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
@@ -73,6 +73,8 @@ export default function Layout({ children }: LayoutProps) {
               onClick={() => setIsMobileMenuOpen(true)}
               className="md:hidden text-text-primary p-2"
               aria-label="Open navigation menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               <Menu size={24} />
             </button>
@@ -87,7 +89,7 @@ export default function Layout({ children }: LayoutProps) {
           onClick={() => setIsMobileMenuOpen(false)}
           className={`absolute inset-0 bg-background-dark/70 backdrop-blur-sm transition-opacity ${isMobileMenuOpen ? "opacity-100" : "opacity-0"}`}
         />
-        <aside className={`absolute right-0 top-0 h-full w-[82vw] max-w-sm bg-surface-container border-l border-divider-subtle p-8 transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <aside id="mobile-navigation" className={`absolute right-0 top-0 h-full w-[82vw] max-w-sm bg-surface-container border-l border-divider-subtle p-8 transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="flex items-center justify-between mb-14">
             <span className="font-display text-2xl font-black text-primary tracking-tighter uppercase italic">Wood Street</span>
             <button type="button" onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-text-primary" aria-label="Close navigation menu">
@@ -111,6 +113,12 @@ export default function Layout({ children }: LayoutProps) {
           </nav>
         </aside>
       </div>
+
+      {loadError && (
+        <div className="fixed top-20 left-0 right-0 z-40 bg-red-950/95 border-y border-red-400/30 px-6 py-3 text-center text-xs font-bold uppercase tracking-wider text-red-100">
+          {loadError}
+        </div>
+      )}
 
       {children}
 
@@ -146,7 +154,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
           
           <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-divider-subtle gap-12">
-            <div className="label-caps text-[10px] opacity-40">© 2024 Wood Street Collective. All Rights Reserved.</div>
+            <div className="label-caps text-[10px] opacity-40">© {new Date().getFullYear()} Wood Street Collective. All Rights Reserved.</div>
             <div className="flex gap-16">
               <div className="flex items-center gap-4">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />

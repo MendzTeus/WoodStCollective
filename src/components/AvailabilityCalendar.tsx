@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  format, 
+import {
+  format,
   addMonths, 
   subMonths, 
   startOfMonth, 
@@ -14,38 +14,11 @@ import {
   startOfDay
 } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { getRoomIcalUrl, parseBookedDatesFromIcal, toDateKey } from '../lib/ical';
+import { toDateKey } from '../lib/ical';
 
 interface AvailabilityCalendarProps {
   roomId: string;
 }
-
-const fetchIcalText = async (icalUrl: string) => {
-  const cacheBustedUrl = `${icalUrl}${icalUrl.includes('?') ? '&' : '?'}_=${Date.now()}`;
-  const urls = [
-    cacheBustedUrl,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(cacheBustedUrl)}`,
-    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(cacheBustedUrl)}`,
-  ];
-
-  let lastError: Error | null = null;
-
-  for (const url of urls) {
-    try {
-      const response = await fetch(url, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Calendar request failed: ${response.status}`);
-
-      const text = await response.text();
-      if (!text.includes('BEGIN:VCALENDAR')) throw new Error('Calendar response was not iCal');
-
-      return text;
-    } catch (error) {
-      lastError = error instanceof Error ? error : new Error('Calendar request failed');
-    }
-  }
-
-  throw lastError || new Error('Calendar request failed');
-};
 
 const fetchCachedBookedDates = async (roomId: string) => {
   const response = await fetch(`/calendar-cache/${roomId}.json?_=${Date.now()}`, { cache: 'no-store' });
@@ -64,13 +37,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
   const [status, setStatus] = useState<'loading' | 'synced' | 'unavailable'>('loading');
 
   useEffect(() => {
-    const icalUrl = getRoomIcalUrl(roomId);
     let cancelled = false;
-
-    if (!icalUrl) {
-      setStatus('unavailable');
-      return;
-    }
 
     const syncCalendar = async (showLoading = false) => {
       if (showLoading) setStatus('loading');
@@ -83,18 +50,10 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
         setStatus('synced');
         return;
       } catch {
-        try {
-          const text = await fetchIcalText(icalUrl);
-          if (cancelled) return;
+        if (cancelled) return;
 
-          setBookedDates(parseBookedDatesFromIcal(text));
-          setStatus('synced');
-        } catch {
-          if (cancelled) return;
-
-          setBookedDates(new Set());
-          setStatus('unavailable');
-        }
+        setBookedDates(new Set());
+        setStatus('unavailable');
       }
     };
 

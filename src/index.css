@@ -20,27 +20,6 @@
   --brand-hero: #c9a98a;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary: #8a6d4e;
-    --on-primary: #ffffff;
-    --primary-container: #f5f0e1;
-    --on-primary-container: #3a2a1b;
-
-    --surface: #fdfbf7;
-    --surface-container: #f3ede2;
-    --surface-container-high: #e9e0d1;
-
-    --background-dark: #fdfbf7;
-    --text-primary: #151311;
-    --text-secondary: rgba(21, 19, 17, 0.75);
-    --text-muted: rgba(21, 19, 17, 0.5);
-
-    --divider-subtle: rgba(21, 19, 17, 0.1);
-    --brand-hero: #8a6d4e;
-  }
-}
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", serif;
@@ -109,20 +88,9 @@
     font-size: clamp(52px, 8vw, 86px);
   }
 
-  .home-hero-title {
-    font-size: clamp(48px, 10vw, 82px);
-    word-break: keep-all;
-    overflow-wrap: normal;
-    hyphens: none;
-  }
-
   @media (min-width: 1024px) {
     .page-hero-title {
       font-size: clamp(76px, 6.4vw, 112px);
-    }
-
-    .home-hero-title {
-      font-size: clamp(70px, 5vw, 104px);
     }
   }
 

@@ -26,11 +26,9 @@ export default function AdminPages() {
             <span className="text-primary font-semibold">{activeTab === 'Settings' ? 'Site Settings' : `${activeTab} Page Editing`}</span>
           </div>
         </div>
-        <div className="flex gap-4">
-          <button className="px-6 py-2 rounded-lg bg-primary text-on-primary font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
-            Publish Changes
-          </button>
-        </div>
+        <span className="bg-[#2D5B4A]/20 text-[#8eced3] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-[#2D5B4A]/50">
+          Auto-Save Active
+        </span>
       </header>
 
       <div className="grid grid-cols-12 gap-8">

@@ -1,3 +1,4 @@
+import type React from "react";
 import { motion } from "motion/react";
 import { 
   Clock, 
@@ -7,16 +8,30 @@ import {
   ChevronDown
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { openMailEnquiry } from "../lib/enquiry";
 
 export default function Coworking() {
   const { data } = useSiteData();
   const pageData = data.pages['Coworking'];
 
+  const handleDeskEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    if (formData.get('website')) return;
+
+    openMailEnquiry('Wood Street coworking enquiry', {
+      'First name': formData.get('firstName') || '',
+      'Last name': formData.get('lastName') || '',
+      'Email': formData.get('email') || '',
+      'Desired duration': formData.get('duration') || '',
+    }, data.settings.email);
+  };
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   const staggerContainer = {
@@ -36,7 +51,7 @@ export default function Coworking() {
           <motion.img 
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Workspace Hero" 
             className="w-full h-full object-cover brightness-[0.4]" 
             src={pageData.coverImage} 
@@ -146,29 +161,45 @@ export default function Coworking() {
         
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Office 1" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Office 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxIi4pc4yO9LdWc-7DvCz-iJNPBXLr-mwXRvKa5TUyOSX4kYbzNbnwY4TfO1F77oS8lx1d6yRy7fu6AgJucS03JbavcHIb8cTK3c8XYxKD80PKY63X09oYLU_MLjDI6dxs0uXkxAx8-8ZrK7iDGYGZD8-W8ni2teVJwgr9xnFi9q-MbuYrTmuS3xb-zSuYdQd0Dn9QJ6mqiF6ok4QVwxMqKWwTR8qrhEQDEr_khol1scDsd8GjSlz3sMiNSQV2b301toGJRv4Fmk" 
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Office 2" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Office 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaZahCAvZuREoXCJbduuU0ZzTtLusQLVy1Sw-sd7lot7zIRMZV_C_Fc1G5-ioaadPQkA0kIUPknRdyXOnb9TnHpvWSrSZ7KslDZXiddh0gkvGeI55GVxl2l3ll10_PL1elTG_3v2L5Ye043Mhp2_423f9ZvJOl2r_WQoOxDfBuFCmP88bu0MqVFbiHsgmvg0QjQpWiVv57G8zOdXEmD7Z75D_guKIklsGO3kb6gd2yjLS2Fe0m2HzdIQWUyA7o4kS7YPw7_oKMv-U" 
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Office 3" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Office 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Office 4" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Office 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
             />
@@ -187,29 +218,45 @@ export default function Coworking() {
         
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Balcony 1" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Balcony 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSlwUHEAhil8a_suo2jgS9N0oAFm8HOoUmYjzw_fvSWEgk7W0CCxIerUCtXpIdo3m10Z8Nhq8zbz_JPuhRobZrzP9Pu6h70u5gEKKT5h-fG0PHwZtk8IdJ70zfvz8qMqcNLacfXY6GYSgdLNCdt-xWNOj946Fk9ugOi0PSj0_3rCnnipubiOxHGErTTKiueVgZll2bk3TKjKTCartvpEwZKATdF11QHz9NDDg--FwiWszyJoMtT5OTalEAKYbr4MphTlN1xKI3-U" 
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-square md:aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Balcony 2" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Balcony 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb_QluUVG-tfSLvjtb8UCBD0SlNDQyyPcsr-3HMoeZoPeh9b0EBJAHyMvEXjFlNZPz0_kpM5s_eGsQhvau0vYheIypNoynPE7TT76E3sVWGgIh3iXIMcvnH_kIBwDLpoAdiswTadDxrGPcZvTSS-Ci8ylCniewfsc-iP5aGmOU1FLosRGPeH24ooKU_z8NT5_V3jD1zoQ1MKoJaEDw7Md1SwNdBEdZzrrRfV6rdk4VnS5TvtrDB-6uZ0jP55yZxTrI2Zyu5kIkcFU" 
               />
           </div>
           <div className="col-span-12 lg:col-span-8 aspect-[16/10] overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Balcony 3" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Balcony 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0tRKGJ76qkiUGHXCLhtOnzmG6pkFc-Xf7Pe24pJKlu5Z1ZMVfYTMJXimrwSkQkZ1UoGlc4EC93vwg9_L-XQQVzdvDGSdQyBhEuYT9Rn6FFfw5800gCuH6xWbKbupuPn41B_6TIlqjE1j5l4JyLevX4im7W9Jis0eijNX5cf79YxLMwHRWikczg3vUoNyXbsYPQOqJg6Se5VkreKUmf7HRxQZnt8yhhjHHr73YwPtArTPLxPydlWxCwXDP2xpenK28re12r3WS60" 
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Balcony 4" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Balcony 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84ZE9VOt8qd3YlHdRm3JsqmduYTY2yHLoh4cZc5F0tgclzBadPouOLwCtsqVo2UpFqhMJLs8_VRoqyytozdbKgXJu2kjMkrCSJlZk3L6TlnvF_bTM-wz-xXHmh99spSFaFM-UuWDBnX0iAseitb1ZgPsXPgDAulw__ukRtJ2bgWKsChbc6IGNRHdGzRYSAN27p9Nibe5CoJrpHFySHw4ozX7bdnlL-MT3tbbvHSPg79Qtn7ABdSsa9KWsuPLUTGXA2Iq1A7KcHY0" 
             />
@@ -224,27 +271,28 @@ export default function Coworking() {
           <h2 className="text-6xl font-black italic mb-8 text-primary">Enquire About a Desk</h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-16 italic">Join our community of professionals. Enquire about daily, weekly, or monthly passes.</p>
           
-          <form className="space-y-10">
+          <form className="space-y-10" onSubmit={handleDeskEnquiry}>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="space-y-3">
-                <label className="label-caps text-[10px]">First Name</label>
-                <input type="text" placeholder="Jane" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+                <label htmlFor="coworking-first-name" className="label-caps text-[10px]">First Name</label>
+                <input id="coworking-first-name" name="firstName" type="text" required placeholder="Jane" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
               </div>
               <div className="space-y-3">
-                <label className="label-caps text-[10px]">Last Name</label>
-                <input type="text" placeholder="Doe" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+                <label htmlFor="coworking-last-name" className="label-caps text-[10px]">Last Name</label>
+                <input id="coworking-last-name" name="lastName" type="text" required placeholder="Doe" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
               </div>
             </div>
             
             <div className="space-y-3">
-              <label className="label-caps text-[10px]">Email Address</label>
-              <input type="email" placeholder="jane@example.com" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
+              <label htmlFor="coworking-email" className="label-caps text-[10px]">Email Address</label>
+              <input id="coworking-email" name="email" type="email" required placeholder="jane@example.com" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none placeholder:text-text-muted/30" />
             </div>
 
             <div className="space-y-3">
-              <label className="label-caps text-[10px]">Desired Duration</label>
+              <label htmlFor="coworking-duration" className="label-caps text-[10px]">Desired Duration</label>
               <div className="relative group">
-                <select className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none appearance-none cursor-pointer">
+                <select id="coworking-duration" name="duration" className="w-full bg-transparent border-b border-divider-subtle py-4 focus:border-primary transition-colors outline-none appearance-none cursor-pointer">
                   <option className="bg-background-dark">Daily Pass</option>
                   <option className="bg-background-dark">Weekly Pass</option>
                   <option className="bg-background-dark">Monthly Dedicated Desk</option>
@@ -253,7 +301,7 @@ export default function Coworking() {
               </div>
             </div>
 
-            <button className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
+            <button type="submit" className="w-full py-6 bg-primary text-on-primary label-caps text-xs font-bold hover:bg-white transition-colors duration-500 rounded-lg">
               Submit Enquiry
             </button>
           </form>

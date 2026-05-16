@@ -15,6 +15,7 @@ import RoomDetail from "./pages/RoomDetail";
 import Coworking from "./pages/Coworking";
 import About from "./pages/About";
 import Amenities from "./pages/Amenities";
+import NotFound from "./pages/NotFound";
 
 // Admin
 import AdminLogin from "./pages/admin/Login";
@@ -54,6 +55,7 @@ export default function App() {
                 <Route path="reviews" element={<AdminReviews />} />
                 <Route path="analytics" element={<AdminAnalytics />} />
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
         </Router>

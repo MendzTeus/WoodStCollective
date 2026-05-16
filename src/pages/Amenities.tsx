@@ -28,7 +28,7 @@ export default function Amenities() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   const staggerContainer = {
@@ -63,7 +63,7 @@ export default function Amenities() {
           <motion.img 
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Luxury interior" 
             className="w-full h-full object-cover brightness-[0.4]" 
             src={pageData.coverImage}
@@ -104,29 +104,45 @@ export default function Amenities() {
         
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 lg:col-span-8 aspect-[16/9] overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Shared Kitchen 1" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Shared Kitchen 1" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2070" 
             />
           </div>
           <div className="col-span-12 lg:col-span-4 aspect-square lg:aspect-auto overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Shared Kitchen 2" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Shared Kitchen 2" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2070" 
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Shared Kitchen 3" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Shared Kitchen 3" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=2070" 
             />
           </div>
           <div className="col-span-6 md:col-span-6 aspect-video overflow-hidden border border-divider-subtle rounded-2xl">
-            <img 
-              alt="Shared Kitchen 4" 
+            <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                alt="Shared Kitchen 4" 
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transition-transform"
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2070" 
             />

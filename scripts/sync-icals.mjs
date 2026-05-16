@@ -5,16 +5,16 @@ import { config } from 'dotenv';
 
 config({ path: path.resolve(process.cwd(), '.env'), quiet: true });
 
-const outputDir = process.env.ICAL_CACHE_DIR || '/opt/airbnbflow/site/calendar-cache';
+const outputDir = process.env.ICAL_CACHE_DIR || path.resolve(process.cwd(), 'public/calendar-cache');
 const intervalMs = Number(process.env.ICAL_SYNC_INTERVAL_MS || 30000);
 
 const rooms = [
-  ['classic-en-suite', process.env.VITE_AIRBNB_ICAL_URL_ROOM_1],
-  ['city-view-studio', process.env.VITE_AIRBNB_ICAL_URL_ROOM_2],
-  ['penthouse-suite', process.env.VITE_AIRBNB_ICAL_URL_ROOM_3],
-  ['loft-residency', process.env.VITE_AIRBNB_ICAL_URL_ROOM_4],
-  ['master-suite', process.env.VITE_AIRBNB_ICAL_URL_ROOM_5],
-  ['executive-studio', process.env.VITE_AIRBNB_ICAL_URL_ROOM_6],
+  ['classic-en-suite', process.env.AIRBNB_ICAL_URL_ROOM_1],
+  ['city-view-studio', process.env.AIRBNB_ICAL_URL_ROOM_2],
+  ['penthouse-suite', process.env.AIRBNB_ICAL_URL_ROOM_3],
+  ['loft-residency', process.env.AIRBNB_ICAL_URL_ROOM_4],
+  ['master-suite', process.env.AIRBNB_ICAL_URL_ROOM_5],
+  ['executive-studio', process.env.AIRBNB_ICAL_URL_ROOM_6],
 ];
 
 const unfoldIcal = (value) => value.replace(/\r?\n[ \t]/g, '');

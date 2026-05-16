@@ -14,7 +14,7 @@ export default function About() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   const staggerContainer = {
@@ -34,7 +34,7 @@ export default function About() {
           <motion.img 
              initial={{ scale: 1.1 }}
              animate={{ scale: 1 }}
-             transition={{ duration: 1.5, ease: "easeOut" }}
+             transition={{ duration: 1.5, ease: "easeOut" as const }}
              alt="About Cover" 
              className="w-full h-full object-cover brightness-[0.4]" 
              src={pageData.coverImage}

@@ -1,11 +1,39 @@
 import React from 'react';
-import { ChevronRight, PlusCircle, Edit, Camera, Trash2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ChevronRight, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSiteData, Room } from '../../context/SiteContext';
 
 export default function AdminRooms() {
-  const { data } = useSiteData();
+  const navigate = useNavigate();
+  const { data, addRoom, deleteRoom } = useSiteData();
   const rooms: Room[] = Object.values(data.rooms);
+
+  const createRoom = () => {
+    const id = `room-${crypto.randomUUID()}`;
+    addRoom({
+      id,
+      name: 'New Room',
+      type: 'Private Suite',
+      description: 'Short description for the new room.',
+      longDescription: 'Add a detailed description of the room, the amenities, and the ideal resident profile.',
+      image: '',
+      features: [
+        { title: 'Private Room', desc: 'Edit this feature description.' },
+        { title: 'Workspace', desc: 'Edit this feature description.' },
+      ],
+      gallery: [],
+      details: 'Edit room details',
+      airbnbUrl: '',
+      enquiryEmail: data.settings.email,
+      whatsappUrl: data.settings.whatsappUrl,
+    });
+    navigate(`/admin/rooms/${id}`);
+  };
+
+  const handleDelete = (room: Room) => {
+    if (!window.confirm(`Delete "${room.name}"? This cannot be undone.`)) return;
+    deleteRoom(room.id);
+  };
 
   return (
     <div className="p-12 pb-32">
@@ -19,7 +47,11 @@ export default function AdminRooms() {
           </div>
         </div>
         <div className="flex gap-4">
-          <button className="px-6 py-2 rounded-lg bg-primary text-on-primary font-bold text-sm hover:brightness-110 active:scale-95 transition-all flex items-center gap-2">
+          <button
+            type="button"
+            onClick={createRoom}
+            className="px-6 py-2 rounded-lg bg-primary text-on-primary font-bold text-sm hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
+          >
             <PlusCircle size={18} /> Add New Room
           </button>
         </div>
@@ -30,8 +62,12 @@ export default function AdminRooms() {
           {rooms.map((room) => (
             <div key={room.id} className="flex items-center gap-6 p-4 border border-divider-subtle rounded-xl hover:bg-white/5 transition-all">
               <div className="w-32 h-24 rounded-lg overflow-hidden shrink-0">
-                <img 
-                  className="w-full h-full object-cover" 
+                <img
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
+                className="w-full h-full object-cover" 
                   alt={room.name}
                   src={room.image}
                 />
@@ -41,13 +77,21 @@ export default function AdminRooms() {
                 <p className="text-sm text-text-muted">{room.type} &bull; {room.details}</p>
               </div>
               <div className="flex gap-2">
-                <Link to={`/admin/rooms/${room.id}`} className="p-2 text-primary hover:bg-white/10 rounded-lg transition-all" title="Edit Content">
+                <Link
+                  to={`/admin/rooms/${room.id}`}
+                  className="p-2 text-primary hover:bg-white/10 rounded-lg transition-all"
+                  title="Edit Content"
+                  aria-label={`Edit ${room.name}`}
+                >
                   <Edit size={20} />
                 </Link>
-                <button className="p-2 text-primary hover:bg-white/10 rounded-lg transition-all" title="Change Photo">
-                  <Camera size={20} />
-                </button>
-                <button className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-all" title="Delete">
+                <button
+                  type="button"
+                  onClick={() => handleDelete(room)}
+                  className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
+                  title="Delete room"
+                  aria-label={`Delete ${room.name}`}
+                >
                   <Trash2 size={20} />
                 </button>
               </div>

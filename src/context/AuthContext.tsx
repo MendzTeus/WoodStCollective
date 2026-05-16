@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 type User = {
   id: string;
   email: string;
+  role?: string;
 } | null;
 
 type AuthContextType = {
@@ -23,13 +24,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (supabase) {
       // Check active sessions and sets the user
       supabase.auth.getSession().then(({ data: { session } }) => {
-        setUser(session?.user ? { id: session.user.id, email: session.user.email || '' } : null);
+        setUser(session?.user ? { id: session.user.id, email: session.user.email || '', role: session.user.app_metadata?.role } : null);
         setIsLoading(false);
       });
 
       // Listen for changes on auth state
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        setUser(session?.user ? { id: session.user.id, email: session.user.email || '' } : null);
+        setUser(session?.user ? { id: session.user.id, email: session.user.email || '', role: session.user.app_metadata?.role } : null);
         setIsLoading(false);
       });
 
