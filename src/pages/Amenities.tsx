@@ -89,7 +89,7 @@ export default function Amenities() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Luxury interior" 
             className="w-full h-full object-cover brightness-[0.4]" 
-            src={commonImage(0)}
+            src={pageData.coverImage}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>
