@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import AvailabilityCalendar from "../components/AvailabilityCalendar";
 import ReviewByline from "../components/ReviewByline";
 import { 
-  ArrowLeft,
   MapPin,
   Calendar,
   Bed,
@@ -39,11 +38,7 @@ const iconMap: any = {
 
 const roomSpaceDescription = `The Wood Street Collective is more than a place to stay; it's a fully integrated community living and working space designed for modern professionals.
 
-Stay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated workspace with hot desks and fast Wi-Fi. All included.
-
-Need space to collaborate? Our communal dining area doubles as a meeting space for up to six colleagues - no booking fee, no hassle.
-
-Check-out is at 10am, but guests are welcome to use the workspace until 5pm.`;
+Stay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated workspace with hot desks and fast Wi-Fi. All included.`;
 
 const galleryTileClasses = [
   "md:col-span-2 lg:col-span-8 aspect-[16/9]",
@@ -97,15 +92,6 @@ export default function RoomDetail() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent" />
         
-        <div className="absolute top-32 inset-x-0 px-6 md:px-12 z-20">
-          <div className="max-w-[1440px] mx-auto">
-            <Link to="/coliving" className="inline-flex items-center gap-3 text-white/60 hover:text-primary transition-colors group">
-              <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" />
-              <span className="label-caps text-[10px]">Back to Residences</span>
-            </Link>
-          </div>
-        </div>
-
         <div className="absolute bottom-0 inset-x-0 px-6 md:px-12 pb-24 z-10">
           <div className="max-w-[1440px] mx-auto">
             <motion.div
@@ -115,10 +101,10 @@ export default function RoomDetail() {
               className="max-w-5xl"
             >
               <span className="inline-block bg-primary text-on-primary label-caps px-4 py-2 mb-8 font-bold rounded-lg">{room.type}</span>
-              <h1 className="font-display text-[clamp(48px,8vw,108px)] font-black italic leading-[0.88] text-primary mb-6 whitespace-nowrap max-w-full">
+              <h1 className="font-display text-[clamp(34px,9.5vw,42px)] sm:text-[clamp(44px,13vw,108px)] md:text-[clamp(48px,8vw,108px)] font-black italic leading-[0.88] text-primary mb-6 whitespace-nowrap max-w-full">
                 {room.name}
               </h1>
-              <p className="font-sans text-xl text-text-secondary max-w-2xl leading-relaxed font-light italic">
+              <p className="font-sans text-base sm:text-xl text-text-secondary max-w-[calc(100vw-3rem)] md:max-w-2xl leading-relaxed font-light italic">
                 {room.description}
               </p>
             </motion.div>
@@ -127,10 +113,10 @@ export default function RoomDetail() {
       </header>
 
       {/* Main Content */}
-      <section className="max-w-7xl mx-auto px-12 py-32 flex flex-col gap-32">
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 py-20 md:py-32 flex flex-col gap-20 md:gap-32">
         {/* Gallery Section */}
         <div className="space-y-12">
-          <h2 className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
+          <h2 className="text-4xl sm:text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
             {galleryImages.map((image, index) => (
               <div key={`${image}-${index}`} className={`${galleryTileClasses[index]} overflow-hidden border border-divider-subtle group rounded-2xl`}>
@@ -150,12 +136,12 @@ export default function RoomDetail() {
 
         {/* Space & Features Section */}
         <div className="space-y-12">
-          <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
+          <motion.h2 {...fadeIn} className="text-4xl sm:text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
             The Space
           </motion.h2>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
             <div className="lg:col-span-5">
-              <p className="text-xl text-text-secondary leading-relaxed font-light italic whitespace-pre-line">
+              <p className="text-lg sm:text-xl text-text-secondary leading-relaxed font-light italic whitespace-pre-line text-justify hyphens-auto">
                 {roomSpaceDescription}
               </p>
               {room.guestAccess && (
@@ -181,16 +167,20 @@ export default function RoomDetail() {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 content-start auto-rows-min">
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 content-start auto-rows-min">
               {room.features.slice(0, 4).map((item: any, i) => {
                 const Icon = iconMap[item.icon] || Shield;
                 return (
-                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-8 min-h-[220px] self-start border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">
-                    <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500 text-primary">
-                      <Icon size={28} />
+                  <motion.div key={i} {...fadeIn} className="bg-surface-container p-5 sm:p-6 md:p-7 min-h-0 md:min-h-[180px] self-start border border-divider-subtle group hover:border-primary/30 transition-colors rounded-2xl">
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 shrink-0 transform group-hover:scale-110 transition-transform duration-500 text-primary">
+                        <Icon size={26} />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-lg md:text-xl font-bold mb-2 italic leading-tight">{item.title}</h3>
+                        <p className="text-sm md:text-xs text-text-secondary leading-relaxed">{item.desc}</p>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold mb-3 italic">{item.title}</h3>
-                    <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
                   </motion.div>
                 );
               })}
@@ -200,16 +190,16 @@ export default function RoomDetail() {
 
         {roomReviews.length > 0 && (
           <div className="space-y-12">
-            <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
+            <motion.h2 {...fadeIn} className="text-4xl sm:text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
               Guest Reviews
             </motion.h2>
-            <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-4">
+            <div className="-mx-5 flex gap-5 overflow-x-auto snap-x snap-mandatory px-5 pb-4 sm:-mx-8 sm:px-8 md:mx-0 md:gap-8 md:px-0">
               {roomReviews.map((review, i) => (
                 <motion.div
                   key={review.id}
                   {...fadeIn}
                   transition={{ duration: 0.8, delay: i * 0.05 }}
-                  className="bg-surface-container p-8 border border-divider-subtle rounded-2xl min-w-[min(88vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
+                  className="bg-surface-container p-6 sm:p-8 border border-divider-subtle rounded-2xl min-w-[calc(100vw-2.5rem)] sm:min-w-[min(82vw,420px)] lg:min-w-[calc((100%_-_4rem)/3)] snap-start"
                 >
                   <div className="flex gap-1 text-primary mb-6">
                     {Array.from({ length: 5 }).map((_, starIndex) => (
@@ -221,7 +211,7 @@ export default function RoomDetail() {
                       />
                     ))}
                   </div>
-                  <p className="text-text-primary leading-relaxed italic mb-6 line-clamp-6">
+                  <p className="text-text-primary leading-relaxed italic mb-6 line-clamp-6 break-words">
                     "{review.comment}"
                   </p>
                   <ReviewByline review={review} />
@@ -234,7 +224,7 @@ export default function RoomDetail() {
         {/* Combined Availability & Enquiry */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start pb-24 border-b border-divider-subtle">
           <div className="lg:col-span-7 space-y-12">
-            <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
+            <motion.h2 {...fadeIn} className="text-4xl sm:text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
               Availability
             </motion.h2>
             <div className="w-full">
@@ -243,7 +233,7 @@ export default function RoomDetail() {
           </div>
           
           <div className="lg:col-span-5 space-y-12">
-            <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
+            <motion.h2 {...fadeIn} className="text-4xl sm:text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
               Enquire
             </motion.h2>
             <motion.div 

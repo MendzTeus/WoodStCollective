@@ -120,7 +120,7 @@ export default function Home() {
           <div className="absolute inset-0 hero-gradient" />
         </div>
 
-        <div className="relative z-10 min-h-screen max-w-[1440px] mx-auto px-12 pt-48 pb-24 flex items-center">
+        <div className="relative z-10 min-h-screen max-w-[1440px] mx-auto px-6 md:px-12 pt-48 pb-24 flex items-center">
           <div className="max-w-4xl">
             <motion.h1
               initial={{ opacity: 0, x: -50 }}
@@ -134,7 +134,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-xl text-text-secondary max-w-xl leading-relaxed font-light italic mb-12"
+              className="text-base md:text-xl text-text-secondary max-w-[19rem] md:max-w-xl leading-relaxed font-light italic mb-12"
             >
               {pageData.description}
             </motion.p>
