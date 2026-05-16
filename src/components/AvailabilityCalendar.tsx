@@ -226,7 +226,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) =
         <div className="hidden md:block text-right">
            <p className="text-[10px] text-text-muted italic mb-1 uppercase tracking-[0.2em]">Status</p>
            <span className="text-sm font-bold text-primary italic">
-             {status === 'synced' ? 'Airbnb Calendar Synced' : status === 'loading' ? 'Syncing Calendar' : 'Calendar Cache Active'}
+             {status === 'loading' ? 'Syncing Calendar' : 'Calendar Synced'}
            </span>
         </div>
       </div>

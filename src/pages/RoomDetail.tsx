@@ -36,6 +36,21 @@ const iconMap: any = {
   Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon, ChefHat
 };
 
+const roomSpaceDescription = `The Wood Street Collective is more than a place to stay; it's a fully integrated community living and working space designed for modern professionals.
+
+Stay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated workspace with hot desks and fast Wi-Fi. All included.
+
+Need space to collaborate? Our communal dining area doubles as a meeting space for up to six colleagues - no booking fee, no hassle.
+
+Check-out is at 10am, but guests are welcome to use the workspace until 5pm.`;
+
+const galleryTileClasses = [
+  "md:col-span-2 lg:col-span-8 aspect-[16/9]",
+  "md:col-span-1 lg:col-span-4 aspect-[9/10]",
+  "md:col-span-1 lg:col-span-6 aspect-[16/9]",
+  "md:col-span-1 lg:col-span-6 aspect-[16/9]",
+];
+
 export default function RoomDetail() {
   const { id } = useParams();
   const { data } = useSiteData();
@@ -58,7 +73,7 @@ export default function RoomDetail() {
   const roomReviews = Object.values(data.reviews).filter((review) => review.approved && review.roomId === room.id);
   const galleryImages = Array.from(
     new Set([...(room.gallery || []), room.image].filter((image): image is string => Boolean(image)))
-  ).slice(0, 6);
+  ).slice(0, 4);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -110,9 +125,9 @@ export default function RoomDetail() {
         {/* Gallery Section */}
         <div className="space-y-12">
           <h2 className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">Visual Tour</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
             {galleryImages.map((image, index) => (
-              <div key={`${image}-${index}`} className="aspect-[4/3] overflow-hidden border border-divider-subtle group rounded-2xl">
+              <div key={`${image}-${index}`} className={`${galleryTileClasses[index]} overflow-hidden border border-divider-subtle group rounded-2xl`}>
                 <img
                   loading="lazy"
                   decoding="async"
@@ -135,7 +150,7 @@ export default function RoomDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
             <div className="lg:col-span-5">
               <p className="text-xl text-text-secondary leading-relaxed font-light italic whitespace-pre-line">
-                {room.longDescription}
+                {roomSpaceDescription}
               </p>
               {room.guestAccess && (
                 <div className="mt-12 border-t border-divider-subtle pt-10">

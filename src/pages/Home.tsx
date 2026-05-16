@@ -12,6 +12,15 @@ import { Link } from "react-router-dom";
 import { useSiteData, Room } from "../context/SiteContext";
 import { openMailEnquiry } from "../lib/enquiry";
 
+const normalizeReviewComment = (comment: string) => (
+  comment
+    .toLowerCase()
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/\u2019/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+);
+
 export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
@@ -23,7 +32,7 @@ export default function Home() {
       .map((review, index) => ({ review, index }))
       .filter(({ review }) => review.approved && review.rating >= 4)
       .filter(({ review }) => {
-        const key = review.comment.trim().toLowerCase();
+        const key = normalizeReviewComment(review.comment);
         if (!key || seenComments.has(key)) return false;
         seenComments.add(key);
         return true;
@@ -50,7 +59,7 @@ export default function Home() {
 
     const interval = window.setInterval(() => {
       setReviewSlideIndex((current) => (current + 1) % featuredReviews.length);
-    }, 5000);
+    }, 15000);
 
     return () => window.clearInterval(interval);
   }, [featuredReviews.length]);
