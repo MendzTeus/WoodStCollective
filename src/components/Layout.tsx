@@ -130,7 +130,7 @@ export default function Layout({ children }: LayoutProps) {
               <span className="font-display text-[8vw] font-black italic text-primary tracking-tighter leading-none block mb-8">
                 Wood Street
               </span>
-              <p className="text-text-muted max-w-sm text-lg leading-relaxed italic">Redefining professional excellence through architectural clarity and community.</p>
+              <p className="text-text-muted max-w-sm text-lg leading-relaxed italic">Co-living and co-working in the heart of Manchester.</p>
             </div>
             
             <div className="md:col-span-3">
@@ -154,11 +154,11 @@ export default function Layout({ children }: LayoutProps) {
           </div>
           
           <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-divider-subtle gap-12">
-            <div className="label-caps text-[10px] opacity-40">© {new Date().getFullYear()} Wood Street Collective. All Rights Reserved.</div>
+            <div className="label-caps text-[10px] opacity-40">© 2025 Wood Street Collective. All Rights Reserved.</div>
             <div className="flex gap-16">
               <div className="flex items-center gap-4">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-                <span className="label-caps text-[10px]">Space Available / Suite 402</span>
+                <span className="label-caps text-[10px]">Rooms Available · Wood Street, Manchester</span>
               </div>
             </div>
           </div>

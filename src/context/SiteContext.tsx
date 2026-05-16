@@ -15,10 +15,14 @@ export interface Room {
   type: string;
   description: string;
   longDescription: string;
+  guestAccess?: string;
   image: string;
-  features: { title: string; desc: string }[];
+  features: { icon?: string; title: string; desc: string }[];
   gallery: string[];
   details: string;
+  capacity?: number;
+  rating?: number;
+  reviewsCount?: number;
   airbnbUrl?: string;
   enquiryEmail?: string;
   whatsappUrl?: string;
@@ -26,11 +30,13 @@ export interface Room {
 
 export interface Review {
   id: string;
+  roomId?: string;
   reviewerName: string;
   reviewerRole: string;
   rating: number;
   comment: string;
   approved: boolean;
+  showOnHome?: boolean;
 }
 
 export type SiteData = {

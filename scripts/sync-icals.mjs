@@ -1,12 +1,20 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { createClient } from '@supabase/supabase-js';
 import { config } from 'dotenv';
 
 config({ path: path.resolve(process.cwd(), '.env'), quiet: true });
 
-const outputDir = process.env.ICAL_CACHE_DIR || path.resolve(process.cwd(), 'public/calendar-cache');
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const intervalMs = Number(process.env.ICAL_SYNC_INTERVAL_MS || 30000);
+
+if (!supabaseUrl || !supabaseServiceKey) {
+  console.error('[ical-sync] VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env');
+  process.exit(1);
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 const rooms = [
   ['classic-en-suite', process.env.AIRBNB_ICAL_URL_ROOM_1],
@@ -60,13 +68,20 @@ const parseBookedDatesFromIcal = (icalText) => {
 };
 
 async function fetchIcal(url) {
-  const response = await fetch(url, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`Airbnb returned ${response.status}`);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10_000);
 
-  const text = await response.text();
-  if (!text.includes('BEGIN:VCALENDAR')) throw new Error('Airbnb response was not iCal');
+  try {
+    const response = await fetch(url, { cache: 'no-store', signal: controller.signal });
+    if (!response.ok) throw new Error(`Airbnb returned ${response.status}`);
 
-  return text;
+    const text = await response.text();
+    if (!text.includes('BEGIN:VCALENDAR')) throw new Error('Airbnb response was not iCal');
+
+    return text;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function syncRoom(roomId, icalUrl) {
@@ -74,19 +89,16 @@ async function syncRoom(roomId, icalUrl) {
 
   const icalText = await fetchIcal(icalUrl);
   const bookedDates = parseBookedDatesFromIcal(icalText);
-  const payload = {
-    roomId,
-    syncedAt: new Date().toISOString(),
-    bookedDates,
-  };
 
-  await fs.mkdir(outputDir, { recursive: true });
-  await fs.writeFile(
-    path.join(outputDir, `${roomId}.json`),
-    `${JSON.stringify(payload, null, 2)}\n`,
-    'utf8',
-  );
+  const { error } = await supabase
+    .from('calendar_cache')
+    .upsert({
+      room_id: roomId,
+      booked_dates: bookedDates,
+      synced_at: new Date().toISOString(),
+    });
 
+  if (error) throw error;
   return bookedDates.length;
 }
 

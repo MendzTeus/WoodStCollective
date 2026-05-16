@@ -24,14 +24,16 @@ import {
   Truck,
   Moon,
   Mail,
-  MessageSquare
+  MessageSquare,
+  ChefHat,
+  Star
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
 import { toExternalUrl, toMailto, toWhatsAppUrl } from "../lib/url";
 import { trackEvent } from "../lib/analytics";
 
 const iconMap: any = {
-  Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon
+  Bed, Monitor, Bath, Wifi, Coffee, Maximize, Zap, Music, Sunset, Layers, Wind, Camera, Shield, Box, Cloud, Mic, Truck, Moon, ChefHat
 };
 
 export default function RoomDetail() {
@@ -52,6 +54,8 @@ export default function RoomDetail() {
       </div>
     );
   }
+
+  const roomReviews = Object.values(data.reviews).filter((review) => review.approved && review.roomId === room.id);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -160,9 +164,17 @@ export default function RoomDetail() {
           </motion.h2>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
             <div className="lg:col-span-5">
-              <p className="text-xl text-text-secondary leading-relaxed font-light italic">
+              <p className="text-xl text-text-secondary leading-relaxed font-light italic whitespace-pre-line">
                 {room.longDescription}
               </p>
+              {room.guestAccess && (
+                <div className="mt-12 border-t border-divider-subtle pt-10">
+                  <h3 className="text-2xl font-bold italic text-primary mb-4">Guest Access</h3>
+                  <p className="text-text-secondary leading-relaxed font-light italic">
+                    {room.guestAccess}
+                  </p>
+                </div>
+              )}
               <div className="mt-12 flex flex-col gap-6">
                 <div className="flex items-center gap-4 text-text-secondary">
                   <MapPin className="text-primary" size={20} />
@@ -171,6 +183,10 @@ export default function RoomDetail() {
                 <div className="flex items-center gap-4 text-text-secondary">
                   <Calendar className="text-primary" size={20} />
                   <span className="label-caps italic text-xs tracking-widest">Flexible residency terms</span>
+                </div>
+                <div className="flex items-center gap-4 text-text-secondary">
+                  <Monitor className="text-primary" size={20} />
+                  <span className="label-caps italic text-xs tracking-widest">Workspace access until 5pm</span>
                 </div>
               </div>
             </div>
@@ -190,6 +206,42 @@ export default function RoomDetail() {
             </div>
           </div>
         </div>
+
+        {roomReviews.length > 0 && (
+          <div className="space-y-12">
+            <motion.h2 {...fadeIn} className="text-5xl font-black italic border-b border-divider-subtle pb-6 max-w-fit text-primary">
+              Guest Reviews
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {roomReviews.map((review, i) => (
+                <motion.div
+                  key={review.id}
+                  {...fadeIn}
+                  transition={{ duration: 0.8, delay: i * 0.05 }}
+                  className="bg-surface-container p-8 border border-divider-subtle rounded-2xl"
+                >
+                  <div className="flex gap-1 text-primary mb-6">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <Star
+                        key={starIndex}
+                        size={15}
+                        fill={starIndex < review.rating ? "currentColor" : "none"}
+                        className={starIndex < review.rating ? "text-primary" : "text-divider-subtle"}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-text-primary leading-relaxed italic mb-6 line-clamp-6">
+                    "{review.comment}"
+                  </p>
+                  <div>
+                    <div className="font-bold text-sm tracking-wide text-primary">{review.reviewerName}</div>
+                    <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">{review.reviewerRole}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Combined Availability & Enquiry */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start pb-24 border-b border-divider-subtle">
@@ -211,7 +263,7 @@ export default function RoomDetail() {
               className="bg-surface-container p-12 border border-divider-subtle flex flex-col gap-10 rounded-2xl"
             >
               <div>
-                <p className="text-text-secondary text-sm italic leading-relaxed">Connect with our concierge team to explore availability and bespoke terms for the {room.name}.</p>
+                <p className="text-text-secondary text-sm italic leading-relaxed">Connect with Michelle to check availability for {room.name}.</p>
               </div>
               
               <div className="flex flex-col gap-4">
@@ -239,11 +291,11 @@ export default function RoomDetail() {
                     onClick={() => trackEvent("click_airbnb_room", { room_id: room.id, room_name: room.name, link_url: airbnbUrl })}
                     className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg"
                   >
-                    Airbnb
+                    Book on Airbnb
                   </a>
                 ) : (
                   <button className="w-full border border-divider-subtle py-6 label-caps text-[10px] font-bold hover:bg-[#FF385C] hover:text-white hover:border-[#FF385C] transition-all duration-500 flex items-center justify-center gap-3 rounded-lg">
-                    Airbnb
+                    Book on Airbnb
                   </button>
                 )}
               </div>

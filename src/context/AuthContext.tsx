@@ -10,7 +10,7 @@ type User = {
 type AuthContextType = {
   user: User;
   isLoading: boolean;
-  login: (email: string, password?: string) => Promise<{ error: string | null }>;
+  login: (email: string, password: string) => Promise<{ error: string | null }>;
   logout: () => Promise<void>;
 };
 
@@ -40,17 +40,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = async (email: string, password?: string) => {
-    if (supabase && password) {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) return { error: error.message };
-      return { error: null };
-    } else {
+  const login = async (email: string, password: string) => {
+    if (!supabase) {
       return { error: 'Supabase is not configured. Add the project credentials before signing in.' };
     }
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) return { error: error.message };
+    return { error: null };
   };
 
   const logout = async () => {

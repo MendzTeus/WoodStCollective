@@ -72,10 +72,10 @@ export default function About() {
           </motion.h2>
           <motion.div {...fadeIn} className="space-y-8 text-lg font-light text-text-secondary leading-relaxed italic">
             <p>
-              Wood Street Collective was born from a vision to redefine urban living and working in Manchester. We recognized a need for spaces that inspire rather than merely accommodate. Our spaces are meticulously crafted to blend historic charm with contemporary luxury, providing an environment where ambition meets comfort.
+              Wood Street Collective was built for people who need more than just a room. We created a space where professionals, creatives, and teams can stay, work, and connect - without the compromise of choosing between comfort and productivity.
             </p>
             <p className="text-base text-text-muted not-italic">
-              Situated in a vibrant, culturally rich district, we offer more than just a desk or a room; we offer a community. Every detail, from the ambient lighting to the bespoke furnishings, is chosen to support professional focus and creative flow, establishing a new standard for premium co-living and co-working.
+              Located in the heart of Manchester, we offer six private rooms with shared kitchen, roof terrace, and a top-floor workspace. Guests check out at 10am but keep access to the workspace until 5pm - because a productive day shouldn't end at checkout.
             </p>
           </motion.div>
         </div>
@@ -121,7 +121,7 @@ export default function About() {
               <Target className="text-primary mb-8" size={40} />
               <h3 className="text-3xl font-bold italic mb-4">Focus</h3>
               <p className="text-text-secondary leading-relaxed font-light italic">
-                Environments engineered for deep work. Acoustic treatments and ergonomic design ensure your productivity is paramount.
+                Hot desks, monitors, and fast Wi-Fi on the top floor - everything you need to do your best work.
               </p>
             </motion.div>
 

@@ -4,123 +4,161 @@ export interface Room {
   type: string;
   description: string;
   longDescription: string;
+  guestAccess: string;
   image: string;
   features: { icon: string; title: string; desc: string }[];
   gallery: string[];
   details: string;
+  capacity: number;
+  rating: number;
+  reviewsCount: number;
   airbnbUrl?: string;
   enquiryEmail?: string;
   whatsappUrl?: string;
 }
 
+const theSpace = `The Wood Street Collective is more than a place to stay; it's a fully integrated community living and working space designed for modern professionals.
+
+Stay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated workspace with hot desks and fast Wi-Fi. All included.
+
+Need space to collaborate? Our communal dining area doubles as a meeting space for up to six colleagues - no booking fee, no hassle.
+
+Check-out is at 10am, but guests are welcome to use the workspace until 5pm.`;
+
+const guestAccess = "Your room is a generous private space with an en-suite bathroom. You'll have full access to our shared kitchen on the second floor and our rooftop office with four hot desks and monitors. The rooftop terrace also offers outdoor seating for relaxing or working.";
+
+const sharedFeatures = [
+  { icon: "Bath", title: "Private Room", desc: "A generous private room with bathroom access as listed." },
+  { icon: "ChefHat", title: "Shared Kitchen", desc: "Second-floor kitchen and dining area with appliances and utensils." },
+  { icon: "Monitor", title: "Workspace Included", desc: "Top-floor hot desks with monitors and fast Wi-Fi." },
+  { icon: "Sunset", title: "Roof Terrace", desc: "Outdoor seating above the city for breaks, calls, or fresh-air work." },
+];
+
 export const rooms: Room[] = [
   {
     id: "classic-en-suite",
-    name: "Classic En-Suite",
+    name: "The Collective 1",
     type: "Room 1",
-    description: "A sanctuary of sophisticated design in the heart of Manchester.",
-    longDescription: "Designed for discerning professionals, the Classic En-Suite offers an impeccable blend of privacy and luxury. Every detail has been curated to provide a premium living experience, from the custom-designed workstation to the spa-inspired bathroom.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7OczJILloz1EEHLDDHLHBQVGs-gL3MxVIDkUEq4jxWn3_eguqhKmpBPM06DSWa9YLQFWV8KpqdMei7Bn-Gh78simyIpH1UoxrePBEnAqUlP2FVj0jSyhsJZ3DS5ZP38hd9biUe-ak7W8OeBT90IsBQZai4z3QrVJmvK2taYfg5tTq81WjBxDa64Zp3_ivGCOaqCq7RSiPhKLB8oUl1H-gAFiqMDOw_U8ErUtpqOmgwMXP9ctNy1ZW1aT-Dj5RNXk2a5JdOj2D8nA",
-    details: "King Bed",
-    airbnbUrl: "https://www.airbnb.com/",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "1BR retreat with a private en-suite in the heart of Manchester.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/e3ec6ec5-3bd9-4042-ba56-69b73dc47feb.jpeg",
+    details: "1BR · Private En-Suite · 1 guest",
+    capacity: 1,
+    rating: 4.91,
+    reviewsCount: 11,
+    airbnbUrl: "https://airbnb.com/h/20-1-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB7p54s_4-rWeEuWQALBQEMtGabD8X-TcyDLlTpxds7yHgo6cye80_A7MWsM5EoD-mF2j5rbbgc_nc7DGE6d9j1m0XGxTo4LzyEgL8XOrSVoXhg2GxAVXmRZaXyiFAaFxEvy847_lINRtGtklG-XO_W0zv4PtdSLIImpEvQjuG6m-uzn3JPbf1ZJGSYY8MHuVnCQB3tsNw49gYpr4NIFt2GYbXL1mG3IOvq5TroGPXXQ1iZ6Xb_NIVcVcfo-09ryS02Zh_51rSwGeI",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAJdEdhEJY7W8Ad2iBmKSVTv2BaFNIfuF7_maz6EPs8_t5-NpyF5x9ceB5EfvwvLD_mhN5H9V0QvpcIIz21ZYVnEguNtSw9kFojk482h0iqIQg5zC6Tvwoyc3gSmPawXEt5JBO34fV1gq5zMl5P5r3eiKIQqpQh7mcj8c6F5M4W_X7k9vdqioZyoX_nLyNAFNt8wUyLhp-a-0fJRcMC2CVe6Zz_WbHYb9jxEHPAKOU4mxi_C-oPNHR955aJ8MfRMZ7VMQ7yec88tsk",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAKhtHh6GPAg5tNqkwNJ0hmVUnVT5mpYtbc0TfrXmFheF-vE4DDwUt-vGlVyLY7h7PIa8JkG9ozVCVMkyX4bmOs2xcxA9TuZH7nCu3Mtk2PZZ6ROlE-JGcbnsWHCo2lANLLE8CYt05BYLAUuhcvYCM4HLRb0zssZ4leP0Bvum9-2Kp4ivzF9IM0gXf15YTKcIDZ803xXEtwjjbgZTYLX3y2Bvc2y4cbIx2cd_7wn2U08KV35dJaoLIYtSJ7m3-ElVRmSdI2UT75yz4"
-    ]
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/e3ec6ec5-3bd9-4042-ba56-69b73dc47feb.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/22f8ca21-5865-468f-99f6-a473422fb00d.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/b6abf834-8ee4-4b5d-8103-a43af76942d4.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/260eefbe-6532-435d-85f8-19594a489937.jpeg",
+    ],
   },
   {
     id: "city-view-studio",
-    name: "City View Studio",
+    name: "The Collective 2",
     type: "Room 2",
-    description: "Panoramic vistas meeting architectural precision.",
-    longDescription: "Our City View Studio is designed for the high-altitude professional. Floor-to-ceiling windows bathe the room in natural light and offer inspiring views of the skyline morning and night.",
-    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=2070",
-    details: "King Bed • Skyline",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "Bunk 1BR with separate shower, ideal for up to four guests.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/ad5cbca6-96f3-4052-891d-7ff68ca2d96f.jpeg",
+    details: "Bunk 1BR · Separate Shower · Up to 4 guests",
+    capacity: 4,
+    rating: 4.92,
+    reviewsCount: 13,
+    airbnbUrl: "https://airbnb.com/h/20-2-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1583847268964-b28dc2f51ac9?auto=format&fit=crop&q=80&w=2000"
-    ]
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/ad5cbca6-96f3-4052-891d-7ff68ca2d96f.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/afd305c0-3267-4a27-aeaa-985ce3b04f51.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/bcc86dbd-1c35-4382-a21f-9c4cbc1716f0.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/7792c92b-1948-40a9-b8d3-869217e61a27.jpeg",
+    ],
   },
   {
     id: "penthouse-suite",
-    name: "The Penthouse",
+    name: "The Collective 3",
     type: "Room 3",
-    description: "The pinnacle of Wood Street luxury living.",
-    longDescription: "Spanning the entire corner of the top floor, The Penthouse features a separate lounge area, a library, and a private terrace overlooking the city's architectural landmarks.",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070",
-    details: "Master Suite • Private Terrace",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "King 1BR with private en-suite and full workspace access.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
+    details: "1BR King · Private En-Suite · 1 guest",
+    capacity: 1,
+    rating: 4.89,
+    reviewsCount: 9,
+    airbnbUrl: "https://airbnb.com/h/20-3-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://images.unsplash.com/photo-1616486341351-79b524021182?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=2000"
-    ]
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/be141a9e-9bc5-4b6c-b9f5-d27542cbd235.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/c4255099-7c27-4c05-ac2d-f572c8546f91.jpeg",
+    ],
   },
   {
     id: "loft-residency",
-    name: "Loft Residency",
+    name: "The Collective 4",
     type: "Room 4",
-    description: "Industrial heritage meets contemporary minimalism.",
-    longDescription: "High ceilings, exposed brickwork, and polished concrete floors provide an authentic industrial aesthetic, softened by premium wool textures and warm architectural lighting.",
-    image: "https://images.unsplash.com/photo-1536376074432-bf121817b62a?auto=format&fit=crop&q=80&w=2070",
-    details: "High Ceilings • Bi-level",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "Large 1BR with separate shower and shared amenity access.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
+    details: "Large 1BR · Separate Shower · 1 guest",
+    capacity: 1,
+    rating: 4.89,
+    reviewsCount: 9,
+    airbnbUrl: "https://airbnb.com/h/22-4-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://images.unsplash.com/photo-1617806118233-f8e187f4289b?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=2000"
-    ]
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/67c9eebb-45bb-4913-8414-8a45881d4c4f.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/d503c7e8-aeb6-4ae1-8e36-f88751ea4fa8.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg",
+    ],
   },
   {
     id: "master-suite",
-    name: "Master Suite",
+    name: "The Collective 5",
     type: "Room 5",
-    description: "Unparalleled space and comfort for extended stays.",
-    longDescription: "The Master Suite is our most popular choice for long-term residencies, offering a complete walk-in wardrobe, a master bathroom with a deep soaking tub, and a private foyer.",
-    image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=2070",
-    details: "Walk-in Wardrobe • Soaking Tub",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "King 1BR with private en-suite and access to the full house.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/eba9d77f-a9c7-4112-8927-9ba770d5bcc9.jpeg",
+    details: "King 1BR · Private En-Suite · 1 guest",
+    capacity: 1,
+    rating: 4.86,
+    reviewsCount: 7,
+    airbnbUrl: "https://airbnb.com/h/22-5-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://images.unsplash.com/photo-1616594111350-bf9260cad495?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1616486701797-0f33f61038bc?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1616594111350-bf924446340a?auto=format&fit=crop&q=80&w=2000"
-    ]
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/eba9d77f-a9c7-4112-8927-9ba770d5bcc9.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/de30f451-c331-422a-9a80-f64a460a3ef5.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/88c7a099-7ea4-4a1b-ba8a-3df93db3be97.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/d497e4f9-a494-47fb-9858-921f836139c4.jpeg",
+    ],
   },
   {
     id: "executive-studio",
-    name: "Executive Studio",
+    name: "The Collective 6",
     type: "Room 6",
-    description: "Optimized for productivity and seamless transitions.",
-    longDescription: "The Executive Studio features a professional-grade audio setup for calls and a modular layout that quickly transitions from a high-stakes office to a peaceful retreat.",
-    image: "https://images.unsplash.com/photo-1598928636439-d9fe27af5809?auto=format&fit=crop&q=80&w=2070",
-    details: "Smart Office • Soundproofed",
-    features: [
-      { icon: "Bed", title: "Premium Bedding", desc: "High-thread-count linens and a custom mattress." },
-      { icon: "Bath", title: "En-Suite", desc: "Rainfall shower and boutique toiletries." }
-    ],
+    description: "King 1BR en-suite with rooftop workspace access included.",
+    longDescription: theSpace,
+    guestAccess,
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
+    details: "King 1BR · En-Suite · 1 guest",
+    capacity: 1,
+    rating: 5,
+    reviewsCount: 11,
+    airbnbUrl: "https://airbnb.com/h/22-6-wsc",
+    features: sharedFeatures,
     gallery: [
-      "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1617806118233-f8e187f4289b?auto=format&fit=crop&q=80&w=2000",
-      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=2000"
-    ]
-  }
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/30994c0a-30bb-4913-b9d6-1ec50664d8e0.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/f6f26e08-0989-482d-a32c-37f26fd64d95.jpeg",
+    ],
+  },
 ];

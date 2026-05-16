@@ -51,6 +51,12 @@ using (
 
 drop policy if exists "Public can read site images" on storage.objects;
 drop policy if exists "Admins can upload site images" on storage.objects;
+
+create policy "Public can read site images"
+on storage.objects
+for select
+to anon, authenticated
+using (bucket_id = 'site-images');
 drop policy if exists "Admins can update site images" on storage.objects;
 drop policy if exists "Admins can delete site images" on storage.objects;
 drop policy if exists "Public can list site images" on storage.objects;

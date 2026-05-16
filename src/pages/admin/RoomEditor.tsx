@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { ChevronRight, ArrowLeft, Save, Trash2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { useSiteData } from '../../context/SiteContext';
+import type { Room } from '../../context/SiteContext';
+import { saveSiteContent } from '../../lib/siteContent';
 import ImageUploadField from '../../components/admin/ImageUploadField';
+
+type StringRoomField = {
+  [K in keyof Room]-?: NonNullable<Room[K]> extends string ? K : never;
+}[keyof Room];
 
 export default function AdminRoomEditor() {
   const { id } = useParams();
   const { data, updateRoom } = useSiteData();
-  
+
   const originalRoom = id ? data.rooms[id] : null;
   const [localRoom, setLocalRoom] = useState(originalRoom);
   const [activeSave, setActiveSave] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   if (!originalRoom || !localRoom) {
     return (
@@ -21,14 +28,26 @@ export default function AdminRoomEditor() {
     );
   }
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
+    if (!id) return;
     setActiveSave(true);
-    if (id) updateRoom(id, localRoom);
-    setTimeout(() => setActiveSave(false), 500);
+    setSaveError(null);
+    try {
+      const updatedData = {
+        ...data,
+        rooms: { ...data.rooms, [id]: { ...data.rooms[id], ...localRoom } },
+      };
+      updateRoom(id, localRoom);
+      await saveSiteContent(updatedData);
+    } catch {
+      setSaveError('Failed to save. Please try again.');
+    } finally {
+      setActiveSave(false);
+    }
   };
 
-  const setField = (field: string, value: string) => {
-    setLocalRoom(prev => ({ ...prev, [field]: value } as any));
+  const setField = (field: StringRoomField, value: string) => {
+    setLocalRoom(prev => prev ? ({ ...prev, [field]: value } as Room) : prev);
   };
 
   const setGalleryImage = (index: number, value: string) => {
@@ -82,6 +101,12 @@ export default function AdminRoomEditor() {
           </button>
         </div>
       </header>
+
+      {saveError && (
+        <div className="mb-6 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm font-medium">
+          {saveError}
+        </div>
+      )}
 
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-8 space-y-8">
@@ -156,7 +181,7 @@ export default function AdminRoomEditor() {
                   <label className="block text-sm font-bold text-primary mb-2 uppercase tracking-wider">Enquiry Email</label>
                   <input
                     className="w-full p-3 bg-background-dark border border-divider-subtle rounded-lg focus:border-primary focus:outline-none transition-colors text-text-primary"
-                    type="text"
+                    type="email"
                     placeholder="hello@woodstreet..."
                     value={localRoom.enquiryEmail || ''}
                     onChange={(e) => setField('enquiryEmail', e.target.value)}

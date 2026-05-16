@@ -9,7 +9,7 @@ export default function Spaces() {
   const pageData = data.pages['Spaces'];
   const rooms: Room[] = Object.values(data.rooms);
   const allReviews: Review[] = Object.values(data.reviews);
-  const reviews = allReviews.filter(r => r.approved);
+  const reviews = allReviews.filter(r => r.approved && r.showOnHome);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -78,6 +78,7 @@ export default function Spaces() {
                     {room.name}
                   </h3>
                   <p className="text-sm text-text-muted italic">{room.details}</p>
+                  <p className="text-primary text-xs mt-3 font-bold">★ {room.rating} ({room.reviewsCount} reviews)</p>
                 </div>
               </div>
               
@@ -103,10 +104,10 @@ export default function Spaces() {
         <div className="max-w-4xl mx-auto text-center mb-32">
           <div className="label-caps mb-12">The Wood Street Ethos</div>
           <h2 className="text-5xl md:text-8xl font-black italic mb-12 leading-[0.9]">
-            A higher standard of residency.
+            More than a place to stay.
           </h2>
           <p className="text-xl text-text-secondary leading-relaxed font-light italic max-w-2xl mx-auto">
-            We don't just provide rooms; we provide the foundation for your most productive and peaceful self. Architectural integrity is at the heart of everything we do.
+            Wood Street Collective is a fully integrated co-living and co-working space designed for modern professionals. Stay in a private room and get full access to a rooftop workspace, shared kitchen, and roof terrace - all under one roof.
           </p>
         </div>
         

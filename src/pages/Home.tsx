@@ -8,14 +8,14 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useSiteData, Room, Review } from "../context/SiteContext";
+import { useSiteData, Room } from "../context/SiteContext";
 import { openMailEnquiry } from "../lib/enquiry";
 
 export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
   const rooms: Room[] = Object.values(data.rooms);
-  const reviews: Review[] = (Object.values(data.reviews) as Review[]).filter((review) => review.approved);
+  const reviews = Object.values(data.reviews).filter((review) => review.approved && review.showOnHome);
 
   const handleResidencyEnquiry = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -94,20 +94,20 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3">
           <Link to="/coliving" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
             <div>
-              <h4 className="label-caps text-xs mb-2">Co-Living Suites</h4>
-              <p className="text-sm text-text-secondary leading-relaxed">Sophisticated residential design meeting high-performance living environments.</p>
+              <h4 className="label-caps text-xs mb-2">Co-Living Rooms</h4>
+              <p className="text-sm text-text-secondary leading-relaxed">Six private en-suite rooms designed for rest, focus, and flexibility.</p>
             </div>
           </Link>
           <Link to="/coworking" className="bottom-rail-item group cursor-pointer border-x border-divider-subtle hover:bg-primary/5 transition-colors">
             <div>
-              <h4 className="label-caps text-xs mb-2">Private Studios</h4>
-              <p className="text-sm text-text-secondary leading-relaxed">Dedicated environments for focused concentration and high-stakes team collaboration.</p>
+              <h4 className="label-caps text-xs mb-2">Co-Working Space</h4>
+              <p className="text-sm text-text-secondary leading-relaxed">Rooftop hot desks, fast Wi-Fi, and monitors - included with every stay.</p>
             </div>
           </Link>
           <Link to="/amenities" className="bottom-rail-item group cursor-pointer hover:bg-primary/5 transition-colors">
             <div>
-              <h4 className="label-caps text-xs mb-2">Cultural Lounge</h4>
-              <p className="text-sm text-text-secondary leading-relaxed">Curated events and artisan refreshments in an immersive, hospitality-focused setting.</p>
+              <h4 className="label-caps text-xs mb-2">Roof Terrace</h4>
+              <p className="text-sm text-text-secondary leading-relaxed">Outdoor seating above the city - to work, eat, or just breathe.</p>
             </div>
           </Link>
         </div>
@@ -117,11 +117,11 @@ export default function Home() {
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto border-b border-divider-subtle">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <motion.h2 {...fadeIn} className="text-5xl md:text-6xl font-black italic leading-none text-primary">
-            Curated<br />Residences.
+            The<br />Rooms.
           </motion.h2>
           <Link to="/coliving">
             <motion.div {...fadeIn} className="label-caps border-b border-primary pb-2 flex items-center gap-4 hover:gap-6 transition-all duration-300">
-              View All Suites <ArrowRight size={14} />
+              View All Rooms <ArrowRight size={14} />
             </motion.div>
           </Link>
         </div>
@@ -158,6 +158,7 @@ export default function Home() {
                   <div>
                     <h3 className="text-3xl font-bold italic mb-2 text-primary font-display">{room.name}</h3>
                     <p className="text-text-muted text-sm italic">{room.details}</p>
+                    <p className="text-primary text-xs mt-3 font-bold">★ {room.rating} ({room.reviewsCount} reviews)</p>
                   </div>
                   <div className="text-right">
                     <div className="w-10 h-10 border border-divider-subtle flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
@@ -175,7 +176,7 @@ export default function Home() {
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <motion.h2 {...fadeIn} className="text-5xl md:text-7xl font-black italic max-w-xl leading-none text-primary">
-            The Architecture of Focus.
+            Everything Included.
           </motion.h2>
           <motion.div {...fadeIn} className="label-caps border-b border-primary pb-2 max-w-fit">
             Workspace Amenities
@@ -190,9 +191,9 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12"
         >
           {[
-            { icon: <Clock size={40} />, title: "24/7 Access", desc: "Round-the-clock entry for members, secured via biometric verification." },
-            { icon: <Monitor size={40} />, title: "Ergonomics", desc: "High-end standing desks and Herman Miller seating as standard." },
-            { icon: <Coffee size={40} />, title: "Refreshments", desc: "Artisan coffee program featuring seasonal single-origin roasts." }
+            { icon: <Clock size={40} />, title: "24/7 Access", desc: "Secure, round-the-clock access for all guests." },
+            { icon: <Monitor size={40} />, title: "Workspace Included", desc: "Rooftop hot desks with monitors and fast Wi-Fi - use it as long as you need." },
+            { icon: <Coffee size={40} />, title: "Shared Kitchen", desc: "Fully equipped kitchen with appliances, utensils, and dining area on the second floor." }
           ].map((f, i) => (
             <motion.div key={i} variants={fadeIn} className="border-t border-divider-subtle pt-10 group">
               <div className="text-primary mb-8 transform group-hover:scale-110 transition-transform duration-500">{f.icon}</div>
@@ -221,8 +222,8 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="text-center px-6"
           >
-            <div className="label-caps mb-6">Designed for Expansion</div>
-            <h2 className="text-5xl md:text-8xl font-black italic drop-shadow-2xl text-primary">Excellence in every detail.</h2>
+            <div className="label-caps mb-6">Stay. Plug in. Work better.</div>
+            <h2 className="text-5xl md:text-8xl font-black italic drop-shadow-2xl text-primary">More than accommodation - a smarter way to be in Manchester.</h2>
           </motion.div>
         </div>
       </section>
@@ -230,8 +231,8 @@ export default function Home() {
       {/* Enquiry Form */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-4xl mx-auto gap-y-24">
         <div>
-          <h2 className="text-5xl md:text-6xl font-black italic mb-8 leading-[0.9] text-primary">Start Your Residency.</h2>
-          <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Enquire about our curated membership tiers and join the Wood Street community.</p>
+          <h2 className="text-5xl md:text-6xl font-black italic mb-8 leading-[0.9] text-primary">Book Your Stay.</h2>
+          <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-md italic">Get in touch to check availability - we'll get back to you directly.</p>
           
           <form className="space-y-10" onSubmit={handleResidencyEnquiry}>
             <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />

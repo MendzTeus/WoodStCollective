@@ -116,8 +116,8 @@ export default function Coworking() {
           >
             <Monitor className="text-primary" size={48} />
             <div>
-              <h3 className="text-3xl font-bold italic mb-4">Ergonomic Setup</h3>
-              <p className="text-text-secondary leading-relaxed font-light">Premium standing desks and ergonomic seating designed for long-term comfort.</p>
+              <h3 className="text-3xl font-bold italic mb-4">Hot Desks & Monitors</h3>
+              <p className="text-text-secondary leading-relaxed font-light">Four dedicated hot desks with monitors. Plug in and get to work.</p>
             </div>
           </motion.div>
 
@@ -129,7 +129,7 @@ export default function Coworking() {
             <Coffee className="text-primary" size={48} />
             <div>
               <h3 className="text-3xl font-bold italic mb-4">Artisan Refreshments</h3>
-              <p className="text-text-secondary leading-relaxed font-light">Complimentary locally roasted coffee and a selection of premium teas.</p>
+              <p className="text-text-secondary leading-relaxed font-light">Coffee and refreshments available in the shared kitchen downstairs.</p>
             </div>
           </motion.div>
 
@@ -142,7 +142,7 @@ export default function Coworking() {
               <Wifi className="text-primary mb-8" size={48} />
               <h3 className="text-3xl font-bold italic mb-4">Enterprise Wi-Fi</h3>
               <p className="text-text-secondary leading-relaxed font-light">
-                Blazing fast, secure, and redundant internet infrastructure to keep you connected without interruption. Dedicated bandwidth for demanding tasks.
+                Fast, reliable Wi-Fi to keep guests and day-pass members connected through focused work, calls, and team sessions.
               </p>
             </div>
           </motion.div>
@@ -155,7 +155,7 @@ export default function Coworking() {
         <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
           <h2 className="text-6xl font-black italic text-primary">Office</h2>
           <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
-            Industrial precision meets executive comfort. A space meticulously designed for sustained focus.
+            Four hot desks with monitors on the top floor. Quiet, fast, and fully connected.
           </p>
         </motion.div>
         
@@ -212,7 +212,7 @@ export default function Coworking() {
         <motion.div {...fadeIn} className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 border-b border-divider-subtle pb-8">
           <h2 className="text-6xl font-black italic text-primary">Balcony</h2>
           <p className="text-text-secondary italic text-lg max-w-md font-light text-right">
-            Creative expansion under the sky. Our panorama terrace provides the ultimate backdrop for inspiration and city-view networking.
+            Our rooftop terrace - outdoor seating above the city for calls, breaks, or fresh-air working sessions.
           </p>
         </motion.div>
         
@@ -307,33 +307,15 @@ export default function Coworking() {
           </form>
         </div>
 
-        {/* Meeting Rooms */}
+        {/* Meeting Space */}
         <div className="col-span-12 lg:col-span-6 lg:border-l lg:border-divider-subtle lg:pl-24 flex flex-col justify-between">
           <div>
-            <h2 className="text-5xl font-black italic mb-8 text-primary">Meeting Spaces</h2>
-            <p className="text-text-secondary text-lg leading-relaxed mb-16 italic font-light">Impress clients and collaborate seamlessly in our fully equipped boardrooms.</p>
-            
-            <div className="space-y-12">
-              {[
-                { name: "The Boardroom", details: "Seats up to 10 • Video Conferencing" },
-                { name: "Huddle Room A", details: "Seats up to 4 • Whiteboard" },
-                { name: "Podcast Studio", details: "Soundproofed • Pro Equipment" }
-              ].map((item, i) => (
-                <div key={i} className="flex justify-between items-end border-b border-divider-subtle pb-6 group cursor-pointer">
-                  <div>
-                    <h4 className="text-2xl font-bold group-hover:text-primary transition-colors italic">{item.name}</h4>
-                    <p className="text-sm text-text-muted italic">{item.details}</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="label-caps text-[10px] text-primary group-hover:translate-x-2 transition-transform block italic">Learn More</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-5xl font-black italic mb-8 text-primary">Need to Meet?</h2>
+            <p className="text-text-secondary text-lg leading-relaxed mb-16 italic font-light">Our dining area on the second floor comfortably seats up to 6 - perfect for team sessions or client calls. Available to all guests at no extra cost.</p>
           </div>
           
           <div className="mt-24 pt-12 border-t border-divider-subtle italic text-text-muted/60 text-sm">
-            * All members receive priority booking for meeting spaces.
+            Included with every stay at Wood Street Collective.
           </div>
         </div>
       </section>

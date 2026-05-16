@@ -41,18 +41,18 @@ export default function Amenities() {
   };
 
   const amenitiesList = [
-    { icon: <Bath size={32} />, title: "Private En-Suite Bathroom", desc: "Rainfall shower, premium fixtures and boutique toiletries." },
+    { icon: <Bath size={32} />, title: "Private En-Suite Bathroom", desc: "Private bathroom in every room - shower, sink and toilet." },
     { icon: <Monitor size={32} />, title: "Dedicated Workspace", desc: "Ergonomic desk and chair in every room." },
-    { icon: <Wifi size={32} />, title: "500 Mbps Wi-Fi", desc: "Enterprise-grade, dedicated bandwidth throughout." },
+    { icon: <Wifi size={32} />, title: "Fast Wi-Fi", desc: "Reliable high-speed Wi-Fi throughout the house and workspace." },
     { icon: <ChefHat size={32} />, title: "Shared Kitchen", desc: "Fully equipped with appliances, utensils and storage." },
     { icon: <Sun size={32} />, title: "Roof Terrace", desc: "Private outdoor space above the city." },
-    { icon: <Users size={32} />, title: "Top-Floor Co-Working", desc: "Hot desks, standing desks and meeting rooms." },
+    { icon: <Users size={32} />, title: "Top-Floor Co-Working", desc: "Hot desks, monitors and terrace access upstairs." },
     { icon: <Lock size={32} />, title: "24/7 Secure Access", desc: "Keyless entry, your schedule on your terms." },
     { icon: <WashingMachine size={32} />, title: "Laundry Facilities", desc: "Washer and dryer available on-site." },
     { icon: <Archive size={32} />, title: "Secure Storage", desc: "Lockable storage for luggage and valuables." },
     { icon: <Bike size={32} />, title: "Bicycle Parking", desc: "Secure indoor parking for bikes." },
     { icon: <Sparkles size={32} />, title: "Weekly Cleaning", desc: "Professional housekeeping included." },
-    { icon: <Coffee size={32} />, title: "Artisan Coffee Station", desc: "Locally roasted coffee, always on." },
+    { icon: <Coffee size={32} />, title: "Artisan Coffee Station", desc: "Coffee and refreshments available in the shared kitchen." },
   ];
 
   return (

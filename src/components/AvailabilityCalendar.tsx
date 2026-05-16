@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import {
   format,
-  addMonths, 
-  subMonths, 
-  startOfMonth, 
-  endOfMonth, 
-  startOfWeek, 
-  endOfWeek, 
-  isSameMonth, 
-  isSameDay, 
-  addDays, 
+  addMonths,
+  subMonths,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  isSameMonth,
+  isSameDay,
+  addDays,
   isBefore,
   startOfDay
 } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { toDateKey } from '../lib/ical';
+import { supabase } from '../lib/supabase';
 
 interface AvailabilityCalendarProps {
   roomId: string;
 }
 
 const fetchCachedBookedDates = async (roomId: string) => {
-  const response = await fetch(`/calendar-cache/${roomId}.json?_=${Date.now()}`, { cache: 'no-store' });
-  if (!response.ok) throw new Error('Calendar cache unavailable');
+  if (!supabase) throw new Error('Supabase not configured');
 
-  const data = await response.json() as { bookedDates?: string[] };
-  if (!Array.isArray(data.bookedDates)) throw new Error('Calendar cache was invalid');
+  const { data, error } = await supabase
+    .from('calendar_cache')
+    .select('booked_dates')
+    .eq('room_id', roomId)
+    .maybeSingle();
 
-  return new Set(data.bookedDates);
+  if (error) throw error;
+  if (!data?.booked_dates) return new Set<string>();
+
+  return new Set(data.booked_dates as string[]);
 };
 
 const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({ roomId }) => {
