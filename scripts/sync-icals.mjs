@@ -5,12 +5,16 @@ import { config } from 'dotenv';
 
 config({ path: path.resolve(process.cwd(), '.env'), quiet: true });
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const intervalMs = Number(process.env.ICAL_SYNC_INTERVAL_MS || 30000);
+const maxIcalBytes = Number(process.env.ICAL_MAX_BYTES || 1_000_000);
+const maxIcalEvents = Number(process.env.ICAL_MAX_EVENTS || 2000);
+const maxEventSpanDays = Number(process.env.ICAL_MAX_EVENT_SPAN_DAYS || 370);
+const maxFutureDays = Number(process.env.ICAL_MAX_FUTURE_DAYS || 730);
 
 if (!supabaseUrl || !supabaseServiceKey) {
-  console.error('[ical-sync] VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env');
+  console.error('[ical-sync] SUPABASE_URL or VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env');
   process.exit(1);
 }
 
@@ -30,24 +34,37 @@ const unfoldIcal = (value) => value.replace(/\r?\n[ \t]/g, '');
 const parseIcalDate = (value) => {
   const dateValue = value.includes(':') ? value.split(':').pop() || '' : value;
   const cleanValue = dateValue.trim();
+  if (!/^\d{8}$/.test(cleanValue)) return null;
   const year = Number(cleanValue.slice(0, 4));
   const month = Number(cleanValue.slice(4, 6));
   const day = Number(cleanValue.slice(6, 8));
 
   if (!year || !month || !day) return null;
-  return new Date(year, month - 1, day);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (
+    Number.isNaN(date.getTime())
+    || date.getUTCFullYear() !== year
+    || date.getUTCMonth() !== month - 1
+    || date.getUTCDate() !== day
+  ) {
+    return null;
+  }
+  return date;
 };
 
 const toDateKey = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
 
 const parseBookedDatesFromIcal = (icalText) => {
   const bookedDates = new Set();
   const events = unfoldIcal(icalText).match(/BEGIN:VEVENT[\s\S]*?END:VEVENT/g) || [];
+  if (events.length > maxIcalEvents) throw new Error(`iCal event count exceeds ${maxIcalEvents}`);
+  const maxFutureDate = new Date();
+  maxFutureDate.setUTCDate(maxFutureDate.getUTCDate() + maxFutureDays);
 
   for (const event of events) {
     const startLine = event.split(/\r?\n/).find((line) => line.startsWith('DTSTART'));
@@ -56,11 +73,14 @@ const parseBookedDatesFromIcal = (icalText) => {
     const endDate = endLine ? parseIcalDate(endLine) : null;
 
     if (!startDate || !endDate) continue;
+    const spanDays = Math.round((endDate.getTime() - startDate.getTime()) / 86_400_000);
+    if (spanDays < 1 || spanDays > maxEventSpanDays) continue;
+    if (startDate > maxFutureDate) continue;
 
     const date = new Date(startDate);
     while (date < endDate) {
       bookedDates.add(toDateKey(date));
-      date.setDate(date.getDate() + 1);
+      date.setUTCDate(date.getUTCDate() + 1);
     }
   }
 
@@ -76,6 +96,7 @@ async function fetchIcal(url) {
     if (!response.ok) throw new Error(`Airbnb returned ${response.status}`);
 
     const text = await response.text();
+    if (Buffer.byteLength(text, 'utf8') > maxIcalBytes) throw new Error(`Airbnb iCal exceeds ${maxIcalBytes} bytes`);
     if (!text.includes('BEGIN:VCALENDAR')) throw new Error('Airbnb response was not iCal');
 
     return text;

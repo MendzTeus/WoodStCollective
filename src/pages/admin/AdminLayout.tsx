@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
   LayoutDashboard,
+  CalendarCheck,
   FileEdit,
   User,
   Star,
@@ -53,6 +54,22 @@ export default function AdminLayout() {
             >
               <Star size={20} />
               <span className="text-xs font-semibold uppercase tracking-wider">Reviews</span>
+            </Link>
+
+            <Link
+              to="/admin/room6"
+              className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all ${isActive('/admin/room6') ? 'bg-primary/10 text-primary border-l-2 border-primary' : 'text-text-secondary hover:bg-white/5 hover:text-primary'}`}
+            >
+              <CalendarCheck size={20} />
+              <span className="text-xs font-semibold uppercase tracking-wider">Direct Test</span>
+            </Link>
+
+            <Link
+              to="/admin/bookings"
+              className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all ${isActive('/admin/bookings') ? 'bg-primary/10 text-primary border-l-2 border-primary' : 'text-text-secondary hover:bg-white/5 hover:text-primary'}`}
+            >
+              <CalendarCheck size={20} />
+              <span className="text-xs font-semibold uppercase tracking-wider">Bookings</span>
             </Link>
 
             <Link

@@ -243,7 +243,7 @@ export default function RoomDetail() {
               <div>
                 <p className="text-text-secondary text-sm italic leading-relaxed">Connect with Michelle to check availability for {room.name}.</p>
               </div>
-              
+
               <div className="flex flex-col gap-4">
                 <a
                   href={emailUrl || "#"}
