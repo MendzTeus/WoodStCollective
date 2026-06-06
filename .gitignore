@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Generated calendar cache — contains booking dates (sensitive)
+public/calendar-cache/*.json
