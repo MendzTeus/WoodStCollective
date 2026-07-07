@@ -12,7 +12,7 @@ import { openMailEnquiry } from "../lib/enquiry";
 import { getCommonAreaImages } from "../data/commonAreas";
 
 export default function Coworking() {
-  const { data, isLoading } = useSiteData();
+  const { data } = useSiteData();
   const pageData = data.pages['Coworking'];
   const officeImages = getCommonAreaImages('sharedOffice');
   const balconyImages = getCommonAreaImages('sharedBalcony');
@@ -54,17 +54,14 @@ export default function Coworking() {
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-end pb-24 px-12 overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
-          {!isLoading && (
-            <motion.img
-              key={pageData.coverImage}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" as const }}
-              alt="Workspace Hero"
-              className="w-full h-full object-cover brightness-[0.4]"
-              src={pageData.coverImage}
-            />
-          )}
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
+            alt="Workspace Hero"
+            className="w-full h-full object-cover brightness-[0.4]"
+            src={pageData.coverImage}
+          />
           <div className="absolute inset-0 hero-gradient" />
         </div>
         

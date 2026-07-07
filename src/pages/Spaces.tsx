@@ -5,7 +5,7 @@ import { useSiteData, Room } from "../context/SiteContext";
 import { trackEvent } from "../lib/analytics";
 
 export default function Spaces() {
-  const { data, isLoading } = useSiteData();
+  const { data } = useSiteData();
   const pageData = data.pages['Spaces'];
   const rooms: Room[] = Object.values(data.rooms);
 
@@ -14,17 +14,14 @@ export default function Spaces() {
       {/* Page Header */}
       <section className="relative min-h-screen w-full flex items-end pb-24 px-6 md:px-12 overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
-          {!isLoading && (
-            <motion.img
-              key={pageData.coverImage}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" as const }}
-              alt="Co-living rooms"
-              className="w-full h-full object-cover brightness-[0.4]"
-              src={pageData.coverImage}
-            />
-          )}
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" as const }}
+            alt="Co-living rooms"
+            className="w-full h-full object-cover brightness-[0.4]"
+            src={pageData.coverImage}
+          />
           <div className="absolute inset-0 hero-gradient" />
         </div>
 
