@@ -144,8 +144,23 @@ export function SiteProvider({ children }: { children: ReactNode }) {
 
         if (hasRemoteContent(remoteData)) {
           const merged = mergeSiteData(remoteData);
-          setData(merged);
-          localStorage.setItem('siteData', JSON.stringify(merged));
+          const coverUrls = Object.values(merged.pages)
+            .flatMap(p => [p.coverImage, p.featureImage])
+            .filter((url): url is string => Boolean(url));
+          const preload = (url: string) => new Promise<void>(resolve => {
+            const img = new window.Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+            img.src = url;
+          });
+          Promise.all(coverUrls.map(preload)).then(() => {
+            if (cancelled) return;
+            setData(merged);
+            localStorage.setItem('siteData', JSON.stringify(merged));
+            setLoadError(null);
+            setIsRemoteLoaded(true);
+          });
+          return;
         } else if (localDataRef.current) {
           setIsDirty(true);
         }
