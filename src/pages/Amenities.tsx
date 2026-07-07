@@ -15,6 +15,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { useStableImageSrc } from "../hooks/useStableImageSrc";
 import { Link } from "react-router-dom";
 import { toExternalUrl } from "../lib/url";
 import { trackEvent } from "../lib/analytics";
@@ -36,6 +37,7 @@ const interleaveImageGroups = (groups: string[][]) => {
 export default function Amenities() {
   const { data } = useSiteData();
   const pageData = data.pages['Amenities'];
+  const coverSrc = useStableImageSrc(pageData.coverImage);
   const airbnbUrl = toExternalUrl(data.settings.airbnbUrl);
   const kitchenAndDiningImages = interleaveImageGroups(
     commonAreaGroups.map((group) => [
@@ -89,7 +91,7 @@ export default function Amenities() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Luxury interior"
             className="w-full h-full object-cover brightness-[0.4]"
-            src={pageData.coverImage}
+            src={coverSrc}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>

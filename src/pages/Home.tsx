@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteData, Room } from "../context/SiteContext";
+import { useStableImageSrc } from "../hooks/useStableImageSrc";
 import { openMailEnquiry } from "../lib/enquiry";
 import ReviewByline from "../components/ReviewByline";
 
@@ -27,6 +28,7 @@ const normalizeReviewComment = (comment: string) => (
 export default function Home() {
   const { data } = useSiteData();
   const pageData = data.pages['Home'];
+  const coverSrc = useStableImageSrc(pageData.coverImage);
   const rooms: Room[] = Object.values(data.rooms);
   const featuredReviews = useMemo(() => {
     const seenComments = new Set<string>();
@@ -115,7 +117,7 @@ export default function Home() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Workspace Hero"
             className="w-full h-full object-cover brightness-[0.4]"
-            src={pageData.coverImage}
+            src={coverSrc}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>

@@ -5,10 +5,12 @@ import {
   PenTool
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { useStableImageSrc } from "../hooks/useStableImageSrc";
 
 export default function About() {
   const { data } = useSiteData();
   const pageData = data.pages['About'];
+  const coverSrc = useStableImageSrc(pageData.coverImage);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -37,7 +39,7 @@ export default function About() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="About Cover"
             className="w-full h-full object-cover brightness-[0.4]"
-            src={pageData.coverImage}
+            src={coverSrc}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>

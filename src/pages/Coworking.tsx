@@ -8,12 +8,14 @@ import {
   ChevronDown
 } from "lucide-react";
 import { useSiteData } from "../context/SiteContext";
+import { useStableImageSrc } from "../hooks/useStableImageSrc";
 import { openMailEnquiry } from "../lib/enquiry";
 import { getCommonAreaImages } from "../data/commonAreas";
 
 export default function Coworking() {
   const { data } = useSiteData();
   const pageData = data.pages['Coworking'];
+  const coverSrc = useStableImageSrc(pageData.coverImage);
   const officeImages = getCommonAreaImages('sharedOffice');
   const balconyImages = getCommonAreaImages('sharedBalcony');
   const commonImage = (images: readonly string[], index: number) => (
@@ -60,7 +62,7 @@ export default function Coworking() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Workspace Hero"
             className="w-full h-full object-cover brightness-[0.4]"
-            src={pageData.coverImage}
+            src={coverSrc}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>

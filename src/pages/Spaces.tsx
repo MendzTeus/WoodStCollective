@@ -2,11 +2,13 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useSiteData, Room } from "../context/SiteContext";
+import { useStableImageSrc } from "../hooks/useStableImageSrc";
 import { trackEvent } from "../lib/analytics";
 
 export default function Spaces() {
   const { data } = useSiteData();
   const pageData = data.pages['Spaces'];
+  const coverSrc = useStableImageSrc(pageData.coverImage);
   const rooms: Room[] = Object.values(data.rooms);
 
   return (
@@ -20,7 +22,7 @@ export default function Spaces() {
             transition={{ duration: 1.5, ease: "easeOut" as const }}
             alt="Co-living rooms"
             className="w-full h-full object-cover brightness-[0.4]"
-            src={pageData.coverImage}
+            src={coverSrc}
           />
           <div className="absolute inset-0 hero-gradient" />
         </div>
