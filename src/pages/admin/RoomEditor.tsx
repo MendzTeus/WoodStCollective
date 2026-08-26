@@ -60,8 +60,8 @@ export default function AdminRoomEditor() {
         ...data,
         rooms: { ...data.rooms, [id]: { ...data.rooms[id], ...localRoom } },
       };
-      updateRoom(id, localRoom);
       await saveSiteContent(updatedData);
+      updateRoom(id, localRoom);
     } catch {
       setSaveError('Failed to save. Please try again.');
     } finally {

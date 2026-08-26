@@ -231,15 +231,9 @@ export const roomPhotoOptionGroups = [
         "amenities": [
           "King bed"
         ],
-        "images": [
-          {
-            "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/cf8ceafb-be01-455d-9ddd-8a9603050b63.jpeg",
-            "source": "overview-thumbnail"
-          }
-        ],
+        "images": [],
         "notes": [
-          "Airbnb HTML only contained the overview thumbnail for this room section."
+          "Airbnb HTML only contained the overview thumbnail for this room section, and that photo URL is no longer valid."
         ]
       },
       "bathroom": {
@@ -267,11 +261,6 @@ export const roomPhotoOptionGroups = [
         "amenities": [],
         "images": [
           {
-            "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
             "id": "airbnb-room-gallery-2",
             "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
             "source": "airbnb-room-gallery"
@@ -285,26 +274,19 @@ export const roomPhotoOptionGroups = [
             "id": "airbnb-room-gallery-4",
             "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg",
             "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/7c4719fb-9149-4ec9-92dc-9632a2edc7bb.jpeg",
-            "source": "airbnb-room-gallery"
           }
         ],
         "notes": [
-          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections."
+          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections.",
+          "Two candidate URLs (6a0e5985..., 7c4719fb...) returned 404 from Airbnb's CDN and were removed."
         ]
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/cf8ceafb-be01-455d-9ddd-8a9603050b63.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/653caa34-3872-454a-a92a-89f02efc5a01.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/ca026f5c-3f5c-4ece-9f06-79533c94ce6b.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/7c4719fb-9149-4ec9-92dc-9632a2edc7bb.jpeg"
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg"
     ]
   },
   {
@@ -327,16 +309,13 @@ export const roomPhotoOptionGroups = [
           },
           {
             "id": "bedroom-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/ab3577d6-7a6f-48ea-ae35-e2c65fbe26d1.jpeg",
-            "source": "section-gallery"
-          },
-          {
-            "id": "bedroom-3",
             "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/422e2395-2e45-48cc-ba67-f883dd5d7b5f.jpeg",
             "source": "section-gallery"
           }
         ],
-        "notes": []
+        "notes": [
+          "One candidate URL (ab3577d6...) returned 404 from Airbnb's CDN and was removed."
+        ]
       },
       "bathroom": {
         "key": "bathroom",
@@ -369,40 +348,22 @@ export const roomPhotoOptionGroups = [
           },
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/67c9eebb-45bb-4913-8414-8a45881d4c4f.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/d503c7e8-aeb6-4ae1-8e36-f88751ea4fa8.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-4",
             "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/44273479-aedb-41fe-9b78-f8b551940d6e.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
         "notes": [
-          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections."
+          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections.",
+          "Three candidate URLs (67c9eebb..., d503c7e8..., 44273479...) returned 404 from Airbnb's CDN and were removed."
         ]
       }
     },
     "images": [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/593034c3-9112-45e8-b212-e7ed902bc28a.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/ab3577d6-7a6f-48ea-ae35-e2c65fbe26d1.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/422e2395-2e45-48cc-ba67-f883dd5d7b5f.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/23ada69a-f783-43a1-b712-d13741c4c747.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/67c9eebb-45bb-4913-8414-8a45881d4c4f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/d503c7e8-aeb6-4ae1-8e36-f88751ea4fa8.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/44273479-aedb-41fe-9b78-f8b551940d6e.jpeg"
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg"
     ]
   },
   {
@@ -521,15 +482,9 @@ export const roomPhotoOptionGroups = [
         "amenities": [
           "King bed"
         ],
-        "images": [
-          {
-            "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/1361fbe0-42cb-41cf-805b-42bdc164029b.jpeg",
-            "source": "overview-thumbnail"
-          }
-        ],
+        "images": [],
         "notes": [
-          "Airbnb HTML only contained the overview thumbnail for this room section."
+          "Airbnb HTML only contained the overview thumbnail for this room section, and that photo URL is no longer valid."
         ]
       },
       "bathroom": {
@@ -537,15 +492,9 @@ export const roomPhotoOptionGroups = [
         "title": "Full bathroom",
         "sourceLabel": "Full bathroom",
         "amenities": [],
-        "images": [
-          {
-            "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/ce56d0d2-d913-458a-99f0-897e381f4e8a.jpeg",
-            "source": "overview-thumbnail"
-          }
-        ],
+        "images": [],
         "notes": [
-          "Airbnb HTML only contained the overview thumbnail for this room section."
+          "Airbnb HTML only contained the overview thumbnail for this room section, and that photo URL is no longer valid."
         ]
       },
       "airbnbRoomGallery": {
@@ -555,50 +504,19 @@ export const roomPhotoOptionGroups = [
         "amenities": [],
         "images": [
           {
-            "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
             "id": "airbnb-room-gallery-2",
             "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/f6f26e08-0989-482d-a32c-37f26fd64d95.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/4b0389a3-ced0-4f04-bfdc-96a14ce9da13.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/6b5ef60a-18b7-4568-80ac-25ca912951f1.jpeg",
-            "source": "airbnb-room-gallery"
-          },
-          {
-            "id": "airbnb-room-gallery-6",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/32edafb4-4b81-47eb-847c-c784a9cb7796.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
         "notes": [
-          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections."
+          "Filtered against known kitchen, dining, office, balcony, deck, and exterior Airbnb sections.",
+          "Five candidate URLs (fe722429..., f6f26e08..., 4b0389a3..., 6b5ef60a..., 32edafb4...) returned 404 from Airbnb's CDN and were removed."
         ]
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/1361fbe0-42cb-41cf-805b-42bdc164029b.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/ce56d0d2-d913-458a-99f0-897e381f4e8a.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/f6f26e08-0989-482d-a32c-37f26fd64d95.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/4b0389a3-ced0-4f04-bfdc-96a14ce9da13.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/6b5ef60a-18b7-4568-80ac-25ca912951f1.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/32edafb4-4b81-47eb-847c-c784a9cb7796.jpeg"
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg"
     ]
   }
 ] as const;

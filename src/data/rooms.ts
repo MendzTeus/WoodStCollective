@@ -112,12 +112,9 @@ export const rooms: Room[] = [
     airbnbUrl: "https://airbnb.com/h/22-4-wsc",
     gallery: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/67c9eebb-45bb-4913-8414-8a45881d4c4f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/d503c7e8-aeb6-4ae1-8e36-f88751ea4fa8.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/329b75aa-eceb-4492-9adc-9fadc5ba76f4.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/ed3249b1-00a7-4043-8357-e2eac7733a7d.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/44273479-aedb-41fe-9b78-f8b551940d6e.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/422e2395-2e45-48cc-ba67-f883dd5d7b5f.jpeg"
     ],
     features: sharedFeatures,
