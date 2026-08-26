@@ -82,21 +82,18 @@ export const rooms: Room[] = [
     description: "King 1BR with private en-suite and full workspace access.",
     longDescription: "The Wood Street Collective: stay, work, connect.\n\nThe Wood Street Collective is more than a place to stay; it’s a fully integrated community living and working space designed for modern professionals.\n\nStay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated, high-quality workspace with desks and fast, reliable high-speed Wi-Fi. All included.\n\nNeed space to collaborate?\nOur communal dining area easily doubles as a meeting space for up to six colleagues, perfect for team sessions, planning days, or informal meetings. Without the cost or hassle of booking external venues.\n\nNow imagine the savings: no GBP 46-per-person day passes, no costly meeting room hire for just a few hours, no juggling multiple bookings across different locations.\n\nAt The Wood Street Collective, it’s all under one roof.\n\nAnd unlike traditional accommodation, we go one step further. While check-out is at 10 am, guests are welcome to continue using the workspace until 5 pm, giving you a full, productive day.\n\nWhether you’re travelling for work, hosting a small team meet-up, or simply want a smarter way to live and work, The Wood Street Collective offers flexibility, community, and exceptional value.\n\nStay over. Plug in. Work better.",
     guestAccess: "Your room is a generous private space with an en-suite bathroom. Beyond that, you’ll have full access to our well-equipped shared kitchen on the second floor and our rooftop office featuring four hot desks and monitors. The rooftop terrace also offers comfortable seating and a dining area for you to relax or work outdoors.",
-    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
     details: "1BR King · Private En-Suite · 1 guest",
     capacity: 1,
     rating: 4.89,
     reviewsCount: 9,
     airbnbUrl: "https://airbnb.com/h/20-3-wsc",
     gallery: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/6a0e5985-1982-4841-811a-d1ed57edd327.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/be141a9e-9bc5-4b6c-b9f5-d27542cbd235.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/c4255099-7c27-4c05-ac2d-f572c8546f91.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/cc75cdb0-057e-4f69-ab98-7587ef2bf8d8.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/ca026f5c-3f5c-4ece-9f06-79533c94ce6b.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/7c4719fb-9149-4ec9-92dc-9632a2edc7bb.jpeg"
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg"
     ],
     features: sharedFeatures,
   },
@@ -157,21 +154,15 @@ export const rooms: Room[] = [
     description: "King 1BR en-suite with rooftop workspace access included.",
     longDescription: "The Wood Street Collective: stay, work, connect.\n\nThe Wood Street Collective is more than a place to stay; it’s a fully integrated community living and working space designed for modern professionals.\n\nStay in one of our six thoughtfully designed private rooms and enjoy full access to shared kitchen and dining areas, alongside a dedicated, high-quality workspace with desks and fast, reliable high-speed Wi-Fi. All included.\n\nNeed space to collaborate?\nOur communal dining area easily doubles as a meeting space for up to six colleagues, perfect for team sessions, planning days, or informal meetings. Without the cost or hassle of booking external venues.\n\nNow imagine the savings: no GBP 46-per-person day passes, no costly meeting room hire for just a few hours, no juggling multiple bookings across different locations.\n\nAt The Wood Street Collective, it’s all under one roof.\n\nAnd unlike traditional accommodation, we go one step further. While check-out is at 10 am, guests are welcome to continue using the workspace until 5 pm, giving you a full, productive day.\n\nWhether you’re travelling for work, hosting a small team meet-up, or simply want a smarter way to live and work, The Wood Street Collective offers flexibility, community, and exceptional value.\n\nStay over. Plug in. Work better.",
     guestAccess: "Your room is a generous private space with an en-suite bathroom. Beyond that, you’ll have full access to our well-equipped shared kitchen on the second floor and our rooftop office featuring four hot desks and monitors. The rooftop terrace also offers comfortable seating and a dining area for you to relax or work outdoors.",
-    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
+    image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
     details: "King 1BR · En-Suite · 1 guest",
     capacity: 1,
     rating: 5,
     reviewsCount: 11,
     airbnbUrl: "https://airbnb.com/h/22-6-wsc",
     gallery: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/fe722429-3da6-4a2e-8325-57e9b69ac256.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/30994c0a-30bb-4913-b9d6-1ec50664d8e0.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/f6f26e08-0989-482d-a32c-37f26fd64d95.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/4b0389a3-ced0-4f04-bfdc-96a14ce9da13.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/6b5ef60a-18b7-4568-80ac-25ca912951f1.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/1361fbe0-42cb-41cf-805b-42bdc164029b.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/32edafb4-4b81-47eb-847c-c784a9cb7796.jpeg"
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/30994c0a-30bb-4913-b9d6-1ec50664d8e0.jpeg"
     ],
     features: sharedFeatures,
   }
