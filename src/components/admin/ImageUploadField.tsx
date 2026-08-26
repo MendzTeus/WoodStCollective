@@ -66,7 +66,7 @@ export default function ImageUploadField({
       <div className={`relative ${previewAspect} rounded-xl overflow-hidden border border-divider-subtle bg-background-dark`}>
         {value ? (
           <img
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 width={1200}
                 height={900}

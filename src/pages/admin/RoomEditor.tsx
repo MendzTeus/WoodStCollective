@@ -334,7 +334,7 @@ export default function AdminRoomEditor() {
                       className={`group relative aspect-[4/3] overflow-hidden rounded-lg border transition-all ${isSelected ? 'border-primary ring-2 ring-primary/40' : 'border-divider-subtle hover:border-primary/50'} ${isDisabled ? 'opacity-35 cursor-not-allowed' : ''}`}
                     >
                       <img
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                         width={600}
                         height={450}
