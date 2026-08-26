@@ -111,14 +111,16 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
-          <motion.img
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" as const }}
-            alt="Workspace Hero"
-            className="w-full h-full object-cover brightness-[0.4]"
-            src={coverSrc}
-          />
+          {coverSrc && (
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" as const }}
+              alt="Workspace Hero"
+              className="w-full h-full object-cover brightness-[0.4]"
+              src={coverSrc}
+            />
+          )}
           <div className="absolute inset-0 hero-gradient" />
         </div>
 
@@ -264,15 +266,17 @@ export default function Home() {
 
       {/* Immersive Image Break */}
       <section className="h-[60vh] relative overflow-hidden border-y border-divider-subtle">
-         <img
-                loading="lazy"
-                decoding="async"
-                width={1200}
-                height={900}
-                className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
-          src={pageData.featureImage || pageData.coverImage}
-          alt="Atmospheric" 
-        />
+         {(pageData.featureImage || pageData.coverImage) && (
+           <img
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={900}
+                  className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+            src={pageData.featureImage || pageData.coverImage}
+            alt="Atmospheric"
+          />
+         )}
         <div className="absolute inset-0 flex items-center justify-center bg-background-dark/20 backdrop-blur-[2px]">
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}

@@ -85,14 +85,16 @@ export default function Amenities() {
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-end pb-24 px-6 md:px-12 overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
-          <motion.img
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" as const }}
-            alt="Luxury interior"
-            className="w-full h-full object-cover brightness-[0.4]"
-            src={coverSrc}
-          />
+          {coverSrc && (
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" as const }}
+              alt="Luxury interior"
+              className="w-full h-full object-cover brightness-[0.4]"
+              src={coverSrc}
+            />
+          )}
           <div className="absolute inset-0 hero-gradient" />
         </div>
         

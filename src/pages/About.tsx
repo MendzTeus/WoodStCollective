@@ -33,14 +33,16 @@ export default function About() {
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-end pb-24 px-6 md:px-12 overflow-hidden border-b border-divider-subtle">
         <div className="absolute inset-0 z-0">
-          <motion.img
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" as const }}
-            alt="About Cover"
-            className="w-full h-full object-cover brightness-[0.4]"
-            src={coverSrc}
-          />
+          {coverSrc && (
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" as const }}
+              alt="About Cover"
+              className="w-full h-full object-cover brightness-[0.4]"
+              src={coverSrc}
+            />
+          )}
           <div className="absolute inset-0 hero-gradient" />
         </div>
         
@@ -83,15 +85,17 @@ export default function About() {
         </div>
         
         <div className="col-span-12 lg:col-span-6 relative h-[600px] overflow-hidden border border-divider-subtle group rounded-2xl">
-          <motion.img 
-            initial={{ scale: 1.2, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5 }}
-            alt="WSC Interior" 
-            className="w-full h-full object-cover transition-all duration-1000" 
-            src={pageData.featureImage || pageData.coverImage}
-          />
+          {(pageData.featureImage || pageData.coverImage) && (
+            <motion.img
+              initial={{ scale: 1.2, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5 }}
+              alt="WSC Interior"
+              className="w-full h-full object-cover transition-all duration-1000"
+              src={pageData.featureImage || pageData.coverImage}
+            />
+          )}
         </div>
       </section>
 
