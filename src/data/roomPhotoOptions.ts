@@ -14,32 +14,32 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/e3ec6ec5-3bd9-4042-ba56-69b73dc47feb.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f64496283f98.jpeg",
             "source": "overview-thumbnail"
           },
           {
             "id": "bedroom-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/c1f0b2d0-d3e5-4cdd-82ca-4fdcaa009c12.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/6cc5923cae70.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/c103ee16-c9e1-458e-96ae-943771adf906.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4bdf335318dc.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/8d4558e1-db9f-4c99-a033-cd2f6c38061d.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f42da97094cb.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/15cb5536-a441-4f20-b35d-9bb4584ba471.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/b09163f4625e.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-6",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/260eefbe-6532-435d-85f8-19594a489937.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/a875539a2d91.jpeg",
             "source": "section-gallery"
           }
         ],
@@ -55,37 +55,37 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/b6abf834-8ee4-4b5d-8103-a43af76942d4.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/fb1ca8d57136.jpeg",
             "source": "overview-thumbnail"
           },
           {
             "id": "bathroom-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/714410ca-28d2-4398-b0b9-73991109b44a.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/01bbc87aa4cd.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bathroom-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/22f8ca21-5865-468f-99f6-a473422fb00d.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/873a3b720aad.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bathroom-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/59b328aa-b8c0-489e-aae6-6eaf80679d88.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/85115f698ef0.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bathroom-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/3d70477b-a7f4-4eb1-853c-432707f3958f.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/ef97edb11f8d.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bathroom-6",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/aaf2a38b-e07e-40d3-88e9-657666c31fb1.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/a6b5cf1cc919.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bathroom-7",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/24321eb3-853b-435c-a5a8-02153a31703a.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/fd5426c729a1.jpeg",
             "source": "section-gallery"
           }
         ],
@@ -99,12 +99,12 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/7cd32b3f-2082-43e2-88a4-53318320d9f5.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/6928b4b4f66a.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/9cd23876-e55d-4183-b7c5-25033dd6b5be.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f133667edc4a.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -114,21 +114,21 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/e3ec6ec5-3bd9-4042-ba56-69b73dc47feb.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/c1f0b2d0-d3e5-4cdd-82ca-4fdcaa009c12.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/c103ee16-c9e1-458e-96ae-943771adf906.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/8d4558e1-db9f-4c99-a033-cd2f6c38061d.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/15cb5536-a441-4f20-b35d-9bb4584ba471.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/260eefbe-6532-435d-85f8-19594a489937.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/b6abf834-8ee4-4b5d-8103-a43af76942d4.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/714410ca-28d2-4398-b0b9-73991109b44a.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/22f8ca21-5865-468f-99f6-a473422fb00d.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/59b328aa-b8c0-489e-aae6-6eaf80679d88.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/3d70477b-a7f4-4eb1-853c-432707f3958f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/aaf2a38b-e07e-40d3-88e9-657666c31fb1.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/24321eb3-853b-435c-a5a8-02153a31703a.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/7cd32b3f-2082-43e2-88a4-53318320d9f5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523978018503532881/original/9cd23876-e55d-4183-b7c5-25033dd6b5be.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f64496283f98.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/6cc5923cae70.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4bdf335318dc.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f42da97094cb.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/b09163f4625e.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/a875539a2d91.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/fb1ca8d57136.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/01bbc87aa4cd.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/873a3b720aad.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/85115f698ef0.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/ef97edb11f8d.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/a6b5cf1cc919.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/fd5426c729a1.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/6928b4b4f66a.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f133667edc4a.jpeg"
     ]
   },
   {
@@ -146,7 +146,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/ad5cbca6-96f3-4052-891d-7ff68ca2d96f.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/42c0465d533e.jpeg",
             "source": "overview-thumbnail"
           }
         ],
@@ -164,7 +164,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/6756bd71-aa22-4230-93b5-1a8278201d24.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/adb58ed62f18.jpeg",
             "source": "overview-thumbnail"
           }
         ],
@@ -180,27 +180,27 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/afd305c0-3267-4a27-aeaa-985ce3b04f51.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/0ad1d87f3d15.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/bcc86dbd-1c35-4382-a21f-9c4cbc1716f0.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/885c0dadfe8e.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/406a13b9-08b3-42f5-9ee3-fa0239321f85.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/1d8550dbc2f9.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/fe7f815a-3351-4980-98e5-61b386399126.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/0bb00bf2b2f7.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/0b03ca36-283f-4982-8321-25fc2c541ebb.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f5582a7136c3.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -210,13 +210,13 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/ad5cbca6-96f3-4052-891d-7ff68ca2d96f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/6756bd71-aa22-4230-93b5-1a8278201d24.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/afd305c0-3267-4a27-aeaa-985ce3b04f51.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/bcc86dbd-1c35-4382-a21f-9c4cbc1716f0.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/406a13b9-08b3-42f5-9ee3-fa0239321f85.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/fe7f815a-3351-4980-98e5-61b386399126.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523922798240522995/original/0b03ca36-283f-4982-8321-25fc2c541ebb.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/42c0465d533e.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/adb58ed62f18.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/0ad1d87f3d15.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/885c0dadfe8e.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/1d8550dbc2f9.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/0bb00bf2b2f7.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/f5582a7136c3.jpeg"
     ]
   },
   {
@@ -246,7 +246,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/653caa34-3872-454a-a92a-89f02efc5a01.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4fe32fdc245d.jpeg",
             "source": "overview-thumbnail"
           }
         ],
@@ -262,17 +262,17 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/371d077307fc.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/ca026f5c-3f5c-4ece-9f06-79533c94ce6b.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/2ba3c9328dbf.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/2fc8d05ed43f.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -283,10 +283,10 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/653caa34-3872-454a-a92a-89f02efc5a01.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/447d1213-498b-43c0-9d1a-3cd48cc25a96.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/ca026f5c-3f5c-4ece-9f06-79533c94ce6b.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1523956559132675863/original/415d03f0-d2c4-4f6b-bfae-9d73fcfa38a0.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4fe32fdc245d.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/371d077307fc.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/2ba3c9328dbf.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/2fc8d05ed43f.jpeg"
     ]
   },
   {
@@ -304,12 +304,12 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/593034c3-9112-45e8-b212-e7ed902bc28a.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/c9d8708dc73c.jpeg",
             "source": "overview-thumbnail"
           },
           {
             "id": "bedroom-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/422e2395-2e45-48cc-ba67-f883dd5d7b5f.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4a131aeb714b.jpeg",
             "source": "section-gallery"
           }
         ],
@@ -327,7 +327,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/23ada69a-f783-43a1-b712-d13741c4c747.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/9a447f2bbc5b.jpeg",
             "source": "overview-thumbnail"
           }
         ],
@@ -343,12 +343,12 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/058ce984d3e8.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/c95d7f5e587f.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -359,11 +359,11 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/593034c3-9112-45e8-b212-e7ed902bc28a.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/422e2395-2e45-48cc-ba67-f883dd5d7b5f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/23ada69a-f783-43a1-b712-d13741c4c747.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/58496a67-ede8-43c0-8024-a27c108907e5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1521765380778708080/original/e5b8fc85-fa5e-4ff9-ac8e-f5c030b51bff.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/c9d8708dc73c.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/4a131aeb714b.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/9a447f2bbc5b.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/058ce984d3e8.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/c95d7f5e587f.jpeg"
     ]
   },
   {
@@ -381,22 +381,22 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bedroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/eba9d77f-a9c7-4112-8927-9ba770d5bcc9.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/5249c7c019a2.jpeg",
             "source": "overview-thumbnail"
           },
           {
             "id": "bedroom-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/50f47c16-1a4a-4701-b686-5f0238e9cfa3.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/5bf9d1362962.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/d497e4f9-a494-47fb-9858-921f836139c4.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/7756c47a70a4.jpeg",
             "source": "section-gallery"
           },
           {
             "id": "bedroom-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/367c3e28-2da7-4c52-b958-25a0e52110b6.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/510f3c162b0f.jpeg",
             "source": "section-gallery"
           }
         ],
@@ -412,7 +412,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "bathroom-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/b4ea0d73-8523-4e2a-99e2-4d38891359ad.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/116f46853d40.jpeg",
             "source": "overview-thumbnail"
           }
         ],
@@ -428,27 +428,27 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-1",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/de30f451-c331-422a-9a80-f64a460a3ef5.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/483181e181a4.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/88c7a099-7ea4-4a1b-ba8a-3df93db3be97.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/39444ba06a73.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-3",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/9d670915-f217-4acb-907f-bad610cb1752.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/259517c79c85.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-4",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/e482913f-4765-43a2-85ea-28afb5e711d4.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/b30a5f6902ff.jpeg",
             "source": "airbnb-room-gallery"
           },
           {
             "id": "airbnb-room-gallery-5",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/2b853841-8a38-4d72-a519-9e114636f43c.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/111b48ae5eec.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -458,16 +458,16 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/eba9d77f-a9c7-4112-8927-9ba770d5bcc9.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/50f47c16-1a4a-4701-b686-5f0238e9cfa3.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/d497e4f9-a494-47fb-9858-921f836139c4.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/367c3e28-2da7-4c52-b958-25a0e52110b6.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/b4ea0d73-8523-4e2a-99e2-4d38891359ad.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/de30f451-c331-422a-9a80-f64a460a3ef5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/88c7a099-7ea4-4a1b-ba8a-3df93db3be97.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/9d670915-f217-4acb-907f-bad610cb1752.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/e482913f-4765-43a2-85ea-28afb5e711d4.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1522455244829831002/original/2b853841-8a38-4d72-a519-9e114636f43c.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/5249c7c019a2.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/5bf9d1362962.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/7756c47a70a4.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/510f3c162b0f.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/116f46853d40.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/483181e181a4.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/39444ba06a73.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/259517c79c85.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/b30a5f6902ff.jpeg",
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/111b48ae5eec.jpeg"
     ]
   },
   {
@@ -505,7 +505,7 @@ export const roomPhotoOptionGroups = [
         "images": [
           {
             "id": "airbnb-room-gallery-2",
-            "url": "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg",
+            "url": "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/53414df4f47a.jpeg",
             "source": "airbnb-room-gallery"
           }
         ],
@@ -516,7 +516,7 @@ export const roomPhotoOptionGroups = [
       }
     },
     "images": [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1517332573480357530/original/0dc3ecf5-1f5f-40d5-9446-8542a7202371.jpeg"
+      "https://qjcfybgdadvtpbllxlbb.supabase.co/storage/v1/object/public/site-images/airbnb-import/53414df4f47a.jpeg"
     ]
   }
 ] as const;
